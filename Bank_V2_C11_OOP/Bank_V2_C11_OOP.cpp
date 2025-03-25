@@ -4,10 +4,8 @@
 #include <iostream>
 #include "clsBankClient.h"
 #include "clsMainScreen.h"
-#include "UI.h";
 int main()
 {
-    //Delete();
     clsMainScreen::ShowMainMenue();
 
 }
