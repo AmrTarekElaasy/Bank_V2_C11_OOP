@@ -8,6 +8,7 @@
 #include "clsDate.h"
 #include "clsScreen.h"
 #include <iomanip>
+#include "clsScreen.h"
 
 class clsInputValidate
 {
@@ -31,7 +32,7 @@ public:
 
 	}
 
-	static bool YesOrNo(string input)
+	static bool CheckYesOrNo(string input)
 	{
 
 		clsString Temp;
@@ -78,14 +79,16 @@ public:
 		return false;
 	}
 
-	static int ReadIntNumber(string ErrorMessage = "Invalid Number, Enter again\n")
+	static int ReadIntNumber(string ErrorMessage = "Invalid Number, Enter again : ")
 	{
 		int Number;
 		while (!(cin >> Number))
 		{
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			clsScreen::AlignWithOffset(1, 5);
 			cout << ErrorMessage;
+			
 		}
 		return Number;
 	}
@@ -96,7 +99,8 @@ public:
 
 		while (!IsNumberBetween(Number, From, To))
 		{
-			cout << setw(clsScreen::GetMainOffset())<<""<< ErrorMessage;
+			clsScreen::AlignWithOffset(1,5);
+			cout << ErrorMessage;
 			Number = ReadIntNumber();
 		}
 		return Number;
@@ -109,6 +113,7 @@ public:
 		{
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			clsScreen::AlignWithOffset(1, 5);
 			cout << ErrorMessage;
 		}
 		return Number;
@@ -120,6 +125,7 @@ public:
 
 		while (!IsNumberBetween(Number, From, To))
 		{
+			clsScreen::AlignWithOffset(1, 5);
 			cout << ErrorMessage;
 			Number = ReadDblNumber();
 		}
@@ -133,6 +139,7 @@ public:
 		{
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			clsScreen::AlignWithOffset(1, 5);
 			cout << ErrorMessage;
 		}
 		return Number;
@@ -144,6 +151,7 @@ public:
 
 		while (!IsNumberBetween(Number, From, To))
 		{
+			clsScreen::AlignWithOffset(1, 5);
 			cout << ErrorMessage;
 			Number = ReadDblNumber();
 		}

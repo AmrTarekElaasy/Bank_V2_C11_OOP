@@ -1,53 +1,20 @@
 #pragma once
 #include"clsScreen.h"
 #include "clsClientInfoScreen.h"
+#include "clsReadClientScreen.h"
 
-class clsAddNewClientScreen
+class clsAddNewClientScreen:clsScreen
 {
-
-	static clsBankClient ReadClient(string AccountNumber)
+	static clsScreen _ClearclsAddNewClientScreen()
 	{
-		string FristName, LastName,Email,Phone,PINCode;
-		float AccountBalans;
 		clsScreen Screen;
-		
 		Screen.Offset = 0;
+		system("cls");
+		Screen.DrawScreenHeader("                  Add New Client Screen");
+		return Screen;
 
-		Screen.AlignWithOffset();
-		cout << "Enter Frist Name : ";
-		FristName = clsInputValidate::ReadString();
-
-		Screen.AlignWithOffset();
-		cout << "Enter Last Name : ";
-		LastName = clsInputValidate::ReadString();
-
-
-		Screen.AlignWithOffset();
-		cout << "Enter Email : ";
-		Email = clsInputValidate::ReadString();
-
-
-		Screen.AlignWithOffset();
-		cout << "Enter Phone : ";
-		Phone = clsInputValidate::ReadString();
-
-
-		Screen.AlignWithOffset();
-		cout << "Enter PINCode : ";
-		PINCode = clsInputValidate::ReadString();
-
-
-		Screen.AlignWithOffset();
-		cout << "Enter Account Balans : ";
-		AccountBalans = clsInputValidate::ReadFloatNumber();
-
-
-
-		clsBankClient Client(clsBankClient::enMode::enAddNew, FristName, LastName, Email, Phone, AccountNumber, PINCode, AccountBalans);
-		
-		return Client;
 	}
-	
+
 public:
 
 	
@@ -55,23 +22,55 @@ public:
 
 	static bool AddNewClientScreen()
 	{
-		clsScreen::_DrawScreenHeader("Add New Client Screen");
-		clsScreen Screen;
-		Screen.Offset = 0;
+		
+									 
+		clsScreen Screen= _ClearclsAddNewClientScreen();
 		Screen.AlignWithOffset();
 		cout << "Enter AccountNumber : ";
 		string accountNumber = clsInputValidate::ReadString();
 		clsBankClient Client = clsBankClient::Find(accountNumber);
+
+		while (Client.IsExist())
+		{
+			_ClearclsAddNewClientScreen();
+			Screen.AlignWithOffset();
+			cout << "This Client Is Exist \n";
+			Screen.DrawScreenLine();
+
+
+			Screen.AlignWithOffset();
+			cout << "Do you Need Try Agen Y|N ? ";
+			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
+			{
+				_ClearclsAddNewClientScreen();
+				Screen.AlignWithOffset();
+				cout << "Enter Account Number : ";
+				accountNumber = clsInputValidate::ReadString();
+				Client = clsBankClient::Find(accountNumber);
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+
+
 		if (!Client.IsExist())
 		{
-			Client=ReadClient(accountNumber);
+			Client=clsReadClientScreen::ReadClient(accountNumber,clsBankClient::enMode::enAddNew);
 			
+			
+			_ClearclsAddNewClientScreen();
 			Screen.AlignWithOffset();
 			switch (Client.Save())
 			{
 			case clsBankClient::enSave::enSavedSuccessfully:
+
+				
 				cout << "Saved Successfully\n";
 					clsClientInfoScreen::PrintClientInfo(Client);
+					Screen.DrawScreenLine();
 					return true;
 					
 			case clsBankClient::enSave::enNotHasAccountNumber:
@@ -86,12 +85,8 @@ public:
 			}
 			
 		}
-		else
-		{
-			clsScreen::OffsetOFclsScreen();
-			cout << "This Client Is Exist\n";
-
-		}
+		
+		Screen.DrawScreenLine();
 		return false;
 	}
 	

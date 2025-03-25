@@ -1,13 +1,13 @@
 // Find Client.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
-#include "clsBankClient.h"
 #include "clsMainScreen.h"
+
+
 int main()
 {
-    clsMainScreen::ShowMainMenue();
 
+    clsMainScreen::ShowMainMenue();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

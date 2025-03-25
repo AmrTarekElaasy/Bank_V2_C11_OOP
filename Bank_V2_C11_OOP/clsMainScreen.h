@@ -6,6 +6,9 @@
 #include "clsClientsScreen.h" 
 #include "clsAddNewClientScreen.h"
 #include "clsDeleteClientScreen.h"
+#include "clsUpdateClientInfoScreen.h"
+#include "clsFindClientScreen.h"
+
 
 using namespace std;
 
@@ -32,7 +35,7 @@ private:
     static  void _GoBackToMainMenue()
     {
         clsScreen::AlignWithOffset(1,0);
-        cout << "Press any key to go back to Main Menue...\n";
+        cout << "Press any key to go back to Main Menue...";
         system("pause>0");
         ShowMainMenue();
     }
@@ -55,14 +58,12 @@ private:
 
     static void _ShowUpdateClientScreen()
     {
-        cout << "\n" << setw(clsScreen::GetMainOffset()) << "" << "Update Client Screen Will be here...\n";
-
+        clsUpdateClientInfoScreen::UpdateClientInfoScreen();
     }
 
     static void _ShowFindClientScreen()
     {
-        cout << "\n" << setw(clsScreen::GetMainOffset()) << "" << "Find Client Screen Will be here...\n";
-
+        clsFindClientScreen::FindClientScreen();
     }
 
     static void _ShowTransactionsMenue()
@@ -121,6 +122,7 @@ private:
         case enMainMenueOptions::eShowTransactionsMenue:
             system("cls");
             _ShowTransactionsMenue();
+            _GoBackToMainMenue();
             break;
 
         case enMainMenueOptions::eManageUsers:
@@ -146,8 +148,10 @@ public:
     static void ShowMainMenue()
     {
 
+        
         system("cls");
-        _DrawScreenHeader("Main Screen");
+        DrawScreenHeader("                      Main Screen");
+                         
         _WriteTheLine("[1] Show Client List");
         _WriteTheLine("[2] Add New Client");
         _WriteTheLine("[3] Delete Client");
@@ -156,7 +160,7 @@ public:
         _WriteTheLine("[6] Transactions");
         _WriteTheLine("[7] Manage Users");
         _WriteTheLine("[8] Logout");
-        clsScreen::_DrawScreenLine();
+        clsScreen::DrawScreenLine();
         _PerfromMainMenueOption((enMainMenueOptions)_ReadMainMenueOption());
     }
 

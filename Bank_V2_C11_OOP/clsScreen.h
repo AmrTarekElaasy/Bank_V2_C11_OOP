@@ -6,10 +6,11 @@ using namespace std;
 
 class clsScreen
 {
-    short _MainOffset = 30;
+    short _MainOffset =31;
     short _SecondOffset = 0;
 
 public:
+
     static short GetMainOffset()
     {
         clsScreen Screen;
@@ -48,18 +49,18 @@ public:
     {
         AlignWithOffset(numberOfNewLine,_SecondOffset);
     }
-    static void _DrawScreenHeader(string Title, string SubTitle = "")
+    static void DrawScreenHeader(string Title, string SubTitle = "")
     {
-        _DrawScreenLine(1,1);
-        cout << setw(GetMainOffset()+23)<<" " << Title;
+        DrawScreenLine(1,1);
+        cout << setw(GetMainOffset())<<" " << Title;
         if (SubTitle != "")
         {
-            cout << "\n" <<setw(GetMainOffset())<<"\t  " << SubTitle;
+            cout << "\n" <<setw(GetMainOffset())<<"" << SubTitle;
         }
         
-        _DrawScreenLine(1);
+        DrawScreenLine(1);
     }
-    static void _DrawScreenLine(short NumberOfEndlLineBeforeTXT=0,short NumberOfEndlLineAfterTXT=2)
+    static void DrawScreenLine(short NumberOfEndlLineBeforeTXT=0,short NumberOfEndlLineAfterTXT=2)
     {
         while (NumberOfEndlLineBeforeTXT > 0)
         {
