@@ -3,60 +3,43 @@
 #include "clsInputValidate.h"
 #include "clsBankClient.h"
 #include "clsClientInfoScreen.h"
+#include "clsGeneralFindClient.h"
 
-class clsFindClientScreen
+class clsFindClientScreen:protected clsGeneralFindClient
 {
 	
-	static clsScreen _ClearFindClientScreen()
+	static clsScreen _GetScreenSettings()
 	{
 		clsScreen Screen;
 		Screen.Offset = 0;
-		system("cls");
-		Screen.DrawScreenHeader("                    Find Client Screen");
 		return Screen;
+	}
+	static void _Header(string Header)
+	{
+		clsScreen Screen = _GetScreenSettings();
+		Screen.AlignWithOffset();
+		Screen.DrawScreenHeader(Header);
+	}
+	static  void _ClearScreenAndPrintHeader(string Header)
+	{
+		system("cls");
+		_Header(Header);
 
 	}
+
 public:
-	 
 	static bool FindClientScreen()
 	{
-		clsScreen Screen = _ClearFindClientScreen();
-		
-
-		Screen.AlignWithOffset();
-		cout << "Enter Account Number : ";
-		string accountNumber = clsInputValidate::ReadString();
-		clsBankClient Client = clsBankClient::Find(accountNumber);
-		while (!Client.IsExist())
+		clsScreen Screen = _GetScreenSettings();
+		string Header = "                    Find Client Screen";
+		//_ClearScreenAndPrintHeader(Header);
+		clsBankClient Client = clsGeneralFindClient::GeneralFindClient(Header, Screen, true);
+		if (Client.IsExist())
 		{
-			_ClearFindClientScreen();
-			Screen.AlignWithOffset();
-			cout << "Not Found \n";
-			Screen.DrawScreenLine();
 
-
-			Screen.AlignWithOffset();
-			cout << "Do you Need Try Agen Y|N ? ";
-			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
-			{
-				_ClearFindClientScreen();
-				Screen.AlignWithOffset();
-				cout << "Enter Account Number : ";
-				 accountNumber = clsInputValidate::ReadString();
-				 Client = clsBankClient::Find(accountNumber);
-			}
-			else
-			{
-				return false;
-			}
+			return true;
 		}
-		_ClearFindClientScreen();
-		clsClientInfoScreen::PrintClientInfo(Client);
-		Screen.DrawScreenLine();
-
-		return true;
-
-
+		return false;
 	}
-
 };
+

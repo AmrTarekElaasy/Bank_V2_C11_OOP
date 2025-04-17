@@ -75,7 +75,13 @@ public:
         }
             
     }
-    static void _WriteTheLine(string lineTXT,bool endLine=true)
+    static void PrintDoubleNumber(double Number,bool endl=false)
+    {
+        printf("%.2f", Number);
+        if (endl)
+            cout << endl;
+    }
+    static void WriteTheSubLine(string lineTXT,bool endLine=true)
     {
         std::cout << setw(GetMainOffset()+5) <<"" << lineTXT;
         if(endLine)

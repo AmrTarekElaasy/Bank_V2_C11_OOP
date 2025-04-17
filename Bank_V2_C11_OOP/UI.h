@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <iostream>
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
@@ -22,7 +22,7 @@ void ReadClientInfo(clsBankClient & Client)
 	Client.PinCode = clsInputValidate::ReadString();
 
 	cout << "Balance   : " ;
-	Client.AccountBalance = clsInputValidate::ReadFloatNumber();
+	Client.AccountBalance = clsInputValidate::ReadDblNumber();
 
 }
 void Update()
@@ -161,3 +161,4 @@ void PrintClientList()
 	cout << "------------------------------------------------------------------------------------------------------\n";
 
 }
+*/

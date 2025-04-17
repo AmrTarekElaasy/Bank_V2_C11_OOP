@@ -6,7 +6,7 @@
 
 #include <iostream>
 #include <vector>
-
+#include "clsErrors.h"
 using namespace std;
 
 class clsString
@@ -515,6 +515,75 @@ public:
         _Value = RemovePunctuations(_Value);
     }
 
+    static string TrimTrailingZeros(string S)
+    {
+        size_t positionOfDot = S.find(".");
 
+        if (positionOfDot >= S.length())
+            return S;
+
+        for (size_t i = S.length() - 1; i >= positionOfDot;i--)
+        {
+            if (S[i] == '0' || S[i] == '.')
+                S.pop_back();
+            else
+            {
+                break;
+            }
+        }
+
+        return S;
+    }
+    string TrimTrailingZeros()
+    {
+        return TrimTrailingZeros(_Value);
+    }
+
+
+  
+   static bool IsValidNumber(string num)
+   {
+       if (num.empty()) return false;
+
+
+       short digitCount = 0;
+       bool hasDot = false;
+
+
+       if (isdigit(num[0]))
+           digitCount++;
+       else if (num[0] == '-' || num[0] == '+')
+       {
+
+       }
+       else if (num[0] == '.')
+           hasDot = true;
+       else
+           return false;
+
+       if (num.length() > 1)
+       {
+           for (size_t i = 1;i < num.length();i++)
+           {
+               if (isdigit(num[i]))
+                   digitCount++;
+               else if (num[i] == '.' && !hasDot)
+                   hasDot = true;
+
+               else
+                   return false;
+           }
+       }
+
+
+       if (digitCount == 0)
+           return false;
+
+       return true;
+   }
+   bool IsValidNumber()
+   {
+       return IsValidNumber(_Value);
+   }
 };
 

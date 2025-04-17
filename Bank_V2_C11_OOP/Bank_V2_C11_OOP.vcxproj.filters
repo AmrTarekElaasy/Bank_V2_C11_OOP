@@ -18,12 +18,6 @@
     <ClCompile Include="Bank_V2_C11_OOP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clsClientInfoScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="clsFindClientScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsClientsScreen.h">
@@ -41,10 +35,22 @@
     <ClInclude Include="clsReadClientScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clsUpdateClientInfoScreen.h">
+    <ClInclude Include="clsUpdateClientScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clsFindClientScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTransactionsScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsDepositScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsGeneralFindClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsErrors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

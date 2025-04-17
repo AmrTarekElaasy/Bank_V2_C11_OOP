@@ -183,17 +183,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bank_V2_C11_OOP.cpp" />
-    <ClCompile Include="clsClientInfoScreen.cpp" />
-    <ClCompile Include="clsFindClientScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsAddNewClientScreen.h" />
     <ClInclude Include="clsClientInfoScreen.h" />
     <ClInclude Include="clsClientsScreen.h" />
     <ClInclude Include="clsDeleteClientScreen.h" />
+    <ClInclude Include="clsDepositScreen.h" />
+    <ClInclude Include="clsErrors.h" />
     <ClInclude Include="clsFindClientScreen.h" />
+    <ClInclude Include="clsGeneralFindClient.h" />
     <ClInclude Include="clsReadClientScreen.h" />
-    <ClInclude Include="clsUpdateClientInfoScreen.h" />
+    <ClInclude Include="clsTransactionsScreen.h" />
+    <ClInclude Include="clsUpdateClientScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

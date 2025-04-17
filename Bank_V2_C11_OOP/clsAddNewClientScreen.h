@@ -3,7 +3,7 @@
 #include "clsClientInfoScreen.h"
 #include "clsReadClientScreen.h"
 
-class clsAddNewClientScreen:clsScreen
+class clsAddNewClientScreen :clsScreen
 {
 	static clsScreen _ClearclsAddNewClientScreen()
 	{
@@ -17,14 +17,14 @@ class clsAddNewClientScreen:clsScreen
 
 public:
 
-	
+
 	short Offset;
 
 	static bool AddNewClientScreen()
 	{
-		
-									 
-		clsScreen Screen= _ClearclsAddNewClientScreen();
+
+
+		clsScreen Screen = _ClearclsAddNewClientScreen();
 		Screen.AlignWithOffset();
 		cout << "Enter AccountNumber : ";
 		string accountNumber = clsInputValidate::ReadString();
@@ -58,21 +58,21 @@ public:
 
 		if (!Client.IsExist())
 		{
-			Client=clsReadClientScreen::ReadClient(accountNumber,clsBankClient::enMode::enAddNew);
-			
-			
+			Client = clsReadClientScreen::ReadClient(accountNumber, clsBankClient::enMode::enAddNew);
+
+
 			_ClearclsAddNewClientScreen();
 			Screen.AlignWithOffset();
 			switch (Client.Save())
 			{
 			case clsBankClient::enSave::enSavedSuccessfully:
 
-				
+
 				cout << "Saved Successfully\n";
-					clsClientInfoScreen::PrintClientInfo(Client);
-					Screen.DrawScreenLine();
-					return true;
-					
+				clsClientInfoScreen::PrintClientInfo(Client);
+				Screen.DrawScreenLine();
+				return true;
+
 			case clsBankClient::enSave::enNotHasAccountNumber:
 				cout << "Not Has Account Number\n";
 				break;
@@ -83,12 +83,11 @@ public:
 				cout << "Not Saved\n";
 				break;
 			}
-			
+
 		}
-		
+
 		Screen.DrawScreenLine();
 		return false;
 	}
-	
-};
 
+};

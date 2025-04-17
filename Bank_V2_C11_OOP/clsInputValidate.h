@@ -44,7 +44,7 @@ public:
 			return true;
 
 		return false;
-		
+
 
 	}
 
@@ -79,18 +79,33 @@ public:
 		return false;
 	}
 
+
 	static int ReadIntNumber(string ErrorMessage = "Invalid Number, Enter again : ")
 	{
-		int Number;
-		while (!(cin >> Number))
+
+
+		string input = "";
+		getline(cin >> ws, input);
+		while (!clsString::IsValidNumber(input) || input.length() > 10)
 		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			clsScreen::AlignWithOffset(1, 5);
+
+			clsScreen::AlignWithOffset(1, 0);
+
+			if (input.length() > 10)
+			{
+				clsErrors::SaveTheErrorInTheFile("The value is very large ");
+				cout << "The value is very large \n";
+			}
+
+			clsScreen::AlignWithOffset(1, 0);
 			cout << ErrorMessage;
-			
+			getline(cin >> ws, input);
+
 		}
-		return Number;
+
+		int number = round(stod(input));
+
+		return number;
 	}
 
 	static int ReadIntNumberBetween(int From, int To, string ErrorMessage = "Number is not within range, Enter again:\n")
@@ -99,50 +114,41 @@ public:
 
 		while (!IsNumberBetween(Number, From, To))
 		{
-			clsScreen::AlignWithOffset(1,5);
+			clsScreen::AlignWithOffset(1, 0);
 			cout << ErrorMessage;
 			Number = ReadIntNumber();
 		}
 		return Number;
 	}
 
-	static double ReadFloatNumber(string ErrorMessage = "Invalid Number, Enter again\n")
-	{
-		float Number;
-		while (!(cin >> Number))
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			clsScreen::AlignWithOffset(1, 5);
-			cout << ErrorMessage;
-		}
-		return Number;
-	}
 
-	static double ReadFloatNumberBetween(double From, double To, string ErrorMessage = "Number is not within range, Enter again:\n")
-	{
-		float Number = ReadFloatNumber();
 
-		while (!IsNumberBetween(Number, From, To))
-		{
-			clsScreen::AlignWithOffset(1, 5);
-			cout << ErrorMessage;
-			Number = ReadDblNumber();
-		}
-		return Number;
-	}
-
-	static double ReadDblNumber(string ErrorMessage = "Invalid Number, Enter again\n")
+	static double ReadDblNumber(string ErrorMessage = "Invalid Number, Enter again : ")
 	{
-		double Number;
-		while (!(cin >> Number))
+
+
+		string input = "";
+		getline(cin >> ws, input);
+		while (!clsString::IsValidNumber(input) || input.length() > 15)
 		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			clsScreen::AlignWithOffset(1, 5);
+			clsScreen::AlignWithOffset(1, 0);
+
+			if (input.length() > 17)
+			{
+				clsErrors::SaveTheErrorInTheFile("The value is very large ");
+				cout << "The value is very large \n";
+			}
+
+			clsScreen::AlignWithOffset(1, 0);
 			cout << ErrorMessage;
+
+			getline(cin >> ws, input);
+
 		}
-		return Number;
+
+		double number = stod(input);
+
+		return number;
 	}
 
 	static double ReadDblNumberBetween(double From, double To, string ErrorMessage = "Number is not within range, Enter again:\n")
@@ -151,7 +157,7 @@ public:
 
 		while (!IsNumberBetween(Number, From, To))
 		{
-			clsScreen::AlignWithOffset(1, 5);
+			clsScreen::AlignWithOffset(1, 0);
 			cout << ErrorMessage;
 			Number = ReadDblNumber();
 		}
@@ -165,6 +171,7 @@ public:
 
 	static string ReadString()
 	{
+		cin.clear();
 		string  S1 = "";
 		// Usage of std::ws will extract allthe whitespace character
 		getline(cin >> ws, S1);

@@ -6,8 +6,9 @@
 #include "clsClientsScreen.h" 
 #include "clsAddNewClientScreen.h"
 #include "clsDeleteClientScreen.h"
-#include "clsUpdateClientInfoScreen.h"
+#include "clsUpdateClientScreen.h"
 #include "clsFindClientScreen.h"
+#include "clsTransactionsScreen.h"
 
 
 using namespace std;
@@ -27,8 +28,8 @@ private:
 
     static short _ReadMainMenueOption()
     {
-        cout << setw(clsScreen::GetMainOffset()+5) << left << "" << "Choose what do you want to do? [1 to 8]? ";
-        short Choice = clsInputValidate::ReadIntNumberBetween(1, 8, "Enter Number between 1 to 8? ");
+        cout << setw(clsScreen::GetMainOffset()+5) << left << "" << "Choose what do you want to do? [1 to 8] :  ";
+        short Choice = clsInputValidate::ReadIntNumberBetween(1, 8, "Enter Number between 1 to 8 : ");
         return Choice;
     }
 
@@ -58,7 +59,7 @@ private:
 
     static void _ShowUpdateClientScreen()
     {
-        clsUpdateClientInfoScreen::UpdateClientInfoScreen();
+        clsUpdateClientScreen::UpdateClientInfoScreen();
     }
 
     static void _ShowFindClientScreen()
@@ -68,8 +69,7 @@ private:
 
     static void _ShowTransactionsMenue()
     {
-        cout << "\n"<<setw(clsScreen::GetMainOffset())<<""<<"Transactions Menue Will be here...\n";
-
+        clsTransactionsScreen::ShowTransactionsMenue();
     }
 
     static void _ShowManageUsersMenue()
@@ -152,14 +152,14 @@ public:
         system("cls");
         DrawScreenHeader("                      Main Screen");
                          
-        _WriteTheLine("[1] Show Client List");
-        _WriteTheLine("[2] Add New Client");
-        _WriteTheLine("[3] Delete Client");
-        _WriteTheLine("[4] Update Client Info");
-        _WriteTheLine("[5] Find Client");
-        _WriteTheLine("[6] Transactions");
-        _WriteTheLine("[7] Manage Users");
-        _WriteTheLine("[8] Logout");
+        WriteTheSubLine("[1] Show Client List");
+        WriteTheSubLine("[2] Add New Client");
+        WriteTheSubLine("[3] Delete Client");
+        WriteTheSubLine("[4] Update Client Info");
+        WriteTheSubLine("[5] Find Client");
+        WriteTheSubLine("[6] Transactions");
+        WriteTheSubLine("[7] Manage Users");
+        WriteTheSubLine("[8] Logout");
         clsScreen::DrawScreenLine();
         _PerfromMainMenueOption((enMainMenueOptions)_ReadMainMenueOption());
     }

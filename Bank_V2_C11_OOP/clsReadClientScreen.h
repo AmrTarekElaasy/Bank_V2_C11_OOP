@@ -11,7 +11,7 @@ public:
 	{
 	
 		string FristName, LastName, Email, Phone, PINCode;
-		float AccountBalans;
+		double AccountBalans;
 		clsScreen Screen;
 
 		Screen.Offset = 0;
@@ -42,7 +42,7 @@ public:
 
 		Screen.AlignWithOffset();
 		cout << "Enter Account Balans : ";
-		AccountBalans = clsInputValidate::ReadFloatNumber();
+		AccountBalans = clsInputValidate::ReadDblNumber();
 
 
 

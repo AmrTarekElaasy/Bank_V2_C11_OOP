@@ -4,7 +4,7 @@
 #include "clsReadClientScreen.h"
 #include "clsBankClient.h"
 #include "clsClientInfoScreen.h"
-class clsUpdateClientInfoScreen :clsScreen
+class clsUpdateClientScreen :clsScreen
 {
 public:
 	static bool UpdateClientInfoScreen()
@@ -13,7 +13,7 @@ public:
 		Screen.Offset = 0;
 
 		Screen.DrawScreenHeader("              Update Client Info Screen");
-		                        
+
 		Screen.AlignWithOffset();
 		cout << "Enter Account Number : ";
 		string accountNumber = clsInputValidate::ReadString();
@@ -22,13 +22,13 @@ public:
 		{
 			clsClientInfoScreen::PrintClientInfo(Client);
 			Screen.DrawScreenLine();
-			
+
 			Screen.AlignWithOffset();
 			cout << "Are you sure you want to Update this client Y|N?";
 			switch (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
 			case true:
-				Client = clsReadClientScreen::ReadClient(accountNumber,clsBankClient::enMode::enUpdateMode);
+				Client = clsReadClientScreen::ReadClient(accountNumber, clsBankClient::enMode::enUpdateMode);
 				Client.Save();
 
 				Screen.AlignWithOffset(1);
@@ -36,7 +36,7 @@ public:
 				clsClientInfoScreen::PrintClientInfo(Client);
 				Screen.DrawScreenLine();
 				return true;
-				
+
 			default:
 				Screen.AlignWithOffset();
 				cout << "Not Updated \n";
@@ -54,4 +54,3 @@ public:
 	}
 
 };
-

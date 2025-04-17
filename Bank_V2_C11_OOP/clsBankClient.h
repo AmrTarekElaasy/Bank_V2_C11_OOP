@@ -6,6 +6,8 @@
 #include <vector>
 #include <fstream>
 #include "clsDate.h"
+#include "clsErrors.h"
+
 
 using namespace std;
 
@@ -13,7 +15,7 @@ class clsBankClient :public clsPerson
 {
 private:
 	string _AccountNumber;
-	float _AccountBalance;
+	double _AccountBalance;
 	string _PinCode;
 	bool _MarkForDelete = false;
 public:
@@ -61,20 +63,7 @@ private:
 	{
 		return clsBankClient(enMode::enEmptyMode, "", "", "", "", "", "", 0);
 	}
-	static void SaveTheErrorInTheFile(string Error)
-	{
-		fstream ErrorFile;
-		ErrorFile.open("ErrorFile.log", ios::out|ios::app);
-		if (ErrorFile.is_open())
-		{
-			string OutError="[" + clsDate::DateToString(clsDate::GetCompleteSystemDate()) + "] ";
-			OutError += Error;
-			ErrorFile << OutError << endl;
-			ErrorFile.close();
-		}
-		
-	}
-
+	
 	static  vector <clsBankClient> _LoadClientsDataFromFile()
 	{
 		vector<clsBankClient> vClients;
@@ -97,13 +86,14 @@ private:
 				else {
 					string error = "Not Load a client :" + pathTheFile+"["+ to_string(i);
 					       error +="]: " + line;
-					SaveTheErrorInTheFile(error);
+
+						   clsErrors::SaveTheErrorInTheFile(error);
 				}
 			}
 		}
 		else
 		{
-			SaveTheErrorInTheFile("Can not open Clients.txt");
+			clsErrors::SaveTheErrorInTheFile("Can not open Clients.txt");
 		}
 		ClientsFile.close();
 
@@ -172,13 +162,14 @@ private:
 	}
 
 public:
+	
 
 	enMode GetMode()
 	{
 		return _Mode;
 	}
 	clsBankClient(enMode Mode, string FirstName, string LastName, string Email, string Phone
-		, string AccountNamber, string PINCode, float AccountBalance)
+		, string AccountNamber, string PINCode, double AccountBalance)
 		:clsPerson(FirstName, LastName, Email, Phone)
 	{
 		this->_AccountNumber = AccountNamber;
@@ -202,15 +193,15 @@ public:
 	}
 	__declspec(property(put = SetPinCode, get = GetPinCode))string PinCode;
 
-	void SetAccountBalance(float AccountBalance)
+	void SetAccountBalance(double AccountBalance)
 	{
 		_AccountBalance = AccountBalance;
 	}
-	float GetAccountBalance()
+	double GetAccountBalance()
 	{
 		return _AccountBalance;
 	}
-	__declspec(property(put = SetAccountBalance, get = GetAccountBalance)) float AccountBalance;
+	__declspec(property(put = SetAccountBalance, get = GetAccountBalance)) double AccountBalance;
 
 	static bool IsEmpty(clsBankClient BankClient)
 	{
@@ -261,7 +252,7 @@ public:
 		switch (_Mode)
 		{
 		case clsBankClient::enMode::enEmptyMode:
-			SaveTheErrorInTheFile("Not Saved Is Empty");
+			clsErrors::SaveTheErrorInTheFile("Not Saved Is Empty");
 			return enSave::enNotSavedIsEmpty;
 			break;
 
@@ -275,13 +266,13 @@ public:
 		{
 			if (clsBankClient::IsExist(this->AccountNumber))
 			{
-				SaveTheErrorInTheFile("Not Saved Account Is Exist");
+				clsErrors::SaveTheErrorInTheFile("Not Saved Account Is Exist");
 				return enSave::enNotSavedAccountIsExist;
 
 			}
 			else if (clsBankClient::AccountNumber == "")
 			{
-				SaveTheErrorInTheFile("Not Has Account Number");
+				clsErrors::SaveTheErrorInTheFile("Not Has Account Number");
 				return enSave::enNotHasAccountNumber;
 			}
 			else

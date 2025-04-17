@@ -13,7 +13,7 @@ public:
 	{
         clsScreen Screen;
         Screen.Offset = 0;
-        Screen.AlignWithOffset(1);
+        Screen.AlignWithOffset(0);
         _DrawTheLine();
         Screen.AlignWithOffset(2);
         cout << "Client Card:";
@@ -34,7 +34,7 @@ public:
         Screen.AlignWithOffset(1);
         cout << "PINCode        : " << Client.PinCode;
         Screen.AlignWithOffset(1);
-        cout << "Balance        : " << Client.AccountBalance;
+        cout << "Balance        : ";clsScreen::PrintDoubleNumber(Client.AccountBalance);
         Screen.AlignWithOffset(1);
         _DrawTheLine();
         cout << "\n";
