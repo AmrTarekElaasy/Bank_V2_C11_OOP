@@ -53,5 +53,8 @@
     <ClInclude Include="clsErrors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clsShowWithdrawScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

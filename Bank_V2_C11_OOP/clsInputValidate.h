@@ -123,17 +123,27 @@ public:
 
 
 
+	static short CountIntPart(string S)
+	{
+		short countIntPart = S.length();
+		if (S.find('.') < S.length())
+			countIntPart = S.find('.');
+		return countIntPart;
+	}
 	static double ReadDblNumber(string ErrorMessage = "Invalid Number, Enter again : ")
 	{
 
 
 		string input = "";
 		getline(cin >> ws, input);
-		while (!clsString::IsValidNumber(input) || input.length() > 15)
+
+
+
+		while (!clsString::IsValidNumber(input) || CountIntPart(input) > 15)
 		{
 			clsScreen::AlignWithOffset(1, 0);
 
-			if (input.length() > 17)
+			if (CountIntPart(input) > 15)
 			{
 				clsErrors::SaveTheErrorInTheFile("The value is very large ");
 				cout << "The value is very large \n";
@@ -153,12 +163,14 @@ public:
 
 	static double ReadDblNumberBetween(double From, double To, string ErrorMessage = "Number is not within range, Enter again:\n")
 	{
+		
 		double Number = ReadDblNumber();
 
 		while (!IsNumberBetween(Number, From, To))
 		{
 			clsScreen::AlignWithOffset(1, 0);
-			cout << ErrorMessage;
+			//cout << ErrorMessage;
+			printf("Enter Number between %.2f to %.2f : ", From, To);
 			Number = ReadDblNumber();
 		}
 		return Number;

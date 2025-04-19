@@ -37,7 +37,11 @@ public:
 		{
 			Screen.AlignWithOffset();
 			cout << "Enter Deposit Number : ";
-			double DepositNumber = clsInputValidate::ReadDblNumberBetween(0,9999999999,"Enter Number between 0 to 9999999999 : ");
+
+
+			string MaximumValue = "9999999999.99";
+			string mesege = "Enter Number between 0 to " + MaximumValue + " : ";
+			double DepositNumber = clsInputValidate::ReadDblNumberBetween(0, stod(MaximumValue), mesege);
 			
 
 			Screen.AlignWithOffset();

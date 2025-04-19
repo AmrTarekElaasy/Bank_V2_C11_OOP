@@ -2,6 +2,7 @@
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsDepositScreen.h"
+#include "clsShowWithdrawScreen.h"
 class clsTransactionsScreen:protected clsScreen
 {
 	static clsScreen _GetScreenSettings()
@@ -60,7 +61,8 @@ class clsTransactionsScreen:protected clsScreen
 	}
 	static void _ShowWithdrawScreen()
 	{
-		cout << "Well be her\n";
+		clsShowWithdrawScreen::WithdrawScreen();
+
 
 	}
 	static void _ShowTotalBalancesScreen()
