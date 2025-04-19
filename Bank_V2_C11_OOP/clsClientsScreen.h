@@ -9,7 +9,7 @@ class clsClientsScreen : protected clsScreen
     static void _DrawTheLine()
     {
         cout << "_______________________________________________________";
-        cout << "________________________________________________________\n" << endl;
+        cout << "______________________________________________________________\n" << endl;
     }
 
 public:
@@ -21,7 +21,7 @@ public:
         DrawScreenHeader("                    Show Clients List",strNumOfCLient);
                         
         clsScreen Screen;
-        Screen.Offset = -27;
+        Screen.Offset = -30;
 
         Screen.AlignWithOffset();
         _DrawTheLine();
@@ -45,7 +45,8 @@ public:
                 cout << "| " << left << setw(13) << client.Phone;
                 cout << "| " << left << setw(30) << client.Email;
                 cout << "| " << left << setw(10) << client.PinCode;
-                cout << "| " << left << setw(12) << client.AccountBalance << "\n";
+                //cout << "| " << left << setw(12) << client.AccountBalance << "\n";
+                printf("| %.2f \n", client.AccountBalance);
 
             }
         }
