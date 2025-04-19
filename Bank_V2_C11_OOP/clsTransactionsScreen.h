@@ -3,6 +3,7 @@
 #include "clsInputValidate.h"
 #include "clsDepositScreen.h"
 #include "clsShowWithdrawScreen.h"
+#include "clsTotalBalancesScreen.h"
 class clsTransactionsScreen:protected clsScreen
 {
 	static clsScreen _GetScreenSettings()
@@ -67,8 +68,8 @@ class clsTransactionsScreen:protected clsScreen
 	}
 	static void _ShowTotalBalancesScreen()
 	{
-		cout << "Well be her\n";
 
+		clsTotalBalancesScreen::ShowTotalBalancesScreen();
 	}
 	static void GoBackToTransactionsMenue()
 	{

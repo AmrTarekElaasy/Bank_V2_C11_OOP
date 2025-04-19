@@ -14,7 +14,7 @@ class clsClientsScreen : protected clsScreen
 
 public:
     
-    static void ShowClientsList()
+    static void ShowTotalBalancesScreen()
     {
         vector<clsBankClient> vClients = clsBankClient::GetClientsList();
         string strNumOfCLient = "                     ("+to_string(vClients.size())+") Client(s).";

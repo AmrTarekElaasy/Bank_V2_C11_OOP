@@ -39,7 +39,7 @@ public:
 			cout << "Enter Deposit Number : ";
 
 
-			string MaximumValue = "9999999999.99";
+			string MaximumValue = "100000.00";
 			string mesege = "Enter Number between 0 to " + MaximumValue + " : ";
 			double DepositNumber = clsInputValidate::ReadDblNumberBetween(0, stod(MaximumValue), mesege);
 			

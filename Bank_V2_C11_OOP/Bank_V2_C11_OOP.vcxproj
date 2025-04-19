@@ -195,6 +195,7 @@
     <ClInclude Include="clsGeneralFindClient.h" />
     <ClInclude Include="clsReadClientScreen.h" />
     <ClInclude Include="clsShowWithdrawScreen.h" />
+    <ClInclude Include="clsTotalBalancesScreen.h" />
     <ClInclude Include="clsTransactionsScreen.h" />
     <ClInclude Include="clsUpdateClientScreen.h" />
   </ItemGroup>

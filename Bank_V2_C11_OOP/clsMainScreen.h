@@ -43,7 +43,7 @@ private:
 
     static void _ShowAllClientsScreen()
     {
-        clsClientsScreen::ShowClientsList();
+        clsClientsScreen::ShowTotalBalancesScreen();
       
     }
 
