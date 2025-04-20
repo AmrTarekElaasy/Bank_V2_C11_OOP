@@ -52,7 +52,7 @@ public:
 			string mesege = "nter Withdraw Number between 0 to " + MaximumValue + " : ";
 			Screen.AlignWithOffset();
 			cout << mesege;
-			double WithdrawNumber = clsInputValidate::ReadDblNumberBetween(0, DoubleMaximumValue, mesege);
+			double WithdrawNumber = clsInputValidate::ReadDblNumberBetween(0, DoubleMaximumValue,Screen, mesege);
 
 
 			Screen.AlignWithOffset();

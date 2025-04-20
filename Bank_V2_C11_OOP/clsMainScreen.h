@@ -9,6 +9,7 @@
 #include "clsUpdateClientScreen.h"
 #include "clsFindClientScreen.h"
 #include "clsTransactionsScreen.h"
+#include "clsManageUsers.h"
 
 
 using namespace std;
@@ -20,6 +21,15 @@ class clsMainScreen :protected clsScreen
 
 
 private:
+
+    static clsScreen _GetScreenSettings()
+    {
+        clsScreen Screen;
+        Screen.Offset = 5;
+
+        return Screen;
+    }
+
     enum enMainMenueOptions {
         eListClients = 1, eAddNewClient = 2, eDeleteClient = 3,
         eUpdateClient = 4, eFindClient = 5, eShowTransactionsMenue = 6,
@@ -28,14 +38,20 @@ private:
 
     static short _ReadMainMenueOption()
     {
-        cout << setw(clsScreen::GetMainOffset()+5) << left << "" << "Choose what do you want to do? [1 to 8] :  ";
-        short Choice = clsInputValidate::ReadIntNumberBetween(1, 8, "Enter Number between 1 to 8 : ");
+        clsScreen Screen = _GetScreenSettings();
+        Screen.AlignWithOffset(1);
+        cout << "Choose what do you want to do? [1 to 8] :  ";
+
+
+        short Choice = clsInputValidate::ReadIntNumberBetween(1, 8, Screen,"Enter Number between 1 to 8 : ");
         return Choice;
     }
 
     static  void _GoBackToMainMenue()
     {
-        clsScreen::AlignWithOffset(1,0);
+        
+        clsScreen Screen = _GetScreenSettings();
+        Screen.AlignWithOffset(1);
         cout << "Press any key to go back to Main Menue...";
         system("pause>0");
         ShowMainMenue();
@@ -74,8 +90,7 @@ private:
 
     static void _ShowManageUsersMenue()
     {
-        cout << "\n" << setw(clsScreen::GetMainOffset()) << "" << "Users Menue Will be here...\n";
-
+        clsManageUsers::ManageUsersScreen();
     }
 
     static void _ShowEndScreen()
@@ -128,6 +143,7 @@ private:
         case enMainMenueOptions::eManageUsers:
             system("cls");
             _ShowManageUsersMenue();
+            _GoBackToMainMenue();
             break;
 
         case enMainMenueOptions::eExit:

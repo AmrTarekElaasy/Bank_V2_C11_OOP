@@ -42,7 +42,7 @@ public:
 
 		Screen.AlignWithOffset();
 		cout << "Enter Account Balans : ";
-		AccountBalans = clsInputValidate::ReadDblNumber();
+		AccountBalans = clsInputValidate::ReadDblNumber(Screen);
 
 
 

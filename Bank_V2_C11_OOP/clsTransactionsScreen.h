@@ -41,9 +41,9 @@ class clsTransactionsScreen:protected clsScreen
 	{
 		clsScreen Screen = _GetScreenSettings();
 		Screen.AlignWithOffset(0,Screen.Offset+5);
-		cout << "Choose what do you want to do? [1 to 4]? ";
+		cout << "Choose what do you want to do? [1 to 4]: ";
 
-		switch (clsInputValidate::ReadIntNumberBetween(1, 4, "Enter Number between 1 to 4 : "))
+		switch (clsInputValidate::ReadIntNumberBetween(1, 4,Screen, "Enter Number between 1 to 4 : "))
 		{
 		case 1:
 			return enTransactionsMenue::enDeposit;

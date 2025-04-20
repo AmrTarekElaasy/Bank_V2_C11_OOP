@@ -193,6 +193,7 @@
     <ClInclude Include="clsErrors.h" />
     <ClInclude Include="clsFindClientScreen.h" />
     <ClInclude Include="clsGeneralFindClient.h" />
+    <ClInclude Include="clsManageUsers.h" />
     <ClInclude Include="clsReadClientScreen.h" />
     <ClInclude Include="clsShowWithdrawScreen.h" />
     <ClInclude Include="clsTotalBalancesScreen.h" />
