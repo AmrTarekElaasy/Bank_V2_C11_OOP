@@ -284,10 +284,10 @@ public:
 
 		}
 	}
-	static clsUser GetNewUser(string userName)
-	{
-		return clsUser(enMode::eAddNewMode, "", "", "", "", userName, "", 0);
-	}
+	//static clsUser GetNewUser(string userName)
+	//{
+	//	return clsUser(enMode::eAddNewMode, "", "", "", "", userName, "", 0);
+	//}
 	static clsUser GetNewUser(string fristName, string lastName, string email, string phone, string userName, string password, short permisstion)
 	{
 		return clsUser(enMode::eAddNewMode, fristName, lastName, email, phone, userName, password, permisstion);
