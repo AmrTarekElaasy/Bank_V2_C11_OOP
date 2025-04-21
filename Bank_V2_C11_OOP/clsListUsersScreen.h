@@ -10,16 +10,22 @@ class clsListUsersScreen :clsUser
         cout << "______________________________________________________________\n" << endl;
     }
 
-
+    static clsScreen _GetScreenSettings()
+    {
+        clsScreen Screen;
+        Screen.Offset = -30;
+        return Screen;
+    }
 public:
 	static void ShowListUsers()
 	{
         vector<clsUser> vUsers = clsUser::GetUsersList();
         string strNumOfUsers =      "                      (" + to_string(vUsers.size()) + ") User(s).";
-        clsScreen::DrawScreenHeader("                     Show Users List", strNumOfUsers);
+        clsScreen Screen = _GetScreenSettings();
+        Screen.DrawScreenHeader("                     Show Users List", strNumOfUsers);
 
-        clsScreen Screen;
-        Screen.Offset = -30;
+        
+       
 
         Screen.AlignWithOffset();
         _DrawTheLine();

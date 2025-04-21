@@ -19,6 +19,8 @@ class clsReadUserScreen
 		clsScreen Screen = _GetScreenSettings();
 
 		Screen.AlignWithOffset();
+		cout << "Enter Permission : \n";
+		Screen.AlignWithOffset();
 		cout << "Do you want to give all the permissions y/n ? ";
 		cin >> yOrN;
 		if (clsInputValidate::CheckYesOrNo(yOrN))

@@ -173,7 +173,7 @@ public:
 		_Password = password;
 		_Permisstion = permisstion;
 	}
-	static bool CheckPermission(clsUser User,enPermission Permission)
+	static bool HasPermission(clsUser User,enPermission Permission)
 	{
 	
 		if ((User.Permisstion & Permission)|| (User.Permisstion == -1))
@@ -181,9 +181,9 @@ public:
 		return false;
 
 	}
-	bool CheckPermission(enPermission Permission)
+	bool HasPermission(enPermission Permission)
 	{
-		return CheckPermission(*this, Permission);
+		return HasPermission(*this, Permission);
 	}
 	string GetUserName()
 	{

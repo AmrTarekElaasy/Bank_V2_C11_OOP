@@ -11,17 +11,23 @@ class clsClientsScreen : protected clsScreen
         cout << "_______________________________________________________";
         cout << "______________________________________________________________\n" << endl;
     }
-
+    static clsScreen _GetScreenSettings()
+    {
+        clsScreen Screen;
+        Screen.Offset = -30;
+        return Screen;
+    }
 public:
     
     static void ShowTotalBalancesScreen()
     {
+        clsScreen Screen= _GetScreenSettings();
+
         vector<clsBankClient> vClients = clsBankClient::GetClientsList();
         string strNumOfCLient = "                     ("+to_string(vClients.size())+") Client(s).";
-        DrawScreenHeader("                    Show Clients List",strNumOfCLient);
+        DrawScreenHeader(Screen,"                    Show Clients List",strNumOfCLient);
                         
-        clsScreen Screen;
-        Screen.Offset = -30;
+     
 
         Screen.AlignWithOffset();
         _DrawTheLine();

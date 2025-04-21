@@ -49,16 +49,24 @@ public:
     {
         AlignWithOffset(numberOfNewLine,_SecondOffset);
     }
-    static void DrawScreenHeader(string Title, string SubTitle = "")
+    static void DrawScreenHeader(clsScreen Screen,string Title, string SubTitle = "")
     {
         DrawScreenLine(1,1);
-        cout << setw(GetMainOffset())<<" " << Title;
+        Screen.AlignWithOffset(0,0);       
+        cout << Title;
+
         if (SubTitle != "")
         {
-            cout << "\n" <<setw(GetMainOffset())<<"" << SubTitle;
+            
+            Screen.AlignWithOffset(1,2);
+             cout << SubTitle;
         }
         
         DrawScreenLine(1);
+    }
+    void DrawScreenHeader(string Title, string SubTitle = "")
+    {
+        DrawScreenHeader(*this,Title,SubTitle);
     }
     static void DrawScreenLine(short NumberOfEndlLineBeforeTXT=0,short NumberOfEndlLineAfterTXT=2)
     {

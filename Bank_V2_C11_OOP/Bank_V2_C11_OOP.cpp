@@ -1,14 +1,14 @@
 // Find Client.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include "clsMainScreen.h"
-#include <Windows.h>
-#include "clsUser.h"
-
+#include "clsLoginScreen.h"
 
 int main()
 {
-	 clsMainScreen::ShowMainMenue();
+	while(true)
+	 clsLoginScreen::ShowLoginScreen();
+
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

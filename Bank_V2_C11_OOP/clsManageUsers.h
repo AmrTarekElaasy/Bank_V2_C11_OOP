@@ -5,6 +5,7 @@
 #include "clsDeleteUserScreen.h"
 #include "clsUpdateUserScreen.h"
 #include "clsFindUserScreen.h"
+
 class clsManageUsers :clsScreen
 {
 
@@ -32,6 +33,7 @@ class clsManageUsers :clsScreen
 
 	static void _ShowListUsers()
 	{
+		
 		system("cls");
 		clsListUsersScreen::ShowListUsers();
 
@@ -106,7 +108,7 @@ public:
 	{
 		clsScreen Screen = _GetScreenSettings();
 		system("cls");
-		DrawScreenHeader("                  Manage Users Screen");
+		Screen.DrawScreenHeader("                  Manage Users Screen");
 		
 		Screen.AlignWithOffset();
 		cout << "[1] List Users.\n";
