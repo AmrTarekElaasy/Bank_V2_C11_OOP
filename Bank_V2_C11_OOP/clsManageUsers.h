@@ -1,5 +1,7 @@
 #pragma once
 #include "clsScreen.h"
+#include "clsListUsersScreen.h"
+#include "clsAddNewUserScreen.h"
 class clsManageUsers :clsScreen
 {
 
@@ -28,37 +30,40 @@ class clsManageUsers :clsScreen
 	static void _ShowListUsers()
 	{
 		system("cls");
-		cout << "List users screen will be here.\n";
-		system("pause");
+		clsListUsersScreen::ShowListUsers();
 
 	}
 	static void _ShowAddNewUser()
 	{
 		system("cls");
-		cout << "Add new user screen will be here.\n";
-		system("pause");
+		clsAddNewUserScreen::AddNewUserScreen();
+		
 	}
 	static void _ShowDeleteUser()
 	{
 		system("cls");
 		cout << "Delete user screen will be here.\n";
-		system("pause");
 	}
 	static void _ShowUpdateUser()
 	{
 		system("cls");
 		cout << "Update user screen will be here.\n";
-		system("pause");
 	}
 	static void _ShowFindUser()
 	{
 		system("cls");
 		cout << "Find user screen will be here.\n";
-		system("pause");
 	}
 	static void _GoBackToManageUsersScreen()
 	{
+		clsScreen Screen = _GetScreenSettings();
+		Screen.AlignWithOffset();
+		cout << "Press any key to go back to Manage Users menue...";
+		system("pause>0");
+
+
 		ManageUsersScreen();
+
 	}
 	static void _PerfromManageUsersMenueOption(enManageUsersMenueOptions ManageUsersMenueOption)
 	{

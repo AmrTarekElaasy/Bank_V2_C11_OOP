@@ -8,10 +8,12 @@
 using namespace std;
 class clsUser :public clsPerson
 {
+public:
 	enum enMode
 	{
 		eEmptyMode, eUpdateMode, eAddNewMode
 	};
+private:
 	enMode _Mode;
 	string _UserName;
 	string _Password;
@@ -245,7 +247,7 @@ public:
 
 		return  clsUser::_GetEmptyUser();
 	}
-	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasAccountNumber };
+	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasUserName };
 	enSave Save()
 	{
 		switch (_Mode)
@@ -272,7 +274,7 @@ public:
 			else if (clsUser::UserName == "")
 			{
 				clsErrors::SaveTheErrorInTheFile("Not Has User Name");
-				return enSave::enNotHasAccountNumber;
+				return enSave::enNotHasUserName;
 			}
 			else
 			{

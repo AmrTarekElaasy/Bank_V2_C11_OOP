@@ -47,7 +47,7 @@ public:
 				{
 					Screen.AlignWithOffset(1);
 					cout << "Deleted successfully\n";
-					clsClientInfoScreen::PrintClientInfo(Client);
+					clsClientInfoScreen::PrintUserInfo(Client);
 					Screen.DrawScreenLine();
 					return true;
 				}

@@ -246,7 +246,7 @@ public:
 
 		return clsBankClient::_GetEmptyClient();
 	}
-	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasAccountNumber };
+	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasUserName };
 	enSave Save()
 	{
 		switch (_Mode)
@@ -273,7 +273,7 @@ public:
 			else if (clsBankClient::AccountNumber == "")
 			{
 				clsErrors::SaveTheErrorInTheFile("Not Has Account Number");
-				return enSave::enNotHasAccountNumber;
+				return enSave::enNotHasUserName;
 			}
 			else
 			{

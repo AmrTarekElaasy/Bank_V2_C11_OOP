@@ -20,7 +20,7 @@ public:
 		clsBankClient Client = clsBankClient::Find(accountNumber);
 		if (Client.IsExist())
 		{
-			clsClientInfoScreen::PrintClientInfo(Client);
+			clsClientInfoScreen::PrintUserInfo(Client);
 			Screen.DrawScreenLine();
 
 			Screen.AlignWithOffset();
@@ -28,12 +28,12 @@ public:
 			switch (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
 			case true:
-				Client = clsReadClientScreen::ReadClient(accountNumber, clsBankClient::enMode::enUpdateMode);
+				Client = clsReadClientScreen::ReadUser(accountNumber, clsBankClient::enMode::enUpdateMode);
 				Client.Save();
 
 				Screen.AlignWithOffset(1);
 				cout << "Updated Successfully\n";
-				clsClientInfoScreen::PrintClientInfo(Client);
+				clsClientInfoScreen::PrintUserInfo(Client);
 				Screen.DrawScreenLine();
 				return true;
 

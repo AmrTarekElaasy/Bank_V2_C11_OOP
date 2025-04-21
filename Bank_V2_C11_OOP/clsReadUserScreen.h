@@ -1,20 +1,25 @@
 #pragma once
-#include "clsBankClient.h"
-#include "iostream"
+#include "clsUser.h"
 #include "clsScreen.h"
 #include "clsInputValidate.h"
-using namespace std;
-class clsReadClientScreen
+#include "clsErrors.h"
+class clsReadUserScreen
 {
-public:
-	static clsBankClient ReadUser(string AccountNumber, clsBankClient::enMode Mode)
+	static clsScreen _GetScreenSettings()
 	{
-	
-		string FristName, LastName, Email, Phone, PINCode;
-		double AccountBalans;
 		clsScreen Screen;
-
 		Screen.Offset = 0;
+		return Screen;
+	}
+public:
+	static clsUser ReadUser(string UserName, clsUser::enMode Mode)
+	{
+
+		string FristName, LastName, Email, Phone, Password;
+		short Permisstion;
+		clsScreen Screen=_GetScreenSettings();
+
+		
 
 		Screen.AlignWithOffset();
 		cout << "Enter Frist Name : ";
@@ -36,20 +41,19 @@ public:
 
 
 		Screen.AlignWithOffset();
-		cout << "Enter PINCode : ";
-		PINCode = clsInputValidate::ReadString();
+		cout << "Enter Password : ";
+		Password = clsInputValidate::ReadString();
 
 
 		Screen.AlignWithOffset();
-		cout << "Enter Account Balans : ";
-		AccountBalans = clsInputValidate::ReadDblNumber(Screen);
+		cout << "Enter Permisstion : ";
+		Permisstion = clsInputValidate::ReadDblNumber(Screen);
 
 
 
-		clsBankClient Client(Mode, FristName, LastName, Email, Phone, AccountNumber, PINCode, AccountBalans);
+		clsUser Client(Mode, FristName, LastName, Email, Phone, UserName, Password, Permisstion);
 
 		return Client;
 	}
-
 };
 

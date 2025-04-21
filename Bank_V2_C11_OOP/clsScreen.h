@@ -6,7 +6,7 @@ using namespace std;
 
 class clsScreen
 {
-    short _MainOffset =31;
+    short _MainOffset =31; //31
     short _SecondOffset = 0;
 
 public:

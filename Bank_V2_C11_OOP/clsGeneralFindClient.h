@@ -47,7 +47,7 @@ public:
 		if (PrintCLientInfo)
 		{
 			_ClearTransactionsScreenAndPrintHeader(ScreenName, ScreenSettings);
-			clsClientInfoScreen::PrintClientInfo(Client);
+			clsClientInfoScreen::PrintUserInfo(Client);
 			ScreenSettings.DrawScreenLine();
 		}
 		return Client;

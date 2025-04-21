@@ -9,7 +9,7 @@ class clsClientInfoScreen:clsScreen
 
     }
 public:
-	static void PrintClientInfo(clsBankClient Client)
+	static void PrintUserInfo(clsBankClient Client)
 	{
         clsScreen Screen;
         Screen.Offset = 0;

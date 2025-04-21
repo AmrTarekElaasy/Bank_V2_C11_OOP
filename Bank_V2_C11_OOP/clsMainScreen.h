@@ -65,7 +65,7 @@ private:
 
     static void _ShowAddNewClientsScreen()
     {
-        clsAddNewClientScreen::AddNewClientScreen();
+        clsAddNewClientScreen::AddNewUserScreen();
     }
 
     static void _ShowDeleteClientScreen()

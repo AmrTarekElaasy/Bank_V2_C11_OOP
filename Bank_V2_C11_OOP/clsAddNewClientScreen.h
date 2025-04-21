@@ -5,7 +5,7 @@
 
 class clsAddNewClientScreen :clsScreen
 {
-	static clsScreen _ClearclsAddNewClientScreen()
+	static clsScreen _ClearScreenAndPrintHeader()
 	{
 		clsScreen Screen;
 		Screen.Offset = 0;
@@ -20,11 +20,11 @@ public:
 
 	short Offset;
 
-	static bool AddNewClientScreen()
+	static bool AddNewUserScreen()
 	{
 
 
-		clsScreen Screen = _ClearclsAddNewClientScreen();
+		clsScreen Screen = _ClearScreenAndPrintHeader();
 		Screen.AlignWithOffset();
 		cout << "Enter AccountNumber : ";
 		string accountNumber = clsInputValidate::ReadString();
@@ -32,7 +32,7 @@ public:
 
 		while (Client.IsExist())
 		{
-			_ClearclsAddNewClientScreen();
+			_ClearScreenAndPrintHeader();
 			Screen.AlignWithOffset();
 			cout << "This Client Is Exist \n";
 			Screen.DrawScreenLine();
@@ -42,7 +42,7 @@ public:
 			cout << "Do you Need Try Agen Y|N ? ";
 			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
-				_ClearclsAddNewClientScreen();
+				_ClearScreenAndPrintHeader();
 				Screen.AlignWithOffset();
 				cout << "Enter Account Number : ";
 				accountNumber = clsInputValidate::ReadString();
@@ -50,6 +50,7 @@ public:
 			}
 			else
 			{
+				Screen.DrawScreenLine();
 				return false;
 			}
 		}
@@ -58,10 +59,10 @@ public:
 
 		if (!Client.IsExist())
 		{
-			Client = clsReadClientScreen::ReadClient(accountNumber, clsBankClient::enMode::enAddNew);
+			Client = clsReadClientScreen::ReadUser(accountNumber, clsBankClient::enMode::enAddNew);
 
 
-			_ClearclsAddNewClientScreen();
+			_ClearScreenAndPrintHeader();
 			Screen.AlignWithOffset();
 			switch (Client.Save())
 			{
@@ -69,11 +70,11 @@ public:
 
 
 				cout << "Saved Successfully\n";
-				clsClientInfoScreen::PrintClientInfo(Client);
+				clsClientInfoScreen::PrintUserInfo(Client);
 				Screen.DrawScreenLine();
 				return true;
 
-			case clsBankClient::enSave::enNotHasAccountNumber:
+			case clsBankClient::enSave::enNotHasUserName:
 				cout << "Not Has Account Number\n";
 				break;
 			case clsBankClient::enNotSavedIsEmpty:
