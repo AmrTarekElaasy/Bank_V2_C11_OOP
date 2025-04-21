@@ -18,7 +18,7 @@ class clsAddNewUserScreen
 		clsScreen Screen= _GetScreenSettings();
 		
 		system("cls");
-		Screen.DrawScreenHeader("                   Add New User Screen");
+		Screen.DrawScreenHeader("                       Add New User Screen");
 		
 
 	}

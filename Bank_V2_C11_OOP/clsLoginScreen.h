@@ -35,7 +35,8 @@ public:
 
 
 		do {
-			_ClearScreenAndPrintHeader("                      Login Screen");
+			_ClearScreenAndPrintHeader("                           Login Screen");
+
 			if (LoginFaild)
 			{
 				Screen.AlignWithOffset();

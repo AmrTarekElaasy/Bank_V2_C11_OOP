@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <iomanip>
+#include "clsDate.h"
+#include "Global.h"
 
 using namespace std;
 
@@ -9,6 +11,7 @@ class clsScreen
     short _MainOffset =31; //31
     short _SecondOffset = 0;
 
+ 
 public:
 
     static short GetMainOffset()
@@ -62,20 +65,38 @@ public:
              cout << SubTitle;
         }
         
-        DrawScreenLine(1);
+        
+ 
+
+
+        DrawScreenLine(1,1);
+        string UserName = "User: ";
+        if (CurrentUser.IsExist())
+        {
+            
+            UserName += CurrentUser.UserName + " (" + CurrentUser.FullName() + ") ";
+            
+        }
+        Screen.AlignWithOffset(0, 0);
+        cout << setw(49) << left << UserName<<"";
+
+        string Date = "Date: ";
+        Date+= clsDate::DateToString(clsDate::GetSystemDate());
+        cout <<setw(16)<<right<< Date << "\n";
+        DrawScreenLine(0, 1);
     }
     void DrawScreenHeader(string Title, string SubTitle = "")
     {
         DrawScreenHeader(*this,Title,SubTitle);
     }
-    static void DrawScreenLine(short NumberOfEndlLineBeforeTXT=0,short NumberOfEndlLineAfterTXT=2)
+    static void DrawScreenLine(short NumberOfEndlLineBeforeTXT=0,short NumberOfEndlLineAfterTXT=1)
     {
         while (NumberOfEndlLineBeforeTXT > 0)
         {
             cout << "\n";
             NumberOfEndlLineBeforeTXT--;
         }
-        cout << setw(GetMainOffset())<<" " << "=========================================================";
+        cout << setw(GetMainOffset())<<" " << "=================================================================";
         while (NumberOfEndlLineAfterTXT > 0)
         {
             cout << "\n";

@@ -10,7 +10,8 @@ class clsAddNewClientScreen :clsScreen
 		clsScreen Screen;
 		Screen.Offset = 0;
 		system("cls");
-		Screen.DrawScreenHeader("                  Add New Client Screen");
+		Screen.DrawScreenHeader("                      Add New Client Screen");
+								
 		return Screen;
 
 	}

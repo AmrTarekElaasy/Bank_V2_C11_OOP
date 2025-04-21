@@ -108,7 +108,7 @@ public:
 	{
 		clsScreen Screen = _GetScreenSettings();
 		system("cls");
-		Screen.DrawScreenHeader("                  Manage Users Screen");
+		Screen.DrawScreenHeader("                      Manage Users Screen");
 		
 		Screen.AlignWithOffset();
 		cout << "[1] List Users.\n";

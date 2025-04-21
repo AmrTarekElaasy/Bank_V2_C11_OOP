@@ -27,7 +27,7 @@ public:
 	static bool FindUserScreen()
 	{
 		clsScreen Screen = _GetScreenSettings();
-		string Header = "                     Find User Screen";
+		string Header = "                         Find User Screen";
 		//_ClearScreenAndPrintHeader(Header);
 		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, Screen, true);
 		if (User.IsExist())

@@ -31,7 +31,7 @@ public:
 	static bool FindClientScreen()
 	{
 		clsScreen Screen = _GetScreenSettings();
-		string Header = "                    Find Client Screen";
+		string Header = "                        Find Client Screen";
 		//_ClearScreenAndPrintHeader(Header);
 		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, Screen, true);
 

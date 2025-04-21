@@ -32,7 +32,7 @@ public:
 	static bool DeleteUserScreen()
 	{
 		clsScreen Screen = _GetScreenSettings();
-		string Header = "                  Delete Client Screen";
+		string Header = "                      Delete Client Screen";
 		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, Screen, true);
 		if (Client.IsExist())
 		{

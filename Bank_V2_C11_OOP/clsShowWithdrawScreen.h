@@ -31,7 +31,7 @@ public:
 	static bool WithdrawScreen()
 	{
 		clsScreen Screen = _GetScreenSettings();
-		string Header = "                   Withdraw Screen";
+		string Header = "                       Withdraw Screen";
 		                                     
 		_ClearScreenAndPrintHeader(Header);
 		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, Screen, true);

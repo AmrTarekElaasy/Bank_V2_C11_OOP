@@ -20,9 +20,9 @@ public:
 	static void ShowListUsers()
 	{
         vector<clsUser> vUsers = clsUser::GetUsersList();
-        string strNumOfUsers =      "                      (" + to_string(vUsers.size()) + ") User(s).";
+        string strNumOfUsers =  "                          (" + to_string(vUsers.size()) + ") User(s).";
         clsScreen Screen = _GetScreenSettings();
-        Screen.DrawScreenHeader("                     Show Users List", strNumOfUsers);
+        Screen.DrawScreenHeader("                         Show Users List", strNumOfUsers);
 
         
        

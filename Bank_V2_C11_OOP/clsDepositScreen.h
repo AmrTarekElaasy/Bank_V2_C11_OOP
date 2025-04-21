@@ -30,7 +30,7 @@ public:
 	static bool DepositScreen()
 	{
 		clsScreen Screen = _GetScreenSettings();
-		string Header = "                    Deposit Screen";
+		string Header = "                        Deposit Screen";
 		_ClearScreenAndPrintHeader(Header);
 		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header,Screen,true );
 		if (Client.IsExist())

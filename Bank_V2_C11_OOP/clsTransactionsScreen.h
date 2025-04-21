@@ -28,7 +28,7 @@ class clsTransactionsScreen:protected clsScreen
 
 		clsScreen Screen = _GetScreenSettings();
 
-		Screen.DrawScreenHeader("              Transactions Menue Screen");
+		Screen.DrawScreenHeader("                  Transactions Menue Screen");
 		Screen.WriteTheSubLine("[1] Deposit");
 		Screen.WriteTheSubLine("[2] Withdraw");
 		Screen.WriteTheSubLine("[3] Total Balances");

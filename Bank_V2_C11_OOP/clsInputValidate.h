@@ -108,7 +108,7 @@ public:
 		return number;
 	}
 
-	static int ReadIntNumberBetween(int From, int To, clsScreen ScreenSettings,string ErrorMessage = "Number is not within range, Enter again:\n")
+	static int ReadIntNumberBetween(int From, int To, clsScreen ScreenSettings,string ErrorMessage = "Number is not within range, Enter again:")
 	{
 		clsScreen Screen = ScreenSettings;
 		int Number = ReadIntNumber(ScreenSettings);

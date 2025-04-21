@@ -184,8 +184,8 @@ public:
 
         clsScreen Screen= _GetScreenSettings();
         system("cls");
-        string SubTitel = "Welcome "+ CurrentUser.UserName + " (" + CurrentUser.FullName() + ")";
-        Screen.DrawScreenHeader("                      Main Screen", SubTitel);
+       // string SubTitel = "Welcome "+ CurrentUser.UserName + " (" + CurrentUser.FullName() + ")";
+        Screen.DrawScreenHeader("                            Main Screen");
                          
         Screen.WriteTheSubLine("[1] Show Client List");
         Screen.WriteTheSubLine("[2] Add New Client");

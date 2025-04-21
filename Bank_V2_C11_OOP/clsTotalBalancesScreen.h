@@ -29,8 +29,8 @@ public:
 		system("cls");
 		vector<clsBankClient> vClients = clsBankClient::GetClientsList();
 		clsScreen Screen= _GetScreenSettings();
-		string strNumOfCLient = "                     (" + to_string(vClients.size()) + ") Client(s).";
-		DrawScreenHeader(Screen,"                 Total Balances Screen", strNumOfCLient);
+		string strNumOfCLient = "                      (" + to_string(vClients.size()) + ") Client(s).";
+		DrawScreenHeader(Screen,"                     Total Balances Screen", strNumOfCLient);
 
 		
 		

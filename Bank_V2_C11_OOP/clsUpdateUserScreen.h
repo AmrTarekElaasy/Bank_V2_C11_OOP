@@ -17,7 +17,7 @@ public:
 		clsScreen Screen=_GetScreenSettings();
 		
 
-		Screen.DrawScreenHeader("               Update User Info Screen");
+		Screen.DrawScreenHeader("                   Update User Info Screen");
 
 		Screen.AlignWithOffset();
 		cout << "Enter User Name : ";

@@ -24,10 +24,10 @@ public:
         clsScreen Screen= _GetScreenSettings();
 
         vector<clsBankClient> vClients = clsBankClient::GetClientsList();
-        string strNumOfCLient = "                     ("+to_string(vClients.size())+") Client(s).";
-        DrawScreenHeader(Screen,"                    Show Clients List",strNumOfCLient);
+        string strNumOfCLient = "                         ("+to_string(vClients.size())+") Client(s).";
+        DrawScreenHeader(Screen,"                         Show Clients List",strNumOfCLient);
                         
-     
+                    
 
         Screen.AlignWithOffset();
         _DrawTheLine();

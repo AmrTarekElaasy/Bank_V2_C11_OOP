@@ -12,7 +12,7 @@ public:
 		clsScreen Screen;
 		Screen.Offset = 0;
 
-		Screen.DrawScreenHeader("              Update Client Info Screen");
+		Screen.DrawScreenHeader("                  Update Client Info Screen");
 
 		Screen.AlignWithOffset();
 		cout << "Enter Account Number : ";

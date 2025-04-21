@@ -30,7 +30,7 @@ public:
 	static bool DeleteUserScreen()
 	{
 		clsScreen Screen = _GetScreenSettings();
-		string Header = "                  Delete User Screen";
+		string Header = "                      Delete User Screen";
 		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, Screen, true);
 		if (User.IsExist())
 		{
