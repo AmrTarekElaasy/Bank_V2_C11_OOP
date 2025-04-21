@@ -42,6 +42,8 @@ public:
         Screen.AlignWithOffset(1);
         cout << "Permisstion    : "<<(User.Permisstion);
         Screen.AlignWithOffset(1);
+    
+
         _DrawTheLine();
         cout << "\n";
     }

@@ -13,6 +13,12 @@ public:
 	{
 		eEmptyMode, eUpdateMode, eAddNewMode
 	};
+	enum enPermission {
+		enAll = -1, enClientsList = 1, enAddClient = 2, enDeleteClient = 4, enUpdateClient = 8
+		, enFindClient = 16, enTransactions = 32, enManageUsers = 64
+	};
+	
+
 private:
 	enMode _Mode;
 	string _UserName;
@@ -167,7 +173,18 @@ public:
 		_Password = password;
 		_Permisstion = permisstion;
 	}
+	static bool CheckPermission(clsUser User,enPermission Permission)
+	{
+	
+		if ((User.Permisstion & Permission)|| (User.Permisstion == -1))
+			return true;
+		return false;
 
+	}
+	bool CheckPermission(enPermission Permission)
+	{
+		return CheckPermission(*this, Permission);
+	}
 	string GetUserName()
 	{
 		return _UserName;

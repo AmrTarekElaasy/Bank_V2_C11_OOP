@@ -30,7 +30,6 @@ public:
 		string Header = "                     Find User Screen";
 		//_ClearScreenAndPrintHeader(Header);
 		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, Screen, true);
-
 		if (User.IsExist())
 		{
 
