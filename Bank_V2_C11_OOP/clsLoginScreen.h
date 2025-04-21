@@ -24,23 +24,31 @@ class clsLoginScreen
 		_Header(Header);
 
 	}
+
 public:
-	static void ShowLoginScreen()
+	static bool ShowLoginScreen()
 	{
 
 		string UserName, Password;
 
 		clsScreen Screen = _GetScreenSettings();
 		bool LoginFaild = false;
-
+		short Try = 3;
 
 		do {
 			_ClearScreenAndPrintHeader("                           Login Screen");
 
+			
 			if (LoginFaild)
 			{
+
 				Screen.AlignWithOffset();
 				cout << "Incorrect username or password\n";
+				Try--;
+				if (Try == 0)
+					return false;
+				Screen.AlignWithOffset();
+				cout << "You Have "<<Try<<" Try\n";
 
 			}
 			LoginFaild = false;

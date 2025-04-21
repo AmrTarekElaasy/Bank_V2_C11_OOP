@@ -37,8 +37,8 @@ private:
         {
             return true;
         }
-        Screen.AlignWithOffset();
-        cout << "You do not have permission\n";
+        Screen.DrawScreenHeader("                  Access Denied! Contact Your Admin.");
+
         return false;
     }
     enum enMainMenueOptions {

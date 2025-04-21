@@ -5,8 +5,8 @@
 
 int main()
 {
-	while(true)
-	 clsLoginScreen::ShowLoginScreen();
+	while (clsLoginScreen::ShowLoginScreen());
+	 
 
 	return 0;
 }
