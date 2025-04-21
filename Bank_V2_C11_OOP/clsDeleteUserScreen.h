@@ -1,12 +1,10 @@
-
 #pragma once
 #include "clsScreen.h"
+#include "clsUser.h"
+#include"clsUserInfoScreen.h"
 #include "clsInputValidate.h"
-#include "clsBankClient.h"
-#include "clsClientInfoScreen.h"
-#include "clsGeneralFindClient.h"
-
-class clsDeleteClientScreen :protected clsGeneralFindClient
+#include "clsGeneralFindUser.h"
+class clsDeleteUserScreen
 {
 
 	static clsScreen _GetScreenSettings()
@@ -32,36 +30,35 @@ public:
 	static bool DeleteUserScreen()
 	{
 		clsScreen Screen = _GetScreenSettings();
-		string Header = "                  Delete Client Screen";
-		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, Screen, true);
-		if (Client.IsExist())
+		string Header = "                  Delete User Screen";
+		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, Screen, true);
+		if (User.IsExist())
 		{
 			Screen.AlignWithOffset();
-			cout << "Are you sure you want to delete this client Y|N?";
+			cout << "Are you sure you want to delete this user Y|N?";
 
 			switch (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
 
 			case true:
-				if (Client.Delete())
+				if (User.Delete())
 				{
 					Screen.AlignWithOffset(1);
 					cout << "Deleted successfully\n";
-					clsClientInfoScreen::PrintUserInfo(Client);
+					clsUserInfoScreen::PrintUserInfo(User);
 					Screen.DrawScreenLine();
 					return true;
 				}
 			default:
-				
+
 				_ClearScreenAndPrintHeader(Header);
 				Screen.AlignWithOffset();
 				cout << "Not deleted\n";
 				Screen.DrawScreenLine();
 				break;
 			}
-			
-		}
 
+		}
 		cout << "\n";
 		Screen.DrawScreenLine();
 		return false;

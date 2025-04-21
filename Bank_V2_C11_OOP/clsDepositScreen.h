@@ -32,7 +32,7 @@ public:
 		clsScreen Screen = _GetScreenSettings();
 		string Header = "                    Deposit Screen";
 		_ClearScreenAndPrintHeader(Header);
-		clsBankClient Client = clsGeneralFindClient::GeneralFindClient(Header,Screen,true );
+		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header,Screen,true );
 		if (Client.IsExist())
 		{
 			Screen.AlignWithOffset();

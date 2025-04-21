@@ -70,12 +70,12 @@ private:
 
     static void _ShowDeleteClientScreen()
     {
-        clsDeleteClientScreen::DeleteClientScreen();
+        clsDeleteClientScreen::DeleteUserScreen();
     }
 
     static void _ShowUpdateClientScreen()
     {
-        clsUpdateClientScreen::UpdateClientInfoScreen();
+        clsUpdateClientScreen::UpdateUserInfoScreen();
     }
 
     static void _ShowFindClientScreen()

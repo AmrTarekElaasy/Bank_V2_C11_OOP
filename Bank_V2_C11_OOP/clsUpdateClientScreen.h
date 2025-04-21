@@ -7,7 +7,7 @@
 class clsUpdateClientScreen :clsScreen
 {
 public:
-	static bool UpdateClientInfoScreen()
+	static bool UpdateUserInfoScreen()
 	{
 		clsScreen Screen;
 		Screen.Offset = 0;

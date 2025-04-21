@@ -13,7 +13,7 @@ class clsGeneralFindClient:protected clsScreen
 
 	}
 public:
-	static clsBankClient GeneralFindClient(string ScreenName,clsScreen ScreenSettings,bool PrintCLientInfo)
+	static clsBankClient GeneralFindUser(string ScreenName,clsScreen ScreenSettings,bool PrintCLientInfo)
 	{
 		_ClearTransactionsScreenAndPrintHeader(ScreenName, ScreenSettings);
 

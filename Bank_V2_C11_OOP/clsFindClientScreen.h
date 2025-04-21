@@ -33,7 +33,7 @@ public:
 		clsScreen Screen = _GetScreenSettings();
 		string Header = "                    Find Client Screen";
 		//_ClearScreenAndPrintHeader(Header);
-		clsBankClient Client = clsGeneralFindClient::GeneralFindClient(Header, Screen, true);
+		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, Screen, true);
 		if (Client.IsExist())
 		{
 
