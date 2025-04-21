@@ -64,5 +64,6 @@ public:
         Screen.AlignWithOffset();
         _DrawTheLine();
         Screen.DrawScreenLine();
+        //system("pause>0");
     }
 };
