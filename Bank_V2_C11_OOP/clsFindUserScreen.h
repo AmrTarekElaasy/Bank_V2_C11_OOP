@@ -1,13 +1,9 @@
 #pragma once
 #include "clsScreen.h"
-#include "clsInputValidate.h"
-#include "clsBankClient.h"
-#include "clsClientInfoScreen.h"
-#include "clsGeneralFindClient.h"
-
-class clsFindClientScreen:protected clsGeneralFindClient
+#include "clsUser.h"
+#include "clsGeneralFindUser.h"
+class clsFindUserScreen
 {
-	
 	static clsScreen _GetScreenSettings()
 	{
 		clsScreen Screen;
@@ -28,15 +24,14 @@ class clsFindClientScreen:protected clsGeneralFindClient
 	}
 
 public:
-	static bool FindClientScreen()
+	static bool FindUserScreen()
 	{
 		clsScreen Screen = _GetScreenSettings();
-		string Header = "                    Find Client Screen";
+		string Header = "                     Find User Screen";
 		//_ClearScreenAndPrintHeader(Header);
-		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, Screen, true);
+		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, Screen, true);
 
-		
-		if (Client.IsExist())
+		if (User.IsExist())
 		{
 
 			return true;

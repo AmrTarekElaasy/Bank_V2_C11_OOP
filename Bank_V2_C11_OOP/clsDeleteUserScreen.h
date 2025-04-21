@@ -35,7 +35,7 @@ public:
 		if (User.IsExist())
 		{
 			Screen.AlignWithOffset();
-			cout << "Are you sure you want to delete this user Y|N?";
+			cout << "Are you sure you want to delete this user Y|N? ";
 
 			switch (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
@@ -54,7 +54,6 @@ public:
 				_ClearScreenAndPrintHeader(Header);
 				Screen.AlignWithOffset();
 				cout << "Not deleted\n";
-				Screen.DrawScreenLine();
 				break;
 			}
 

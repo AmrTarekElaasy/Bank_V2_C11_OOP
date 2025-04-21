@@ -4,6 +4,7 @@
 #include "clsAddNewUserScreen.h"
 #include "clsDeleteUserScreen.h"
 #include "clsUpdateUserScreen.h"
+#include "clsFindUserScreen.h"
 class clsManageUsers :clsScreen
 {
 
@@ -54,7 +55,7 @@ class clsManageUsers :clsScreen
 	static void _ShowFindUser()
 	{
 		system("cls");
-		cout << "Find user screen will be here.\n";
+		clsFindUserScreen::FindUserScreen();
 	}
 	static void _GoBackToManageUsersScreen()
 	{
