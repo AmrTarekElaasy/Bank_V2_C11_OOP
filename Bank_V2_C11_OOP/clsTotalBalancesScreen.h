@@ -17,42 +17,40 @@ class clsTotalBalancesScreen :clsScreen
 		}
 		return totalBalans;
 	}
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
-		clsScreen Screen;
-		Screen.Offset = -1;
-		return Screen;
+		CurrentScreen.Offset = -1;
 	}
 public:
 	static void ShowTotalBalancesScreen()
 	{
 		system("cls");
 		vector<clsBankClient> vClients = clsBankClient::GetClientsList();
-		clsScreen Screen= _GetScreenSettings();
+		 _GetScreenSettings();
 		string strNumOfCLient = "                      (" + to_string(vClients.size()) + ") Client(s).";
-		DrawScreenHeader(Screen,"                     Total Balances Screen", strNumOfCLient);
+		DrawScreenHeader(CurrentScreen,"                     Total Balances Screen", strNumOfCLient);
 
 		
 		
 
 
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		_PrintTheLine();
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "| " << left << setw(15) << "Accout Number";
 		cout << "| " << left << setw(30) << "Client Name";
 		cout << "| " << left << setw(12) << "Balance";
 		cout << "\n";
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		_PrintTheLine();
 
 		if (vClients.size() > 0)
 		{
 			for (clsBankClient& client : vClients)
 			{
-				Screen.AlignWithOffset();
+				CurrentScreen.AlignWithOffset();
 				cout << "| " << left << setw(15) << client.AccountNumber;
 				cout << "| " << left << setw(30) << client.FullName();
 				printf("| %.2f \n", client.AccountBalance);
@@ -61,16 +59,16 @@ public:
 		}
 		else
 		{
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "No Clients Her\n";
 		}
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		_PrintTheLine();
 
 
 		double totalBalans = _GetTotalBalans(vClients);
 
-		Screen.OffsetOFclsScreen();
+		CurrentScreen.OffsetOFclsScreen();
 		printf("Total Balans is : %.2f\n\n", totalBalans);
 		clsScreen::DrawScreenLine();
 

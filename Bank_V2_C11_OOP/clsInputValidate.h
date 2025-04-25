@@ -8,7 +8,6 @@
 #include "clsDate.h"
 #include "clsScreen.h"
 #include <iomanip>
-#include "clsScreen.h"
 
 class clsInputValidate
 {
@@ -80,16 +79,15 @@ public:
 	}
 
 
-	static int ReadIntNumber(clsScreen ScreenSettings,string ErrorMessage = "Invalid Number, Enter again : ")
+	static int ReadIntNumber(string ErrorMessage = "Invalid Number, Enter again : ")
 	{
 
-		clsScreen Screen = ScreenSettings;
 		string input = "";
 		getline(cin >> ws, input);
 		while (!clsString::IsValidNumber(input) || input.length() > 10)
 		{
 
-			Screen.AlignWithOffset(1);
+			CurrentScreen.AlignWithOffset(1);
 
 			if (input.length() > 10)
 			{
@@ -97,7 +95,7 @@ public:
 				cout << "The value is very large \n";
 			}
 
-			Screen.AlignWithOffset(1);
+			CurrentScreen.AlignWithOffset(1);
 			cout << ErrorMessage;
 			getline(cin >> ws, input);
 
@@ -108,16 +106,15 @@ public:
 		return number;
 	}
 
-	static int ReadIntNumberBetween(int From, int To, clsScreen ScreenSettings,string ErrorMessage = "Number is not within range, Enter again:")
+	static int ReadIntNumberBetween(int From, int To,string ErrorMessage = "Number is not within range, Enter again:")
 	{
-		clsScreen Screen = ScreenSettings;
-		int Number = ReadIntNumber(ScreenSettings);
+		int Number = ReadIntNumber();
 
 		while (!IsNumberBetween(Number, From, To))
 		{
-			Screen.AlignWithOffset(1);
+			CurrentScreen.AlignWithOffset(1);
 			cout << ErrorMessage;
-			Number = ReadIntNumber(ScreenSettings);
+			Number = ReadIntNumber();
 		}
 		return Number;
 	}
@@ -131,9 +128,8 @@ public:
 			countIntPart = S.find('.');
 		return countIntPart;
 	}
-	static double ReadDblNumber(clsScreen ScreenSettings,string ErrorMessage = "Invalid Number, Enter again : ")
+	static double ReadDblNumber(string ErrorMessage = "Invalid Number, Enter again : ")
 	{
-		clsScreen Screen = ScreenSettings;
 
 
 		string input = "";
@@ -143,7 +139,7 @@ public:
 
 		while (!clsString::IsValidNumber(input) || CountIntPart(input) > 15)
 		{
-			Screen.AlignWithOffset(1);
+			CurrentScreen.AlignWithOffset(1);
 
 			if (CountIntPart(input) > 15)
 			{
@@ -151,7 +147,7 @@ public:
 				cout << "The value is very large \n";
 			}
 
-			Screen.AlignWithOffset(1);
+			CurrentScreen.AlignWithOffset(1);
 			cout << ErrorMessage;
 
 			getline(cin >> ws, input);
@@ -163,14 +159,14 @@ public:
 		return number;
 	}
 
-	static double ReadDblNumberBetween(double From, double To, clsScreen ScreenSettings, string ErrorMessage = "Enter Number between %.2f to %.2f : ")
+	static double ReadDblNumberBetween(double From, double To, string ErrorMessage = "Enter Number between %.2f to %.2f : ")
 	{
-		clsScreen Screen = ScreenSettings;
-		double Number = ReadDblNumber(Screen);
+		
+		double Number = ReadDblNumber();
 
 		while (!IsNumberBetween(Number, From, To))
 		{
-			Screen.AlignWithOffset(1);
+			CurrentScreen.AlignWithOffset(1);
 			//cout << ErrorMessage;
 			if (ErrorMessage == "Enter Number between %.2f to %.2f : ")
 			{
@@ -181,7 +177,7 @@ public:
 				cout << ErrorMessage;
 			}
 			
-			Number = ReadDblNumber(Screen);
+			Number = ReadDblNumber();
 		}
 		return Number;
 	}

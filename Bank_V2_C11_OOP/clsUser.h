@@ -331,3 +331,4 @@ public:
 		return _LoadUsersDataFromFile();
 	}
 };
+clsUser CurrentUser = clsUser::Find("", "");

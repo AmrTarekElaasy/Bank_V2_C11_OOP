@@ -4,48 +4,48 @@
 #include <vector>
 using namespace std;
 
-class clsClientsScreen : protected clsScreen
+ 
+class clsClientsScreen 
 {
     static void _DrawTheLine()
     {
         cout << "_______________________________________________________";
         cout << "______________________________________________________________\n" << endl;
     }
-    static clsScreen _GetScreenSettings()
+    static void _GetScreenSettings()
     {
-        clsScreen Screen;
-        Screen.Offset = -30;
-        return Screen;
+        
+        CurrentScreen.Offset = -30;
     }
 public:
     
     static void ShowTotalBalancesScreen()
     {
-        clsScreen Screen= _GetScreenSettings();
+        _GetScreenSettings();
 
         vector<clsBankClient> vClients = clsBankClient::GetClientsList();
         string strNumOfCLient = "                         ("+to_string(vClients.size())+") Client(s).";
-        DrawScreenHeader(Screen,"                         Show Clients List",strNumOfCLient);
+        CurrentScreen.DrawScreenHeader("                         Show Clients List",strNumOfCLient);
                         
                     
 
-        Screen.AlignWithOffset();
+        CurrentScreen.AlignWithOffset();
         _DrawTheLine();
 
-        Screen.AlignWithOffset();
+        CurrentScreen.AlignWithOffset();
         cout << "| " << left << setw(15) << "Accout Number";
         cout << "| " << left << setw(20) << "Client Name";
         cout << "| " << left << setw(13) << "Phone";
         cout << "| " << left << setw(30) << "Email";
         cout << "| " << left << setw(10) << "Pin Code";
         cout << "| " << left << setw(12) << "Balance";
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         _DrawTheLine();
         if (vClients.size() > 0)
         {
             for (clsBankClient& client : vClients)
             {
-                Screen.AlignWithOffset();
+                CurrentScreen.AlignWithOffset();
                 cout << "| " << left << setw(15) << client.AccountNumber;
                 cout << "| " << left << setw(20) << client.FullName();
                 cout << "| " << left << setw(13) << client.Phone;
@@ -58,12 +58,12 @@ public:
         }
         else
         {
-            Screen.Print("No Clients Her\n");
+            CurrentScreen.Print("No Clients Her\n");
    
         }
-        Screen.AlignWithOffset();
+        CurrentScreen.AlignWithOffset();
         _DrawTheLine();
-        Screen.DrawScreenLine();
+        CurrentScreen.DrawScreenLine();
         //system("pause>0");
     }
 };

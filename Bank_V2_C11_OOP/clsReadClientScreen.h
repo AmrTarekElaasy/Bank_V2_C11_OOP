@@ -3,46 +3,53 @@
 #include "iostream"
 #include "clsScreen.h"
 #include "clsInputValidate.h"
+
 using namespace std;
 class clsReadClientScreen
 {
+	static void _GetScreenSettings()
+	{
+
+		CurrentScreen.Offset = 0;
+
+	}
 public:
 	static clsBankClient ReadUser(string AccountNumber, clsBankClient::enMode Mode)
 	{
+
+		_GetScreenSettings();
 	
 		string FristName, LastName, Email, Phone, PINCode;
 		double AccountBalans;
-		clsScreen Screen;
+		
 
-		Screen.Offset = 0;
-
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter Frist Name : ";
 		FristName = clsInputValidate::ReadString();
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter Last Name : ";
 		LastName = clsInputValidate::ReadString();
 
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter Email : ";
 		Email = clsInputValidate::ReadString();
 
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter Phone : ";
 		Phone = clsInputValidate::ReadString();
 
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter PINCode : ";
 		PINCode = clsInputValidate::ReadString();
 
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter Account Balans : ";
-		AccountBalans = clsInputValidate::ReadDblNumber(Screen);
+		AccountBalans = clsInputValidate::ReadDblNumber();
 
 
 

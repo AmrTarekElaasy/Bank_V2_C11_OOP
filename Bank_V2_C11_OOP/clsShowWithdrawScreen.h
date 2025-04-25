@@ -6,17 +6,14 @@
 
 class clsShowWithdrawScreen:clsScreen
 {
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
-		return Screen;
+		CurrentScreen.Offset = 0;
 	}
 	static void _Header(string Header)
 	{
-		clsScreen Screen = _GetScreenSettings();
-		Screen.AlignWithOffset();
-		Screen.DrawScreenHeader(Header);
+		CurrentScreen.AlignWithOffset();
+		CurrentScreen.DrawScreenHeader(Header);
 	}
 	static  void _ClearScreenAndPrintHeader(string Header)
 	{
@@ -30,11 +27,11 @@ public:
 
 	static bool WithdrawScreen()
 	{
-		clsScreen Screen = _GetScreenSettings();
+		_GetScreenSettings();
 		string Header = "                       Withdraw Screen";
 		                                     
 		_ClearScreenAndPrintHeader(Header);
-		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, Screen, true);
+		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, true);
 		if (Client.IsExist())
 		{
 			
@@ -50,24 +47,24 @@ public:
 			}
 
 			string mesege = "nter Withdraw Number between 0 to " + MaximumValue + " : ";
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << mesege;
-			double WithdrawNumber = clsInputValidate::ReadDblNumberBetween(0, DoubleMaximumValue,Screen, mesege);
+			double WithdrawNumber = clsInputValidate::ReadDblNumberBetween(0, DoubleMaximumValue, mesege);
 
 
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Are you want Withdraw ";clsScreen::PrintDoubleNumber(WithdrawNumber);
 			cout << " Y|N ? ";
 			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
 				Client.AccountBalance -= WithdrawNumber;
-				Screen.AlignWithOffset();
+				CurrentScreen.AlignWithOffset();
 
 				if (Client.Save() == clsBankClient::enSave::enSavedSuccessfully)
 				{
 					cout << "New Account Balance Is ";clsScreen::PrintDoubleNumber(Client.AccountBalance, true);
 					cout << "\n";
-					Screen.DrawScreenLine();
+					CurrentScreen.DrawScreenLine();
 					return true;
 
 				}
@@ -81,7 +78,7 @@ public:
 
 
 		}
-		Screen.DrawScreenLine();
+		CurrentScreen.DrawScreenLine();
 		return false;
 	}
 };

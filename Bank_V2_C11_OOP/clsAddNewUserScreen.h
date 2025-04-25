@@ -7,18 +7,17 @@
 class clsAddNewUserScreen
 {
 
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
-		return Screen;
+		CurrentScreen.Offset = 0;
+
 	}
 	static void _ClearScreenAndPrintHeader()
 	{
-		clsScreen Screen= _GetScreenSettings();
+
 		
 		system("cls");
-		Screen.DrawScreenHeader("                       Add New User Screen");
+		CurrentScreen.DrawScreenHeader("                       Add New User Screen");
 		
 
 	}
@@ -32,10 +31,10 @@ public:
 	{
 
 
-		clsScreen Screen = _GetScreenSettings();
+		_GetScreenSettings();
 
 		_ClearScreenAndPrintHeader();
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter User Name : ";
 
 		string userName = clsInputValidate::ReadString();
@@ -44,24 +43,24 @@ public:
 		while (User.IsExist())
 		{
 			_ClearScreenAndPrintHeader();
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "This User Is Exist \n";
-			Screen.DrawScreenLine();
+			CurrentScreen.DrawScreenLine();
 
 
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Do you Need Try Agen Y|N ? ";
 			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
 				_ClearScreenAndPrintHeader();
-				Screen.AlignWithOffset();
+				CurrentScreen.AlignWithOffset();
 				cout << "Enter Account Number : ";
 				userName = clsInputValidate::ReadString();
 				User = clsUser::Find(userName);
 			}
 			else
 			{
-				Screen.DrawScreenLine();
+				CurrentScreen.DrawScreenLine();
 				return false;
 			}
 		}
@@ -74,7 +73,7 @@ public:
 
 
 			_ClearScreenAndPrintHeader();
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			switch (User.Save())
 			{
 			case clsUser::enSave::enSavedSuccessfully:
@@ -82,7 +81,7 @@ public:
 
 				cout << "Saved Successfully\n";
 				clsUserInfoScreen::PrintUserInfo(User);
-				Screen.DrawScreenLine();
+				CurrentScreen.DrawScreenLine();
 				return true;
 
 			case clsUser::enSave::enNotHasUserName:
@@ -98,7 +97,7 @@ public:
 
 		}
 
-		Screen.DrawScreenLine();
+		CurrentScreen.DrawScreenLine();
 		return false;
 	}
 };

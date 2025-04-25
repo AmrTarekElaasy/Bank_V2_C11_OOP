@@ -2,10 +2,9 @@
 #include <iostream>
 #include <iomanip>
 #include "clsDate.h"
-#include "Global.h"
+#include "clsUser.h"
 
 using namespace std;
-
 class clsScreen
 {
     short _MainOffset =31; //31
@@ -14,10 +13,11 @@ class clsScreen
  
 public:
    
+    
     static short GetMainOffset()
     {
-        clsScreen Screen;
-        return Screen._MainOffset;
+        clsScreen CurrentScreen;
+        return CurrentScreen._MainOffset;
     }
     _declspec (property (get = GetMainOffset)) short MainOffset;
 
@@ -52,16 +52,16 @@ public:
     {
         AlignWithOffset(numberOfNewLine,_SecondOffset);
     }
-    static void DrawScreenHeader(clsScreen Screen,string Title, string SubTitle = "")
+    static void DrawScreenHeader(clsScreen CurrentScreen,string Title, string SubTitle = "")
     {
         DrawScreenLine(1,1);
-        Screen.AlignWithOffset(0,0);       
+        CurrentScreen.AlignWithOffset(0,0);       
         cout << Title;
 
         if (SubTitle != "")
         {
             
-            Screen.AlignWithOffset(1,2);
+            CurrentScreen.AlignWithOffset(1,2);
              cout << SubTitle;
         }
         
@@ -77,7 +77,7 @@ public:
             UserName += CurrentUser.UserName + " (" + CurrentUser.FullName() + ") ";
             
         }
-        Screen.AlignWithOffset(0, 0);
+        CurrentScreen.AlignWithOffset(0, 0);
         cout << setw(49) << left << UserName<<"";
 
         string Date = "Date: ";
@@ -118,14 +118,14 @@ public:
 
     }
 
-    static bool CheckPermission(clsScreen Screen,clsUser::enPermission Permission)
+    static bool CheckPermission(clsScreen CurrentScreen,clsUser::enPermission Permission)
     {
 
         if (CurrentUser.HasPermission(Permission))
         {
             return true;
         }
-        DrawScreenHeader(Screen,"                  Access Denied! Contact Your Admin.");
+        DrawScreenHeader(CurrentScreen,"                  Access Denied! Contact Your Admin.");
 
         return false;
     }
@@ -134,9 +134,9 @@ public:
         return CheckPermission(*this,Permission);
     }
 
-    static void Print(clsScreen Screen,string Messege)
+    static void Print(clsScreen CurrentScreen,string Messege)
     {
-        Screen.AlignWithOffset();
+        CurrentScreen.AlignWithOffset();
         cout << Messege;
     }
     void Print(string Messege)
@@ -146,4 +146,6 @@ public:
 
 
 };
+clsScreen CurrentScreen;
 
+ 

@@ -9,17 +9,17 @@
 class clsDeleteClientScreen :protected clsGeneralFindClient
 {
 
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
-		return Screen;
+		
+		CurrentScreen.Offset = 0;
+	
 	}
 	static void _Header(string Header)
 	{
-		clsScreen Screen = _GetScreenSettings();
-		Screen.AlignWithOffset();
-		Screen.DrawScreenHeader(Header);
+		 _GetScreenSettings();
+		CurrentScreen.AlignWithOffset();
+		CurrentScreen.DrawScreenHeader(Header);
 	}
 	static  void _ClearScreenAndPrintHeader(string Header)
 	{
@@ -31,12 +31,12 @@ class clsDeleteClientScreen :protected clsGeneralFindClient
 public:
 	static bool DeleteUserScreen()
 	{
-		clsScreen Screen = _GetScreenSettings();
+		_GetScreenSettings();
 		string Header = "                      Delete Client Screen";
-		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, Screen, true);
+		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, true);
 		if (Client.IsExist())
 		{
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Are you sure you want to delete this client Y|N? ";
 
 			switch (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
@@ -45,16 +45,16 @@ public:
 			case true:
 				if (Client.Delete())
 				{
-					Screen.AlignWithOffset(1);
+					CurrentScreen.AlignWithOffset(1);
 					cout << "Deleted successfully\n";
 					clsClientInfoScreen::PrintUserInfo(Client);
-					Screen.DrawScreenLine();
+					CurrentScreen.DrawScreenLine();
 					return true;
 				}
 			default:
 				
 				_ClearScreenAndPrintHeader(Header);
-				Screen.AlignWithOffset();
+				CurrentScreen.AlignWithOffset();
 				cout << "Not deleted\n";
 				break;
 			}
@@ -62,7 +62,7 @@ public:
 		}
 
 		cout << "\n";
-		Screen.DrawScreenLine();
+		CurrentScreen.DrawScreenLine();
 		return false;
 	}
 };

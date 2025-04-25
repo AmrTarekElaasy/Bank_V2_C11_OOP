@@ -6,55 +6,40 @@
 #include "clsTotalBalancesScreen.h"
 class clsTransactionsScreen:protected clsScreen
 {
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
+		CurrentScreen.Offset = 0;
 		
-		return Screen;
 	}
-	static clsScreen _ClearTransactionsScreenAndPrintHeader()
+	static void _ClearTransactionsScreenAndPrintHeader()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
+	
 		system("cls");
-		Screen.DrawScreenHeader("              Transactions Menue Screen");
-		return Screen;
+		CurrentScreen.DrawScreenHeader("              Transactions Menue Screen");
 
 	}
 	
 	static void _HeaderAndOptionWhithNoInput()
 	{
 
-		clsScreen Screen = _GetScreenSettings();
-
-		Screen.DrawScreenHeader("                  Transactions Menue Screen");
-		Screen.WriteTheSubLine("[1] Deposit");
-		Screen.WriteTheSubLine("[2] Withdraw");
-		Screen.WriteTheSubLine("[3] Total Balances");
-		Screen.WriteTheSubLine("[4] Main Menue");
-		Screen.DrawScreenLine();
+		_GetScreenSettings();
+		CurrentScreen.DrawScreenHeader("                  Transactions Menue Screen");
+		CurrentScreen.WriteTheSubLine("[1] Deposit");
+		CurrentScreen.WriteTheSubLine("[2] Withdraw");
+		CurrentScreen.WriteTheSubLine("[3] Total Balances");
+		CurrentScreen.WriteTheSubLine("[4] Main Menue");
+		CurrentScreen.DrawScreenLine();
 
 	}
-	enum enTransactionsMenue { enDeposit = 1, enWithdraw = 2, enTotalBalances = 3, enMainMenue = 4 };
+	enum enTransactionsMenue { enDeposit = 1, enWithdraw = 2, enTotalBalances = 3, enTransfer =4, enMainMenue = 5 };
 	static enTransactionsMenue _ReadTransactionsMenueOption()
 	{
-		clsScreen Screen = _GetScreenSettings();
-		Screen.AlignWithOffset(0,Screen.Offset+5);
-		cout << "Choose what do you want to do? [1 to 4]: ";
+		CurrentScreen.AlignWithOffset(0,CurrentScreen.Offset+5);
+		cout << "Choose what do you want to do? [1 to 5]: ";
 
-		switch (clsInputValidate::ReadIntNumberBetween(1, 4,Screen, "Enter Number between 1 to 4 : "))
-		{
-		case 1:
-			return enTransactionsMenue::enDeposit;
-		case 2:
-			return enTransactionsMenue::enWithdraw;
-		case 3:
-			return enTransactionsMenue::enTotalBalances;
-		case 4:
-			return enTransactionsMenue::enMainMenue;
-
-		};
+		short TheChoice = clsInputValidate::ReadIntNumberBetween(1, 5,  "Enter Number between 1 to 5 : ");
+		
+		return (enTransactionsMenue)TheChoice;
 	}
 	static void _ShowDepositScreen()
 	{
@@ -73,9 +58,9 @@ class clsTransactionsScreen:protected clsScreen
 	}
 	static void GoBackToTransactionsMenue()
 	{
-		clsScreen Screen = _GetScreenSettings();
+		_GetScreenSettings();
 	
-		Screen.AlignWithOffset(1);
+		CurrentScreen.AlignWithOffset(1);
 		cout << "Press any key to go back to transactions menue...";
 		system("pause>0");
 		ShowTransactionsMenue();
@@ -97,8 +82,8 @@ class clsTransactionsScreen:protected clsScreen
 			GoBackToTransactionsMenue();
 			break;
 		case clsTransactionsScreen::enMainMenue:
-			clsScreen Screen = _GetScreenSettings();
-			Screen.DrawScreenLine(1);
+			//_GetScreenSettings();
+			CurrentScreen.DrawScreenLine(1);
 			break;
 		
 		}

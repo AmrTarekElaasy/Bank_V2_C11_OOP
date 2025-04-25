@@ -4,17 +4,14 @@
 #include "clsGeneralFindUser.h"
 class clsFindUserScreen
 {
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
-		return Screen;
+		CurrentScreen.Offset = 0;
 	}
 	static void _Header(string Header)
 	{
-		clsScreen Screen = _GetScreenSettings();
-		Screen.AlignWithOffset();
-		Screen.DrawScreenHeader(Header);
+		CurrentScreen.AlignWithOffset();
+		CurrentScreen.DrawScreenHeader(Header);
 	}
 	static  void _ClearScreenAndPrintHeader(string Header)
 	{
@@ -26,16 +23,16 @@ class clsFindUserScreen
 public:
 	static bool FindUserScreen()
 	{
-		clsScreen Screen = _GetScreenSettings();
+		_GetScreenSettings();
 		string Header = "                         Find User Screen";
 		//_ClearScreenAndPrintHeader(Header);
-		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, Screen, true);
+		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, CurrentScreen, true);
 		if (User.IsExist())
 		{
 
 			return true;
 		}
-		Screen.DrawScreenLine();
+		CurrentScreen.DrawScreenLine();
 		return false;
 	}
 };

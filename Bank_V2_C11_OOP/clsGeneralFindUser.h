@@ -3,20 +3,21 @@
 #include "clsInputValidate.h"
 #include"clsUser.h"
 #include"clsUserInfoScreen.h"
+
 class clsGeneralFindUser
 {
-	static void _ClearTransactionsScreenAndPrintHeader(string ScreenName, clsScreen ScreenSettings)
+	static void _ClearTransactionsScreenAndPrintHeader(string ScreenName)
 	{
 
 		system("cls");
-		ScreenSettings.DrawScreenHeader(ScreenName);
+		CurrentScreen.DrawScreenHeader(ScreenName);
 
 
 	}
 public:
 	static clsUser GeneralFindUser(string ScreenName, clsScreen ScreenSettings, bool PrintUserInfo)
 	{
-		_ClearTransactionsScreenAndPrintHeader(ScreenName, ScreenSettings);
+		_ClearTransactionsScreenAndPrintHeader(ScreenName);
 
 		ScreenSettings.AlignWithOffset();
 		cout << "Enter User Name : ";
@@ -24,7 +25,7 @@ public:
 		clsUser User = clsUser::Find(UserName);
 		while (!User.IsExist())
 		{
-			_ClearTransactionsScreenAndPrintHeader(ScreenName, ScreenSettings);
+			_ClearTransactionsScreenAndPrintHeader(ScreenName);
 			ScreenSettings.AlignWithOffset();
 			cout << "Not Found \n";
 			ScreenSettings.DrawScreenLine();
@@ -34,7 +35,7 @@ public:
 			cout << "Do you Need Try Agen Y|N ? ";
 			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
-				_ClearTransactionsScreenAndPrintHeader(ScreenName, ScreenSettings);
+				_ClearTransactionsScreenAndPrintHeader(ScreenName);
 				ScreenSettings.AlignWithOffset();
 				cout << "Enter User Name : ";
 				UserName = clsInputValidate::ReadString();
@@ -47,7 +48,7 @@ public:
 		}
 		if (PrintUserInfo)
 		{
-			_ClearTransactionsScreenAndPrintHeader(ScreenName, ScreenSettings);
+			_ClearTransactionsScreenAndPrintHeader(ScreenName);
 			clsUserInfoScreen::PrintUserInfo(User);
 			ScreenSettings.DrawScreenLine();
 		}

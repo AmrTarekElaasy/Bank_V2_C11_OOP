@@ -3,6 +3,10 @@
 #include"clsBankClient.h"
 class clsClientInfoScreen:clsScreen
 {
+    static void _GetScreenSettings()
+    {
+        CurrentScreen.Offset = 0;
+    }
     static void _DrawTheLine()
     {
         cout << "________________________________________________";
@@ -11,33 +15,37 @@ class clsClientInfoScreen:clsScreen
 public:
 	static void PrintUserInfo(clsBankClient Client)
 	{
-        clsScreen Screen;
-        Screen.Offset = 0;
-        Screen.AlignWithOffset(0);
+       
+        
+
+        _GetScreenSettings();
+
+        CurrentScreen.AlignWithOffset(0);
         _DrawTheLine();
-        Screen.AlignWithOffset(2);
+        CurrentScreen.AlignWithOffset(2);
         cout << "Client Card:";
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         _DrawTheLine();
-        Screen.AlignWithOffset(2);
+        CurrentScreen.AlignWithOffset(2);
         cout << "FirstName      : " << Client.FirstName;
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         cout << "LastName       : " << Client.LastName;
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         cout << "Full Name      : " << Client.FullName();
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         cout << "Email          : " << Client.Email;
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         cout << "Phone          : " << Client.Phone;        
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         cout << "Account Number : " << Client.AccountNumber;        
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         cout << "PINCode        : " << Client.PinCode;
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         cout << "Balance        : ";clsScreen::PrintDoubleNumber(Client.AccountBalance);
-        Screen.AlignWithOffset(1);
+        CurrentScreen.AlignWithOffset(1);
         _DrawTheLine();
         cout << "\n";
+        
     }
 };
 

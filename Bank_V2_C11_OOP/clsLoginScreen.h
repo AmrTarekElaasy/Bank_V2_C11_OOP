@@ -1,23 +1,19 @@
 #pragma once
 #include "clsScreen.h"
 #include "clsInputValidate.h"
-#include "Global.h"
 #include "clsUser.h"
 #include "clsMainScreen.h"
 #include "clsLoginLogger.h"
 class clsLoginScreen
 {
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
-		return Screen;
+		CurrentScreen.Offset = 0;
 	}
 	static void _Header(string Header)
 	{
-		clsScreen Screen = _GetScreenSettings();
-		Screen.AlignWithOffset();
-		Screen.DrawScreenHeader(Header);
+		CurrentScreen.AlignWithOffset();
+		CurrentScreen.DrawScreenHeader(Header);
 	}
 	static  void _ClearScreenAndPrintHeader(string Header)
 	{
@@ -32,7 +28,7 @@ public:
 
 		string UserName, Password;
 
-		clsScreen Screen = _GetScreenSettings();
+		_GetScreenSettings();
 		bool LoginFaild = false;
 		short Try = 3;
 
@@ -43,21 +39,21 @@ public:
 			if (LoginFaild)
 			{
 
-				Screen.AlignWithOffset();
+				CurrentScreen.AlignWithOffset();
 				cout << "Incorrect username or password\n";
 				Try--;
 				if (Try == 0)
 					return false;
-				Screen.AlignWithOffset();
+				CurrentScreen.AlignWithOffset();
 				cout << "You Have "<<Try<<" Try\n";
 
 			}
 			LoginFaild = false;
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Enter User Name : ";
 			UserName = clsInputValidate::ReadString();
 
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Enter Password : ";
 			Password = clsInputValidate::ReadString();
 

@@ -10,12 +10,10 @@
 #include "clsFindClientScreen.h"
 #include "clsTransactionsScreen.h"
 #include "clsManageUsers.h"
-#include "Global.h"
 #include "clsLoginRegisterScreen.h"
 
 
 using namespace std;
-
 
 
 class clsMainScreen :protected clsScreen
@@ -24,12 +22,11 @@ class clsMainScreen :protected clsScreen
 
 private:
 
-    static clsScreen _GetScreenSettings()
+    static void _GetScreenSettings()
     {
-        clsScreen Screen;
-        Screen.Offset = 5;
+        
+        CurrentScreen.Offset = 5;
 
-        return Screen;
     }
    
     enum enMainMenueOptions {
@@ -40,20 +37,20 @@ private:
 
     static short _ReadMainMenueOption()
     {
-        clsScreen Screen = _GetScreenSettings();
-        Screen.AlignWithOffset(1);
+        
+        CurrentScreen.AlignWithOffset(1);
         cout << "Choose what do you want to do? [1 to 9] :  ";
 
 
-        short Choice = clsInputValidate::ReadIntNumberBetween(1, 9, Screen,"Enter Number between 1 to 9 : ");
+        short Choice = clsInputValidate::ReadIntNumberBetween(1, 9, "Enter Number between 1 to 9 : ");
         return Choice;
     }
 
     static  void _GoBackToMainMenue()
     {
         
-        clsScreen Screen = _GetScreenSettings();
-        Screen.AlignWithOffset(1);
+        
+        CurrentScreen.AlignWithOffset(1);
         cout << "Press any key to go back to Main Menue...";
         system("pause>0");
         ShowMainMenue();
@@ -61,51 +58,51 @@ private:
 
     static void _ShowAllClientsScreen()
     {
-        clsScreen Screen = _GetScreenSettings();
-        if (Screen.CheckPermission(clsUser::enPermission::enClientsList))
+        
+        if (CurrentScreen.CheckPermission(clsUser::enPermission::enClientsList))
         clsClientsScreen::ShowTotalBalancesScreen();
       
     }
 
     static void _ShowAddNewClientsScreen()
     {
-        clsScreen Screen = _GetScreenSettings();
-        if (Screen.CheckPermission(clsUser::enPermission::enAddClient))
+        
+        if (CurrentScreen.CheckPermission(clsUser::enPermission::enAddClient))
         clsAddNewClientScreen::AddNewUserScreen();
     }
 
     static void _ShowDeleteClientScreen()
     {
-        clsScreen Screen = _GetScreenSettings();
-        if (Screen.CheckPermission(clsUser::enPermission::enDeleteClient))
+       
+        if (CurrentScreen.CheckPermission(clsUser::enPermission::enDeleteClient))
         clsDeleteClientScreen::DeleteUserScreen();
     }
 
     static void _ShowUpdateClientScreen()
     {
-        clsScreen Screen = _GetScreenSettings();
-        if (Screen.CheckPermission(clsUser::enPermission::enUpdateClient))
+        
+        if (CurrentScreen.CheckPermission(clsUser::enPermission::enUpdateClient))
         clsUpdateClientScreen::UpdateUserInfoScreen();
     }
 
     static void _ShowFindClientScreen()
     {
-        clsScreen Screen = _GetScreenSettings();
-        if (Screen.CheckPermission(clsUser::enPermission::enFindClient))
+        
+        if (CurrentScreen.CheckPermission(clsUser::enPermission::enFindClient))
         clsFindClientScreen::FindClientScreen();
     }
 
     static void _ShowTransactionsMenue()
     {
-        clsScreen Screen = _GetScreenSettings();
-        if (Screen.CheckPermission(clsUser::enPermission::enTransactions))
+        
+        if (CurrentScreen.CheckPermission(clsUser::enPermission::enTransactions))
         clsTransactionsScreen::ShowTransactionsMenue();
     }
 
     static void _ShowManageUsersMenue()
     {
-        clsScreen Screen = _GetScreenSettings();
-        if (Screen.CheckPermission(clsUser::enPermission::enManageUsers))
+        
+        if (CurrentScreen.CheckPermission(clsUser::enPermission::enManageUsers))
         clsManageUsers::ManageUsersScreen();
     }
 
@@ -116,8 +113,8 @@ private:
   
     static void _ShowLoginRegisterScreen()
     {
-        clsScreen Screen = _GetScreenSettings();
-        if (Screen.CheckPermission(clsUser::enPermission::enLoginRegister))
+       
+        if (CurrentScreen.CheckPermission(clsUser::enPermission::enLoginRegister))
         clsLoginRegisterScreen::ShowLoginRegisterScreen();
 
     }
@@ -192,20 +189,20 @@ public:
     static void ShowMainMenue()
     {
 
-        clsScreen Screen= _GetScreenSettings();
+        _GetScreenSettings();
         system("cls");
        // string SubTitel = "Welcome "+ CurrentUser.UserName + " (" + CurrentUser.FullName() + ")";
-        Screen.DrawScreenHeader("                            Main Screen");
+        CurrentScreen.DrawScreenHeader("                            Main Screen");
                          
-        Screen.WriteTheSubLine("[1] Show Client List");
-        Screen.WriteTheSubLine("[2] Add New Client");
-        Screen.WriteTheSubLine("[3] Delete Client");
-        Screen.WriteTheSubLine("[4] Update Client Info");
-        Screen.WriteTheSubLine("[5] Find Client");
-        Screen.WriteTheSubLine("[6] Transactions");
-        Screen.WriteTheSubLine("[7] Manage Users");
-        Screen.WriteTheSubLine("[8] Login Register");
-        Screen.WriteTheSubLine("[9] Logout");
+        CurrentScreen.WriteTheSubLine("[1] Show Client List");
+        CurrentScreen.WriteTheSubLine("[2] Add New Client");
+        CurrentScreen.WriteTheSubLine("[3] Delete Client");
+        CurrentScreen.WriteTheSubLine("[4] Update Client Info");
+        CurrentScreen.WriteTheSubLine("[5] Find Client");
+        CurrentScreen.WriteTheSubLine("[6] Transactions");
+        CurrentScreen.WriteTheSubLine("[7] Manage Users");
+        CurrentScreen.WriteTheSubLine("[8] Login Register");
+        CurrentScreen.WriteTheSubLine("[9] Logout");
         clsScreen::DrawScreenLine();
         _PerfromMainMenueOption((enMainMenueOptions)_ReadMainMenueOption());
     }

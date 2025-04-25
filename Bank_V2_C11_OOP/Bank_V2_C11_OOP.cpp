@@ -2,10 +2,13 @@
 //
 #include "clsLoginScreen.h"
 #include "clsLoginRegisterScreen.h"
+#include "clsScreen.h"
+
+
 int main()
 {
 
-
+	//clsScreen Screen;
 	while (clsLoginScreen::ShowLoginScreen());
 	
 

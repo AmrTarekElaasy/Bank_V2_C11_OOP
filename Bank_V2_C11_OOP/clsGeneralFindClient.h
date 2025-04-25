@@ -2,39 +2,41 @@
 #include "clsBankClient.h"
 #include "clsScreen.h"
 #include "clsInputValidate.h"
+
+
 class clsGeneralFindClient:protected clsScreen
 {
-	static void _ClearTransactionsScreenAndPrintHeader(string ScreenName, clsScreen ScreenSettings)
+	static void _ClearTransactionsScreenAndPrintHeader(string ScreenName)
 	{
 		
 		system("cls");
-		ScreenSettings.DrawScreenHeader(ScreenName);
+		CurrentScreen.DrawScreenHeader(ScreenName);
 		
 
 	}
 public:
-	static clsBankClient GeneralFindUser(string ScreenName,clsScreen ScreenSettings,bool PrintCLientInfo)
+	static clsBankClient GeneralFindUser(string ScreenName,bool PrintCLientInfo)
 	{
-		_ClearTransactionsScreenAndPrintHeader(ScreenName, ScreenSettings);
+		_ClearTransactionsScreenAndPrintHeader(ScreenName);
 
-		ScreenSettings.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter Account Number : ";
 		string AccountNumber = clsInputValidate::ReadString();
 		clsBankClient Client = clsBankClient::Find(AccountNumber);
 		while (!Client.IsExist())
 		{
-			_ClearTransactionsScreenAndPrintHeader(ScreenName,ScreenSettings);
-			ScreenSettings.AlignWithOffset();
+			_ClearTransactionsScreenAndPrintHeader(ScreenName);
+			CurrentScreen.AlignWithOffset();
 			cout << "Not Found \n";
-			ScreenSettings.DrawScreenLine();
+			CurrentScreen.DrawScreenLine();
 
 
-			ScreenSettings.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Do you Need Try Agen Y|N ? ";
 			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
-				_ClearTransactionsScreenAndPrintHeader(ScreenName,ScreenSettings);
-				ScreenSettings.AlignWithOffset();
+				_ClearTransactionsScreenAndPrintHeader(ScreenName);
+				CurrentScreen.AlignWithOffset();
 				cout << "Enter Account Number : ";
 				AccountNumber = clsInputValidate::ReadString();
 				Client = clsBankClient::Find(AccountNumber);
@@ -46,9 +48,9 @@ public:
 		}
 		if (PrintCLientInfo)
 		{
-			_ClearTransactionsScreenAndPrintHeader(ScreenName, ScreenSettings);
+			_ClearTransactionsScreenAndPrintHeader(ScreenName);
 			clsClientInfoScreen::PrintUserInfo(Client);
-			ScreenSettings.DrawScreenLine();
+			CurrentScreen.DrawScreenLine();
 		}
 		return Client;
 	}

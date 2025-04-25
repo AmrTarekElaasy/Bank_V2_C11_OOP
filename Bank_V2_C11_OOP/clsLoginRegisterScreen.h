@@ -3,12 +3,10 @@
 #include "clsScreen.h"
 class clsLoginRegisterScreen
 {
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
+		CurrentScreen.Offset = 0;
 		
-		clsScreen Screen;
-		Screen.Offset = 0;
-		return Screen;
 	}
 	static void _DrawTheLine()
 	{
@@ -18,8 +16,8 @@ class clsLoginRegisterScreen
 	}
 	static void _PrintLoginRegisterRecord(clsLoginLogger::stLoginRegisterRecord LoginRegisterRecord)
 	{
-		clsScreen Screen = _GetScreenSettings();
-		Screen.AlignWithOffset();
+	   
+		CurrentScreen.AlignWithOffset();
 		cout << setw(21) << left << LoginRegisterRecord.Date << "|";
 		cout << setw(15) << left << LoginRegisterRecord.UserName << "|";;
 		cout << setw(15) << left << LoginRegisterRecord.Password << "|";;
@@ -30,28 +28,28 @@ public:
 	static void ShowLoginRegisterScreen()
 	{
 		system("cls");
-		clsScreen Screen = _GetScreenSettings();
+	    _GetScreenSettings();
 		vector <clsLoginLogger::stLoginRegisterRecord> vLogins = clsLoginLogger::LoadFromFile();
 
 
 		string SubTitel = "                      (" + to_string(vLogins.size()) + ") Record(s).";
 
-		Screen.DrawScreenHeader("                  Login Register List Screen", SubTitel);
+		CurrentScreen.DrawScreenHeader("                  Login Register List Screen", SubTitel);
 
 
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		_DrawTheLine();
 		if (vLogins.size() > 0)
 		{
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << setw(21) << left << "Date And Time" << "|";
 			cout << setw(15) << left << "User Name" << "|";;
 			cout << setw(15) << left << "Password" << "|";;
 			cout << "Permission \n";
 
 
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			_DrawTheLine();
 
 
@@ -67,14 +65,14 @@ public:
 		else
 		{
 
-			Screen.Print("                          No Login Here\n");
+			CurrentScreen.Print("                          No Login Here\n");
 		
 
 		}
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		_DrawTheLine();
-		Screen.DrawScreenLine();
+		CurrentScreen.DrawScreenLine();
 
 	}
 

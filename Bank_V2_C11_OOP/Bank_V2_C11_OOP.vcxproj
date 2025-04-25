@@ -183,6 +183,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bank_V2_C11_OOP.cpp" />
+    <ClCompile Include="Global.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsAddNewClientScreen.h" />
@@ -213,7 +214,6 @@
     <ClInclude Include="clsUpdateUserScreen.h" />
     <ClInclude Include="clsUser.h" />
     <ClInclude Include="clsUserInfoScreen.h" />
-    <ClInclude Include="Global.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

@@ -3,16 +3,16 @@
 #include "clsClientInfoScreen.h"
 #include "clsReadClientScreen.h"
 
-class clsAddNewClientScreen :clsScreen
+class clsAddNewClientScreen 
 {
-	static clsScreen _ClearScreenAndPrintHeader()
+	static void _ClearScreenAndPrintHeader()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
+		
+		CurrentScreen.Offset = 0;
 		system("cls");
-		Screen.DrawScreenHeader("                      Add New Client Screen");
+		CurrentScreen.DrawScreenHeader("                      Add New Client Screen");
 								
-		return Screen;
+		
 
 	}
 
@@ -25,8 +25,8 @@ public:
 	{
 
 
-		clsScreen Screen = _ClearScreenAndPrintHeader();
-		Screen.AlignWithOffset();
+		  _ClearScreenAndPrintHeader();
+		  CurrentScreen.AlignWithOffset();
 		cout << "Enter AccountNumber : ";
 		string accountNumber = clsInputValidate::ReadString();
 		clsBankClient Client = clsBankClient::Find(accountNumber);
@@ -34,24 +34,24 @@ public:
 		while (Client.IsExist())
 		{
 			_ClearScreenAndPrintHeader();
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "This Client Is Exist \n";
-			Screen.DrawScreenLine();
+			CurrentScreen.DrawScreenLine();
 
 
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Do you Need Try Agen Y|N ? ";
 			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
 				_ClearScreenAndPrintHeader();
-				Screen.AlignWithOffset();
+				CurrentScreen.AlignWithOffset();
 				cout << "Enter Account Number : ";
 				accountNumber = clsInputValidate::ReadString();
 				Client = clsBankClient::Find(accountNumber);
 			}
 			else
 			{
-				Screen.DrawScreenLine();
+				CurrentScreen.DrawScreenLine();
 				return false;
 			}
 		}
@@ -64,7 +64,7 @@ public:
 
 
 			_ClearScreenAndPrintHeader();
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			switch (Client.Save())
 			{
 			case clsBankClient::enSave::enSavedSuccessfully:
@@ -72,7 +72,7 @@ public:
 
 				cout << "Saved Successfully\n";
 				clsClientInfoScreen::PrintUserInfo(Client);
-				Screen.DrawScreenLine();
+				CurrentScreen.DrawScreenLine();
 				return true;
 
 			case clsBankClient::enSave::enNotHasUserName:
@@ -88,7 +88,7 @@ public:
 
 		}
 
-		Screen.DrawScreenLine();
+		CurrentScreen.DrawScreenLine();
 		return false;
 	}
 

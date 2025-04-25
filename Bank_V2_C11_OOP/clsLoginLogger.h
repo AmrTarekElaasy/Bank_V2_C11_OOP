@@ -2,7 +2,6 @@
 #include <fstream>
 #include "clsDate.h"
 #include "clsUser.h"
-#include "Global.h"
 class clsLoginLogger
 {
 public:

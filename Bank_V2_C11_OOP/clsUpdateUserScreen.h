@@ -4,31 +4,30 @@
 class clsUpdateUserScreen
 {
 
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
+		CurrentScreen.Offset = 0;
 
-		return Screen;
+		
 	}
 public:
 	static bool UpdateUserInfoScreen()
 	{
-		clsScreen Screen=_GetScreenSettings();
+		_GetScreenSettings();
 		
 
-		Screen.DrawScreenHeader("                   Update User Info Screen");
+		CurrentScreen.DrawScreenHeader("                   Update User Info Screen");
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter User Name : ";
 		string UserName = clsInputValidate::ReadString();
 		clsUser User = clsUser::Find(UserName);
 		if (User.IsExist())
 		{
 			clsUserInfoScreen::PrintUserInfo(User);
-			Screen.DrawScreenLine();
+			CurrentScreen.DrawScreenLine();
 
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Are you sure you want to Update this user Y|N?";
 			switch (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
@@ -36,24 +35,24 @@ public:
 				User = clsReadUserScreen::ReadUser(UserName, clsUser::enMode::eUpdateMode);
 				User.Save();
 
-				Screen.AlignWithOffset(1);
+				CurrentScreen.AlignWithOffset(1);
 				cout << "Updated Successfully\n";
 				clsUserInfoScreen::PrintUserInfo(User);
-				Screen.DrawScreenLine();
+				CurrentScreen.DrawScreenLine();
 				return true;
 
 			default:
-				Screen.AlignWithOffset();
+				CurrentScreen.AlignWithOffset();
 				cout << "Not Updated \n";
-				Screen.DrawScreenLine();
+				CurrentScreen.DrawScreenLine();
 				break;
 			}
 		}
 		else
 		{
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Not Exist \n";
-			Screen.DrawScreenLine();
+			CurrentScreen.DrawScreenLine();
 		}
 		return false;
 	}

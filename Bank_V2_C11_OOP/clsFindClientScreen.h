@@ -8,17 +8,14 @@
 class clsFindClientScreen:protected clsGeneralFindClient
 {
 	
-	static clsScreen _GetScreenSettings()
+	static void _GetScreenSettings()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
-		return Screen;
+		CurrentScreen.Offset = 0;
 	}
 	static void _Header(string Header)
 	{
-		clsScreen Screen = _GetScreenSettings();
-		Screen.AlignWithOffset();
-		Screen.DrawScreenHeader(Header);
+		CurrentScreen.AlignWithOffset();
+		CurrentScreen.DrawScreenHeader(Header);
 	}
 	static  void _ClearScreenAndPrintHeader(string Header)
 	{
@@ -30,10 +27,10 @@ class clsFindClientScreen:protected clsGeneralFindClient
 public:
 	static bool FindClientScreen()
 	{
-		clsScreen Screen = _GetScreenSettings();
+		_GetScreenSettings();
 		string Header = "                        Find Client Screen";
 		//_ClearScreenAndPrintHeader(Header);
-		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, Screen, true);
+		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, true);
 
 		
 		if (Client.IsExist())
@@ -41,7 +38,7 @@ public:
 
 			return true;
 		}
-		Screen.DrawScreenLine();
+		CurrentScreen.DrawScreenLine();
 		return false;
 	}
 };

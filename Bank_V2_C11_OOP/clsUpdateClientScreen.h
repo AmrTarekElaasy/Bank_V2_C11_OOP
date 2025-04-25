@@ -4,26 +4,33 @@
 #include "clsReadClientScreen.h"
 #include "clsBankClient.h"
 #include "clsClientInfoScreen.h"
+
+
 class clsUpdateClientScreen :clsScreen
 {
+	static void _GetScreenSettings()
+	{
+
+		CurrentScreen.Offset = 0;
+
+	}
 public:
 	static bool UpdateUserInfoScreen()
 	{
-		clsScreen Screen;
-		Screen.Offset = 0;
+		_GetScreenSettings();
 
-		Screen.DrawScreenHeader("                  Update Client Info Screen");
+		CurrentScreen.DrawScreenHeader("                  Update Client Info Screen");
 
-		Screen.AlignWithOffset();
+		CurrentScreen.AlignWithOffset();
 		cout << "Enter Account Number : ";
 		string accountNumber = clsInputValidate::ReadString();
 		clsBankClient Client = clsBankClient::Find(accountNumber);
 		if (Client.IsExist())
 		{
 			clsClientInfoScreen::PrintUserInfo(Client);
-			Screen.DrawScreenLine();
+			CurrentScreen.DrawScreenLine();
 
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Are you sure you want to Update this client Y|N?";
 			switch (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
@@ -31,24 +38,24 @@ public:
 				Client = clsReadClientScreen::ReadUser(accountNumber, clsBankClient::enMode::enUpdateMode);
 				Client.Save();
 
-				Screen.AlignWithOffset(1);
+				CurrentScreen.AlignWithOffset(1);
 				cout << "Updated Successfully\n";
 				clsClientInfoScreen::PrintUserInfo(Client);
-				Screen.DrawScreenLine();
+				CurrentScreen.DrawScreenLine();
 				return true;
 
 			default:
-				Screen.AlignWithOffset();
+				CurrentScreen.AlignWithOffset();
 				cout << "Not Updated \n";
-				Screen.DrawScreenLine();
+				CurrentScreen.DrawScreenLine();
 				break;
 			}
 		}
 		else
 		{
-			Screen.AlignWithOffset();
+			CurrentScreen.AlignWithOffset();
 			cout << "Not Exist \n";
-			Screen.DrawScreenLine();
+			CurrentScreen.DrawScreenLine();
 		}
 		return false;
 	}
