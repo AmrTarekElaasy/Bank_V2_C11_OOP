@@ -5,11 +5,10 @@
 int main()
 {
 
-//	clsLoginRegisterScreen::ShowLoginRegisterScreen();
+
 	while (clsLoginScreen::ShowLoginScreen());
 	
 
-	//cout << Date << "\n" << Time << endl;
 	return 0;
 }
 

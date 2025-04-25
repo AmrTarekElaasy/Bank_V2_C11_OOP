@@ -198,14 +198,13 @@
     <ClInclude Include="clsGeneralFindClient.h" />
     <ClInclude Include="clsGeneralFindUser.h" />
     <ClInclude Include="clsListUsersScreen.h" />
-    <ClInclude Include="clsLoadLoginsFromALogFile.h" />
+    <ClInclude Include="clsLoginLogger.h" />
     <ClInclude Include="clsLoginRegisterScreen.h" />
     <ClInclude Include="clsLoginScreen.h" />
     <ClInclude Include="clsMainScreen.h" />
     <ClInclude Include="clsManageUsers.h" />
     <ClInclude Include="clsReadClientScreen.h" />
     <ClInclude Include="clsReadUserScreen.h" />
-    <ClInclude Include="clsSaveLoginsInALogFile.h" />
     <ClInclude Include="clsScreen.h" />
     <ClInclude Include="clsShowWithdrawScreen.h" />
     <ClInclude Include="clsTotalBalancesScreen.h" />

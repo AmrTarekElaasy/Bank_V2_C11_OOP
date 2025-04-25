@@ -104,13 +104,10 @@
     <ClInclude Include="clsLoginScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clsSaveLoginsInALogFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="clsLoadLoginsFromALogFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clsLoginRegisterScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsLoginLogger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

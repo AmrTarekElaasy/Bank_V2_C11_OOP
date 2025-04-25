@@ -1,11 +1,11 @@
 #pragma once
-#include "clsLoadLoginsFromALogFile.h"
+#include "clsLoginLogger.h"
 #include "clsScreen.h"
 class clsLoginRegisterScreen
 {
 	static clsScreen _GetScreenSettings()
 	{
-		system("cls");
+		
 		clsScreen Screen;
 		Screen.Offset = 0;
 		return Screen;
@@ -16,12 +16,22 @@ class clsLoginRegisterScreen
 		cout << "_______________________________________________________";
 		cout << "__________\n" << endl;
 	}
+	static void _PrintLoginRegisterRecord(clsLoginLogger::stLoginRegisterRecord LoginRegisterRecord)
+	{
+		clsScreen Screen = _GetScreenSettings();
+		Screen.AlignWithOffset();
+		cout << setw(21) << left << LoginRegisterRecord.Date << "|";
+		cout << setw(15) << left << LoginRegisterRecord.UserName << "|";;
+		cout << setw(15) << left << LoginRegisterRecord.Password << "|";;
+		cout << setw(15) << left << LoginRegisterRecord.Permission << "\n";
+	}
 public:
 
 	static void ShowLoginRegisterScreen()
 	{
+		system("cls");
 		clsScreen Screen = _GetScreenSettings();
-		vector <vector<string>> vLogins = clsLoadLoginsFromALogFile::LoadLoginsFromALogFile();
+		vector <clsLoginLogger::stLoginRegisterRecord> vLogins = clsLoginLogger::LoadFromFile();
 
 
 		string SubTitel = "                      (" + to_string(vLogins.size()) + ") Record(s).";
@@ -45,16 +55,12 @@ public:
 			_DrawTheLine();
 
 
-
-			for (vector <string> line : vLogins)
+		
+			
+			for (short i = vLogins.size() - 1;i >= 0;i--)
 			{
 
-
-				Screen.AlignWithOffset();
-				cout << setw(21) << left << line[0] << "|";
-				cout << setw(15) << left << line[1] << "|";;
-				cout << setw(15) << left << line[2] << "|";;
-				cout << setw(15) << left << line[3] << "\n";
+				_PrintLoginRegisterRecord(vLogins[i]);
 
 			}
 		}
