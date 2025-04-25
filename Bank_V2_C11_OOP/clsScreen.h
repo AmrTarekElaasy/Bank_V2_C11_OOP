@@ -13,7 +13,7 @@ class clsScreen
 
  
 public:
-
+   
     static short GetMainOffset()
     {
         clsScreen Screen;
@@ -118,6 +118,31 @@ public:
 
     }
 
+    static bool CheckPermission(clsScreen Screen,clsUser::enPermission Permission)
+    {
+
+        if (CurrentUser.HasPermission(Permission))
+        {
+            return true;
+        }
+        DrawScreenHeader(Screen,"                  Access Denied! Contact Your Admin.");
+
+        return false;
+    }
+    bool CheckPermission(clsUser::enPermission Permission)
+    {
+        return CheckPermission(*this,Permission);
+    }
+
+    static void Print(clsScreen Screen,string Messege)
+    {
+        Screen.AlignWithOffset();
+        cout << Messege;
+    }
+    void Print(string Messege)
+    {
+        Print(*this, Messege);
+    }
 
 
 };

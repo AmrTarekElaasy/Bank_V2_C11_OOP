@@ -36,18 +36,25 @@ public:
 		_Second = now->tm_sec;
 	}
 
-	clsDate(string sDate)
+	clsDate(string sDateAndTime)
 	{
 
 		vector <string> vDate;
-		vDate = clsString::Split(sDate, "/");
+		vDate = SplitDateAndTime(sDateAndTime, "/"," - ");
 
 		_Day = stoi(vDate[0]);
 		_Month = stoi(vDate[1]);
 		_Year = stoi(vDate[2]);
+		if (vDate.size() > 5)
+		{
+			_Hour = stoi(vDate[3]);
+			_Minute = stoi(vDate[4]);
+			_Second = stoi(vDate[5]);
+		}
 
 	}
 
+	
 	clsDate(short Day, short Month, short Year, short Hour = 0, short Minute = 0, short Second = 0)
 	{
 
@@ -59,7 +66,8 @@ public:
 		_Second = Second;
 
 	}
-
+	
+	
 	clsDate(short DateOrderInYear, short Year)
 	{
 		//This will construct a date by date order in year
@@ -68,7 +76,28 @@ public:
 		_Month = Date1.Month;
 		_Year = Date1.Year;
 	}
+	static vector<string> SplitDateAndTime(string S1, string Delim1, string Delim2)
+	{
+		vector<string> vSplitedDateAndTime;
+		string Date = S1.substr(0, S1.find(Delim2));//Date
+		string Time = "";
+		if (S1.find(Delim2) < S1.length())
+			Time = S1.substr(S1.find(Delim2) + Delim2.length(), S1.length());//Time
 
+		vSplitedDateAndTime = clsString::Split(Date, Delim1);
+		if (Time != "")
+		{
+			vector<string> vTime;
+
+			vTime = (clsString::Split(Time, Delim1));
+			vSplitedDateAndTime.insert(vSplitedDateAndTime.end(), vTime.begin(), vTime.end());
+
+		}
+
+
+		return vSplitedDateAndTime;
+
+	}
 	void SetDay(short Day)
 	{
 		_Day = Day;
@@ -211,7 +240,7 @@ public:
 		return  to_string(Date.Day) + "/" + to_string(Date.Month) + "/" + to_string(Date.Year);
 		else
 		{
-			return  to_string(Date.Day) + "/" + to_string(Date.Month) + "/" + to_string(Date.Year) + "|" + to_string(Date.Hour) + ":" + to_string(Date.Minute) + ":" + to_string(Date.Second);
+			return  to_string(Date.Day) + "/" + to_string(Date.Month) + "/" + to_string(Date.Year) + " - " + to_string(Date.Hour) + ":" + to_string(Date.Minute) + ":" + to_string(Date.Second);
 		}
 	}
 

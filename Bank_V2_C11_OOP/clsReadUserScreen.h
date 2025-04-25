@@ -21,43 +21,44 @@ class clsReadUserScreen
 		Screen.AlignWithOffset();
 		cout << "Enter Permission : \n";
 		Screen.AlignWithOffset();
-		cout << "Do you want to give all the permissions y/n ? ";
+		cout << "Do you want to give all the permissions Y/N ? ";
 		cin >> yOrN;
 		if (clsInputValidate::CheckYesOrNo(yOrN))
 			return clsUser::enPermission::enAll;
 
 		Screen.AlignWithOffset();
-		cout << "Do you want to give him permission to show Clients List y/n ? ";
+		cout << "Do you want to give him permission to show Clients List Y/N ? ";
 		cin >> yOrN;
 		if (clsInputValidate::CheckYesOrNo(yOrN))
 			permissions += clsUser::enPermission::enClientsList;
 
 		Screen.AlignWithOffset();
-		cout << "Do you want to give him permission to Add Client y/n ? ";
+		cout << "Do you want to give him permission to Add Client Y/N ? ";
 		cin >> yOrN;
 		if (clsInputValidate::CheckYesOrNo(yOrN))
 			permissions += clsUser::enPermission::enAddClient;
 
 		Screen.AlignWithOffset();
-		cout << "Do you want to give him permission to Delete Client y/n ? ";
+		cout << "Do you want to give him permission to Delete Client Y/N ? ";
 		cin >> yOrN;
 		if (clsInputValidate::CheckYesOrNo(yOrN))
 			permissions += clsUser::enPermission::enDeleteClient;
 
 		Screen.AlignWithOffset();
-		cout << "Do you want to give him permission to Update Client y/n ? ";
+		cout << "Do you want to give him permission to Update Client Y/N ? ";
 		cin >> yOrN;
 		if (clsInputValidate::CheckYesOrNo(yOrN))
 			permissions += clsUser::enPermission::enUpdateClient;
 
 		Screen.AlignWithOffset();
-		cout << "Do you want to give him permission to Find Client y/n ? ";
+		cout << "Do you want to give him permission to Find Client Y/N ? ";
 		cin >> yOrN;
 		if (clsInputValidate::CheckYesOrNo(yOrN))
 			permissions += clsUser::enPermission::enFindClient;
 
+		
 		Screen.AlignWithOffset();
-		cout << "Do you want to give him permission to Transactions y/n ? ";
+		cout << "Do you want to give him permission to Transactions Y/N ? ";
 		cin >> yOrN;
 		if (clsInputValidate::CheckYesOrNo(yOrN))
 			permissions += clsUser::enPermission::enTransactions;
@@ -69,11 +70,17 @@ class clsReadUserScreen
 		else
 		{
 			Screen.AlignWithOffset();
-			cout << "Do you want to give him permission to Manage Users y/n ? ";
+			cout << "Do you want to give him permission to Manage Users Y/N ? ";
 			cin >> yOrN;
 			if (clsInputValidate::CheckYesOrNo(yOrN))
 				permissions += clsUser::enPermission::enManageUsers;
 		}
+
+		Screen.AlignWithOffset();
+		cout << "Do you want to give him permission Login Register Y/N ? ";
+		cin >> yOrN;
+		if (clsInputValidate::CheckYesOrNo(yOrN))
+			permissions += clsUser::enPermission::enLoginRegister;
 
 		return permissions;
 	}

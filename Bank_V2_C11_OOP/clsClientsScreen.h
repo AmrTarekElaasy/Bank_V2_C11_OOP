@@ -58,8 +58,8 @@ public:
         }
         else
         {
-            Screen.AlignWithOffset();
-            cout << "No Clients Her\n";
+            Screen.Print("No Clients Her\n");
+   
         }
         Screen.AlignWithOffset();
         _DrawTheLine();

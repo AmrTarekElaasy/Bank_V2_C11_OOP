@@ -20,7 +20,7 @@ class clsTotalBalancesScreen :clsScreen
 	static clsScreen _GetScreenSettings()
 	{
 		clsScreen Screen;
-		Screen.Offset = -5;
+		Screen.Offset = -1;
 		return Screen;
 	}
 public:

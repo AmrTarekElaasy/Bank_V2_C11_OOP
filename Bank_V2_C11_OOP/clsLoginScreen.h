@@ -4,6 +4,7 @@
 #include "Global.h"
 #include "clsUser.h"
 #include "clsMainScreen.h"
+#include "clsSaveLoginsInALogFile.h"
 class clsLoginScreen
 {
 	static clsScreen _GetScreenSettings()
@@ -66,6 +67,7 @@ public:
 
 		} while (LoginFaild);
 
+		clsSaveLoginsInALogFile::Save();
 		clsMainScreen::ShowMainMenue();
 
 	}
