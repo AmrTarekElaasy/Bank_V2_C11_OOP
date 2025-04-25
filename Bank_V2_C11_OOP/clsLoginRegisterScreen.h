@@ -55,10 +55,10 @@ public:
 
 		
 			
-			for (short i = vLogins.size() - 1;i >= 0;i--)
+			for (clsLoginLogger::stLoginRegisterRecord & i :vLogins)
 			{
 
-				_PrintLoginRegisterRecord(vLogins[i]);
+				_PrintLoginRegisterRecord(i);
 
 			}
 		}
