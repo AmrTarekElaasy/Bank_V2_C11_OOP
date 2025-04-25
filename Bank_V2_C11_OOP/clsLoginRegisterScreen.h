@@ -3,7 +3,7 @@
 #include "clsScreen.h"
 class clsLoginRegisterScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 		
@@ -28,7 +28,7 @@ public:
 	static void ShowLoginRegisterScreen()
 	{
 		system("cls");
-	    _GetScreenSettings();
+	    _ScreenSettings();
 		vector <clsLoginLogger::stLoginRegisterRecord> vLogins = clsLoginLogger::LoadFromFile();
 
 

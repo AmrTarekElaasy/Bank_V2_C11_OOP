@@ -7,7 +7,7 @@
 class clsAddNewUserScreen
 {
 
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 
@@ -31,7 +31,7 @@ public:
 	{
 
 
-		_GetScreenSettings();
+		_ScreenSettings();
 
 		_ClearScreenAndPrintHeader();
 		CurrentScreen.AlignWithOffset();

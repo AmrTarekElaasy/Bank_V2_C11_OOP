@@ -3,7 +3,7 @@
 #include "clsUser.h"
 class clsUserInfoScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 	}
@@ -16,7 +16,7 @@ public:
     static void PrintUserInfo(clsUser User)
     {
         
-        _GetScreenSettings();
+        _ScreenSettings();
         CurrentScreen.AlignWithOffset(0);
         _DrawTheLine();
         CurrentScreen.AlignWithOffset(2);

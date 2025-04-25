@@ -4,9 +4,10 @@
 #include "clsDepositScreen.h"
 #include "clsShowWithdrawScreen.h"
 #include "clsTotalBalancesScreen.h"
+#include "clsTransferScreen.h"
 class clsTransactionsScreen:protected clsScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 		
@@ -22,12 +23,13 @@ class clsTransactionsScreen:protected clsScreen
 	static void _HeaderAndOptionWhithNoInput()
 	{
 
-		_GetScreenSettings();
+		_ScreenSettings();
 		CurrentScreen.DrawScreenHeader("                  Transactions Menue Screen");
 		CurrentScreen.WriteTheSubLine("[1] Deposit");
 		CurrentScreen.WriteTheSubLine("[2] Withdraw");
 		CurrentScreen.WriteTheSubLine("[3] Total Balances");
-		CurrentScreen.WriteTheSubLine("[4] Main Menue");
+		CurrentScreen.WriteTheSubLine("[4] Transfer");
+		CurrentScreen.WriteTheSubLine("[5] Main Menue");
 		CurrentScreen.DrawScreenLine();
 
 	}
@@ -56,9 +58,15 @@ class clsTransactionsScreen:protected clsScreen
 
 		clsTotalBalancesScreen::ShowTotalBalancesScreen();
 	}
-	static void GoBackToTransactionsMenue()
+	static void _ShowTransferScreen()
 	{
-		_GetScreenSettings();
+		
+		clsTransferScreen::ShowTransferScreen();
+	
+	}
+	static void _GoBackToTransactionsMenue()
+	{
+		_ScreenSettings();
 	
 		CurrentScreen.AlignWithOffset(1);
 		cout << "Press any key to go back to transactions menue...";
@@ -71,15 +79,19 @@ class clsTransactionsScreen:protected clsScreen
 		{
 		case clsTransactionsScreen::enDeposit:
 			_ShowDepositScreen();
-			GoBackToTransactionsMenue();
+			_GoBackToTransactionsMenue();
 			break;
 		case clsTransactionsScreen::enWithdraw:
 			_ShowWithdrawScreen();
-			GoBackToTransactionsMenue();
+			_GoBackToTransactionsMenue();
 			break;
 		case clsTransactionsScreen::enTotalBalances:
 			_ShowTotalBalancesScreen();
-			GoBackToTransactionsMenue();
+			_GoBackToTransactionsMenue();
+			break;
+		case clsTransactionsScreen::enTransfer:
+			_ShowTransferScreen();
+			_GoBackToTransactionsMenue();
 			break;
 		case clsTransactionsScreen::enMainMenue:
 			//_GetScreenSettings();

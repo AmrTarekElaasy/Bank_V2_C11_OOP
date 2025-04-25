@@ -22,7 +22,7 @@ class clsMainScreen :protected clsScreen
 
 private:
 
-    static void _GetScreenSettings()
+    static void _ScreenSettings()
     {
         
         CurrentScreen.Offset = 5;
@@ -189,7 +189,7 @@ public:
     static void ShowMainMenue()
     {
 
-        _GetScreenSettings();
+        _ScreenSettings();
         system("cls");
        // string SubTitel = "Welcome "+ CurrentUser.UserName + " (" + CurrentUser.FullName() + ")";
         CurrentScreen.DrawScreenHeader("                            Main Screen");

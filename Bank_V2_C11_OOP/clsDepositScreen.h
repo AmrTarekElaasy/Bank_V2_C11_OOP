@@ -5,7 +5,7 @@
 #include "clsGeneralFindClient.h"
 class clsDepositScreen:protected clsScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 	}
@@ -27,7 +27,7 @@ public:
 	
 	static bool DepositScreen()
 	{
-		_GetScreenSettings();
+		_ScreenSettings();
 		string Header = "                        Deposit Screen";
 		_ClearScreenAndPrintHeader(Header);
 		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header,true );

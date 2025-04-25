@@ -17,7 +17,7 @@ class clsTotalBalancesScreen :clsScreen
 		}
 		return totalBalans;
 	}
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = -1;
 	}
@@ -26,7 +26,7 @@ public:
 	{
 		system("cls");
 		vector<clsBankClient> vClients = clsBankClient::GetClientsList();
-		 _GetScreenSettings();
+		 _ScreenSettings();
 		string strNumOfCLient = "                      (" + to_string(vClients.size()) + ") Client(s).";
 		DrawScreenHeader(CurrentScreen,"                     Total Balances Screen", strNumOfCLient);
 

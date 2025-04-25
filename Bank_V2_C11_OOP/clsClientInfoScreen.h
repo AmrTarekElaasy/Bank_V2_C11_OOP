@@ -3,7 +3,7 @@
 #include"clsBankClient.h"
 class clsClientInfoScreen:clsScreen
 {
-    static void _GetScreenSettings()
+    static void _ScreenSettings()
     {
         CurrentScreen.Offset = 0;
     }
@@ -18,7 +18,7 @@ public:
        
         
 
-        _GetScreenSettings();
+        _ScreenSettings();
 
         CurrentScreen.AlignWithOffset(0);
         _DrawTheLine();

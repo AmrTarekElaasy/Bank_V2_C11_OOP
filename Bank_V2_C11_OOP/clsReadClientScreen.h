@@ -7,7 +7,7 @@
 using namespace std;
 class clsReadClientScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 
 		CurrentScreen.Offset = 0;
@@ -17,7 +17,7 @@ public:
 	static clsBankClient ReadUser(string AccountNumber, clsBankClient::enMode Mode)
 	{
 
-		_GetScreenSettings();
+		_ScreenSettings();
 	
 		string FristName, LastName, Email, Phone, PINCode;
 		double AccountBalans;

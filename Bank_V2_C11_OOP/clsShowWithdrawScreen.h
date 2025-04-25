@@ -6,7 +6,7 @@
 
 class clsShowWithdrawScreen:clsScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 	}
@@ -27,7 +27,7 @@ public:
 
 	static bool WithdrawScreen()
 	{
-		_GetScreenSettings();
+		_ScreenSettings();
 		string Header = "                       Withdraw Screen";
 		                                     
 		_ClearScreenAndPrintHeader(Header);

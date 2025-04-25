@@ -8,7 +8,7 @@
 
 class clsUpdateClientScreen :clsScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 
 		CurrentScreen.Offset = 0;
@@ -17,7 +17,7 @@ class clsUpdateClientScreen :clsScreen
 public:
 	static bool UpdateUserInfoScreen()
 	{
-		_GetScreenSettings();
+		_ScreenSettings();
 
 		CurrentScreen.DrawScreenHeader("                  Update Client Info Screen");
 

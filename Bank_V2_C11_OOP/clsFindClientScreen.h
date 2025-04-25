@@ -8,7 +8,7 @@
 class clsFindClientScreen:protected clsGeneralFindClient
 {
 	
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 	}
@@ -27,7 +27,7 @@ class clsFindClientScreen:protected clsGeneralFindClient
 public:
 	static bool FindClientScreen()
 	{
-		_GetScreenSettings();
+		_ScreenSettings();
 		string Header = "                        Find Client Screen";
 		//_ClearScreenAndPrintHeader(Header);
 		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, true);

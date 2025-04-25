@@ -5,7 +5,7 @@
 #include "clsErrors.h"
 class clsReadUserScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 	}
@@ -87,7 +87,7 @@ public:
 
 		string FristName, LastName, Email, Phone, Password;
 		short Permisstion;
-		_GetScreenSettings();
+		_ScreenSettings();
 
 		
 

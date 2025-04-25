@@ -7,8 +7,6 @@
 
 int main()
 {
-
-	//clsScreen Screen;
 	while (clsLoginScreen::ShowLoginScreen());
 	
 

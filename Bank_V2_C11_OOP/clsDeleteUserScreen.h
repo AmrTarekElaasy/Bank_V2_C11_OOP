@@ -7,7 +7,7 @@
 
 class clsDeleteUserScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		
 		CurrentScreen.Offset = 0;
@@ -15,7 +15,7 @@ class clsDeleteUserScreen
 	}
 	static void _Header(string Header)
 	{
-		 _GetScreenSettings();
+		 _ScreenSettings();
 		CurrentScreen.AlignWithOffset();
 		CurrentScreen.DrawScreenHeader(Header);
 	}
@@ -29,7 +29,7 @@ class clsDeleteUserScreen
 public:
 	static bool DeleteUserScreen()
 	{
-		_GetScreenSettings();
+		_ScreenSettings();
 		string Header = "                      Delete User Screen";
 		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, CurrentScreen, true);
 		if (User.IsExist())

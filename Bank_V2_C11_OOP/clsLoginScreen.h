@@ -6,7 +6,7 @@
 #include "clsLoginLogger.h"
 class clsLoginScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 	}
@@ -28,7 +28,7 @@ public:
 
 		string UserName, Password;
 
-		_GetScreenSettings();
+		_ScreenSettings();
 		bool LoginFaild = false;
 		short Try = 3;
 

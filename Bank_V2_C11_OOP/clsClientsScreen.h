@@ -12,7 +12,7 @@ class clsClientsScreen
         cout << "_______________________________________________________";
         cout << "______________________________________________________________\n" << endl;
     }
-    static void _GetScreenSettings()
+    static void _ScreenSettings()
     {
         
         CurrentScreen.Offset = -30;
@@ -21,7 +21,7 @@ public:
     
     static void ShowTotalBalancesScreen()
     {
-        _GetScreenSettings();
+        _ScreenSettings();
 
         vector<clsBankClient> vClients = clsBankClient::GetClientsList();
         string strNumOfCLient = "                         ("+to_string(vClients.size())+") Client(s).";

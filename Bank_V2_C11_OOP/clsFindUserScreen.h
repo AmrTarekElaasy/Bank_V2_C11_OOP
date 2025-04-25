@@ -4,7 +4,7 @@
 #include "clsGeneralFindUser.h"
 class clsFindUserScreen
 {
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
 	}
@@ -23,7 +23,7 @@ class clsFindUserScreen
 public:
 	static bool FindUserScreen()
 	{
-		_GetScreenSettings();
+		_ScreenSettings();
 		string Header = "                         Find User Screen";
 		//_ClearScreenAndPrintHeader(Header);
 		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, CurrentScreen, true);

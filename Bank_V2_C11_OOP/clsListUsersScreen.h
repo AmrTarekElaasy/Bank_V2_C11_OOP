@@ -10,7 +10,7 @@ class clsListUsersScreen :clsUser
         cout << "______________________________________________________________\n" << endl;
     }
 
-    static clsScreen _GetScreenSettings()
+    static clsScreen _ScreenSettings()
     {
         clsScreen CurrentScreen;
         CurrentScreen.Offset = -30;
@@ -21,7 +21,7 @@ public:
 	{
         vector<clsUser> vUsers = clsUser::GetUsersList();
         string strNumOfUsers =  "                          (" + to_string(vUsers.size()) + ") User(s).";
-        clsScreen CurrentScreen = _GetScreenSettings();
+        clsScreen CurrentScreen = _ScreenSettings();
         CurrentScreen.DrawScreenHeader("                         Show Users List", strNumOfUsers);
 
         

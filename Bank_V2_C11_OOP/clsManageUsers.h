@@ -11,7 +11,7 @@ class clsManageUsers
 {
 
 
-	static void _GetScreenSettings()
+	static void _ScreenSettings()
 	{
 
 		CurrentScreen.Offset = 5;
@@ -103,7 +103,7 @@ class clsManageUsers
 public:
 	static void ManageUsersScreen()
 	{
-		_GetScreenSettings();
+		_ScreenSettings();
 		system("cls");
 		CurrentScreen.DrawScreenHeader("                      Manage Users Screen");
 		
