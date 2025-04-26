@@ -6,7 +6,12 @@
 #include "clsString.h"
 #include <fstream>
 #include "clsUtil.h"
+
 using namespace std;
+class clsUser;
+
+string UserNameOfAdmin = "Admin";
+extern clsUser CurrentUser;
 class clsUser :public clsPerson
 {
 public:
@@ -18,7 +23,7 @@ public:
 		enAll = -1, enClientsList = 1, enAddClient = 2, enDeleteClient = 4, enUpdateClient = 8
 		, enFindClient = 16, enTransactions = 32, enManageUsers = 64, enLoginRegister = 128
 	};
-	
+
 
 private:
 	enMode _Mode;
@@ -126,9 +131,16 @@ private:
 		}
 
 	}
-	void _Update()
+	bool _Update()
 	{
+		if ((this->UserName == UserNameOfAdmin) && (CurrentUser.UserName != UserNameOfAdmin))
+		{
+			clsErrors::SaveTheErrorInTheFile("You can not update the admin account");
+			return false;
+		}
+
 		vector <clsUser>vUsers = _LoadUsersDataFromFile();
+
 		for (clsUser& C : vUsers)
 		{
 			if (C._UserName == _UserName)
@@ -175,10 +187,10 @@ public:
 		_Password = password;
 		_Permisstion = permisstion;
 	}
-	static bool HasPermission(clsUser User,enPermission Permission)
+	static bool HasPermission(clsUser User, enPermission Permission)
 	{
-	
-		if ((User.Permisstion & Permission)|| (User.Permisstion == -1))
+
+		if ((User.Permisstion & Permission) || (User.Permisstion == -1))
 			return true;
 		return false;
 
@@ -266,7 +278,7 @@ public:
 
 		return  clsUser::_GetEmptyUser();
 	}
-	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasUserName };
+	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasUserName, enNotSavedAreYouNotAdmin};
 	enSave Save()
 	{
 		switch (_Mode)
@@ -278,8 +290,15 @@ public:
 
 
 		case clsUser::enMode::eUpdateMode:
-			_Update();
-			return enSave::enSavedSuccessfully;
+			if (_Update())
+			{
+				return enSave::enSavedSuccessfully;
+			}
+			else
+			{
+				return enSave::enNotSavedAreYouNotAdmin;
+
+			}
 			break;
 
 		case clsUser::enMode::eAddNewMode:
@@ -316,6 +335,10 @@ public:
 	bool Delete()
 	{
 		vector <clsUser> vUsers = _LoadUsersDataFromFile();
+		if (vUsers.size() == 0)
+			return false;
+		if (this->UserName == UserNameOfAdmin)
+			return false;
 		for (clsUser& user : vUsers)
 		{
 			if (user.UserName == this->UserName)

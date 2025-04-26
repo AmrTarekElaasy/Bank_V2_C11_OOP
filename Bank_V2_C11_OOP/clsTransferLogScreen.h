@@ -47,9 +47,8 @@ public:
 		{
 
 			_PrintRecord(Record);
-			_DrawScreenLine();
 		}
-
+		_DrawScreenLine();
 		CurrentScreen.DrawScreenLine();
 	}
 };
