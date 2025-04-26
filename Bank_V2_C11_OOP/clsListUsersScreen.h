@@ -20,7 +20,7 @@ public:
 	static void ShowListUsers()
 	{
         vector<clsUser> vUsers = clsUser::GetUsersList();
-        string strNumOfUsers =  "                          (" + to_string(vUsers.size()) + ") User(s).";
+        string strNumOfUsers =  "                        (" + to_string(vUsers.size()) + ") User(s).";
         clsScreen CurrentScreen = _ScreenSettings();
         CurrentScreen.DrawScreenHeader("                         Show Users List", strNumOfUsers);
 
@@ -43,6 +43,10 @@ public:
         {
             for (clsUser& user : vUsers)
             {
+                if ((user.UserName == UserNameOfAdmin) && (CurrentUser.UserName != UserNameOfAdmin))
+                {
+                    user.Password = "";
+                }
                 CurrentScreen.AlignWithOffset();
                 cout << "| " << left << setw(15) << user.UserName;
                 cout << "| " << left << setw(20) << user.FullName();

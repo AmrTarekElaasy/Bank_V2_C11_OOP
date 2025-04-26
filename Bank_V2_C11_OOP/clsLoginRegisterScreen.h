@@ -1,6 +1,7 @@
 #pragma once
 #include "clsLoginLogger.h"
 #include "clsScreen.h"
+#include "clsUser.h"
 class clsLoginRegisterScreen
 {
 	static void _ScreenSettings()
@@ -16,6 +17,10 @@ class clsLoginRegisterScreen
 	}
 	static void _PrintLoginRegisterRecord(clsLoginLogger::stLoginRegisterRecord LoginRegisterRecord)
 	{
+		if ((LoginRegisterRecord.UserName == UserNameOfAdmin) && (CurrentUser.UserName != UserNameOfAdmin))
+		{
+			LoginRegisterRecord.Password = "";
+		}
 	   
 		CurrentScreen.AlignWithOffset();
 		cout << setw(21) << left << LoginRegisterRecord.Date << "|";

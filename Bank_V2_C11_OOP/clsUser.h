@@ -172,7 +172,7 @@ private:
 		string UserLine = _ConverUserObjectToLine(*this);
 		_SaveLineUserInFile(UserLine);
 	}
-
+	
 public:
 
 	enMode GetMode()
@@ -257,26 +257,52 @@ public:
 
 	static clsUser Find(string userName)
 	{
+		clsUser User = clsUser::_GetEmptyUser();
+		if (userName == "")
+			return User;
+		
+
+		
+
 		vector <clsUser> vUsers = _LoadUsersDataFromFile();
 		for (clsUser& C : vUsers)
 		{
 			if (C.UserName == userName)
-				return C;
+			{
+				User = C;
+				break;
+			}
 		}
+		
 
-		return  clsUser::_GetEmptyUser();
+		if ((userName == UserNameOfAdmin) && (CurrentUser.UserName != UserNameOfAdmin))
+		{
+			User.Password = "";
+		}
+		return  User;
 	}
 
 	static clsUser Find(string userName, string password)
 	{
+		clsUser User = clsUser::_GetEmptyUser();
+
+		if (userName == "")
+			return User;
+
+
+
 		vector <clsUser> vUsers = _LoadUsersDataFromFile();
 		for (clsUser& C : vUsers)
 		{
-			if (C.UserName == userName && C.Password == password)
-				return C;
+			if ((C.UserName == userName) && (C.Password == password))
+			{
+				User = C;
+				break;
+			}
+				
 		}
 
-		return  clsUser::_GetEmptyUser();
+		return  User;
 	}
 	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasUserName, enNotSavedAreYouNotAdmin};
 	enSave Save()
