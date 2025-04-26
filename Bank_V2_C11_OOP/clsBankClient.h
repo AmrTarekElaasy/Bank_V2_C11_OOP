@@ -384,7 +384,7 @@ public:
 		if (TransferLogFile.is_open())
 		{
 			string TransferLogAsString = GetTransferLogAsString(TransferLog);
-			TransferLogFile << TransferLogAsString << endl;
+			TransferLogFile <<clsUtil::EncryptText(TransferLogAsString) << endl;
 
 			TransferLogFile.close();
 		}
@@ -437,6 +437,7 @@ public:
 		
 			while (getline(TransferLogFile, line))
 			{
+				line = clsUtil::DecryptText(line);
 				tempTransferLog = GetTransferLogFromString(line, seperator);
 				if (tempTransferLog.Fail == false)
 				{
