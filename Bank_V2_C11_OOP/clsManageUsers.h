@@ -60,6 +60,7 @@ class clsManageUsers
 	}
 	static void _GoBackToManageUsersScreen()
 	{
+		_ScreenSettings();
 		CurrentScreen.AlignWithOffset();
 		cout << "Press any key to go back to Manage Users menue...";
 		system("pause>0");

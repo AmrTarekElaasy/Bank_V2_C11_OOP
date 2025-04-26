@@ -1,4 +1,4 @@
-Ahmed#//#Saad#//#ahmed.saad91@gmail.com#//#01011223344#//#A001#//#2580#//#112500.000000
+Ahmed#//#Saad#//#ahmed.saad91@gmail.com#//#01011223344#//#A001#//#2580#//#142800.100000
 Mona#//#Hussein#//#mona.hussein@outlook.com#//#01222334455#//#A002#//#7531#//#68900.500000
 Tamer#//#Ibrahim#//#tamer.ibrahim@hotmail.com#//#01133445566#//#A003#//#1597#//#97000.750000
 Rania#//#Galal#//#rania.galal@yahoo.com#//#01544556677#//#A004#//#4563#//#81200.000000
@@ -97,10 +97,10 @@ Sara#//#Hassan#//#sara.hassan@outlook.com#//#01500112233#//#A096#//#8749#//#1300
 Ramy#//#Ahmed#//#ramy.ahmed@gmail.com#//#01011223344#//#A097#//#5103#//#53000.800000
 Mohamed#//#Farouk#//#mohamed.farouk@outlook.com#//#01222334455#//#A098#//#7831#//#76200.500000
 Fatma#//#Ali#//#fatma.ali@yahoo.com#//#01533445566#//#A099#//#9237#//#64000.100000
-Tamer#//#Sayed#//#tamer.sayed@gmail.com#//#01144556677#//#A100#//#6472#//#155690.400000
-Shimaa#//#Reda#//#shimaa.reda@outlook.com#//#01255667788#//#A101#//#3940#//#10.000000
+Tamer#//#Sayed#//#tamer.sayed@gmail.com#//#01144556677#//#A100#//#6472#//#153153.400000
+Shimaa#//#Reda#//#shimaa.reda@outlook.com#//#01255667788#//#A101#//#3940#//#2547.000000
 Mohamed#//#Khaled#//#mohamed.khaled@yahoo.com#//#01066778899#//#A102#//#9527#//#42500.400000
-Kareem#//#Abdelaziz#//#kareem.abdelaziz@gmail.com#//#01577889900#//#A103#//#1203#//#30300.100000
+Kareem#//#Abdelaziz#//#kareem.abdelaziz@gmail.com#//#01577889900#//#A103#//#1203#//#0.000000
 Sarah#//#Mokhtar#//#sarah.mokhtar@outlook.com#//#01177889900#//#A104#//#7632#//#55200.500000
 Yara#//#Khalil#//#yara.khalil@yahoo.com#//#01288990011#//#A105#//#5871#//#41900.800000
 Maha#//#Khaled#//#maha.khaled@gmail.com#//#01088990011#//#A106#//#3014#//#76300.000000

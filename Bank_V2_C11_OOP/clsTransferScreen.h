@@ -31,6 +31,9 @@ class clsTransferScreen
 
 
 	}
+
+
+
 	static clsBankClient _ReadClient(string Mesege, string ScondAcountNumber = "")
 	{
 		string AccountNumbr = "";
@@ -71,6 +74,8 @@ class clsTransferScreen
 		_ScreenSettings();
 		CurrentScreen.DrawScreenHeader( "                         Transfer Screen");
 	}
+
+
 public:
 	static void ShowTransferScreen()
 	{
@@ -102,7 +107,7 @@ public:
 			return;
 		}
 
-
+		
 		BalanceOfClient2 = Client2.AccountBalance;
 		_PrintClientCard(Client2);
 
@@ -117,10 +122,9 @@ public:
 
 		if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 		{
-			Client1.AccountBalance -= Amount;
-			Client2.AccountBalance += Amount;
+			
 			_Header();
-			if (Client1.Save() && Client2.Save())
+			if (Client1.Transfer(Amount, Client2))
 				CurrentScreen.Print("Transfer Done Successfully\n");
 			else
 			{
@@ -140,7 +144,7 @@ public:
 
 		}
 
-
+		
 		_PrintClientCard(Client1);
 		_PrintClientCard(Client2);
 		CurrentScreen.DrawScreenLine();

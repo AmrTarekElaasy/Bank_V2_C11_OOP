@@ -94,7 +94,7 @@ class clsTransactionsScreen:protected clsScreen
 			_GoBackToTransactionsMenue();
 			break;
 		case clsTransactionsScreen::enMainMenue:
-			//_GetScreenSettings();
+			
 			CurrentScreen.DrawScreenLine(1);
 			break;
 		

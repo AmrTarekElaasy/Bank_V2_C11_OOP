@@ -63,7 +63,7 @@ private:
 	{
 		return clsBankClient(enMode::enEmptyMode, "", "", "", "", "", "", 0);
 	}
-	
+
 	static  vector <clsBankClient> _LoadClientsDataFromFile()
 	{
 		vector<clsBankClient> vClients;
@@ -84,10 +84,10 @@ private:
 					vClients.push_back(Client);
 				}
 				else {
-					string error = "Not Load a client :" + pathTheFile+"["+ to_string(i);
-					       error +="]: " + line;
+					string error = "Not Load a client :" + pathTheFile + "[" + to_string(i);
+					error += "]: " + line;
 
-						   clsErrors::SaveTheErrorInTheFile(error);
+					clsErrors::SaveTheErrorInTheFile(error);
 				}
 			}
 		}
@@ -162,7 +162,7 @@ private:
 	}
 
 public:
-	
+
 
 	enMode GetMode()
 	{
@@ -308,6 +308,80 @@ public:
 	{
 		return _LoadClientsDataFromFile();
 	}
+
+	bool Transfer(double Amount, clsBankClient& DestinationClient)
+	{
+
+		bool CanTransfer = (this->AccountNumber != DestinationClient.AccountNumber)
+			&& Amount > 0 && (this->AccountBalance > 0)
+			&& (this->AccountBalance >= Amount);
+
+		if (CanTransfer == false)
+		{
+			return false;
+		}
+
+		this->AccountBalance -= Amount;
+		DestinationClient.AccountBalance += Amount;
+		this->Save();
+		DestinationClient.Save();
+		SaveTransferLog(GetTransferLog(*this, DestinationClient, Amount));
+		return true;
+
+
+
+	}
+	struct stTransferLog
+	{
+		string transferDateAndTime;
+		string fromAccountNumber;
+		string toAccountNumber;	
+		double amount;
+		double fromAccountBalanceAfterTheTransfer;
+		double toAccountBalanceTransfer;
+
+	}; 
+
+	static stTransferLog GetTransferLog(clsBankClient& FromClient, clsBankClient& ToClient, double Amount)
+	{
+		stTransferLog TransferLog;
+		TransferLog.transferDateAndTime = clsDate::DateToString(clsDate::GetCompleteSystemDate());
+		TransferLog.fromAccountNumber = FromClient.AccountNumber;
+		TransferLog.toAccountNumber = ToClient.AccountNumber;
+		TransferLog.amount = Amount;
+		TransferLog.fromAccountBalanceAfterTheTransfer = FromClient.AccountBalance;
+		TransferLog.toAccountBalanceTransfer = ToClient.AccountBalance;
+		return TransferLog;
+	}
+	static string GetTransferLogAsString(stTransferLog TransferLog)
+	{
+		string TransferLogAsString = "";
+		TransferLogAsString += TransferLog.transferDateAndTime + "#//#";
+		TransferLogAsString += TransferLog.fromAccountNumber + "#//#";
+		TransferLogAsString += TransferLog.toAccountNumber + "#//#";
+		TransferLogAsString += to_string(TransferLog.amount) + "#//#";
+		TransferLogAsString += to_string(TransferLog.fromAccountBalanceAfterTheTransfer) + "#//#";
+		TransferLogAsString += to_string(TransferLog.toAccountBalanceTransfer);
+		return TransferLogAsString;
+	}
+	static void SaveTransferLog(stTransferLog TransferLog)
+	{
+		fstream TransferLogFile;
+		TransferLogFile.open("TransferLog.txt", ios::out | ios::app);
+		if (TransferLogFile.is_open())
+		{
+			string TransferLogAsString = GetTransferLogAsString(TransferLog);
+			TransferLogFile << TransferLogAsString << endl;
+
+			TransferLogFile.close();
+		}
+		else
+		{
+			clsErrors::SaveTheErrorInTheFile("Can not open TransferLog.txt");
+		}
+	}
+
+
 };
 
 

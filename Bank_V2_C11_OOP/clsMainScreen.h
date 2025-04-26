@@ -49,7 +49,7 @@ private:
     static  void _GoBackToMainMenue()
     {
         
-        
+		_ScreenSettings();
         CurrentScreen.AlignWithOffset(1);
         cout << "Press any key to go back to Main Menue...";
         system("pause>0");
