@@ -5,6 +5,7 @@
 #include "clsPerson.h"
 #include "clsString.h"
 #include <fstream>
+#include "clsUtil.h"
 using namespace std;
 class clsUser :public clsPerson
 {
@@ -74,6 +75,7 @@ private:
 			short i = 0;
 			while (getline(UsersFile, line))
 			{
+				line = clsUtil::DecryptText(line);
 				User = _ConvertLinetoUserObject(line);
 				i++;
 				if (User.IsExist())
@@ -113,7 +115,7 @@ private:
 				if (C._MarkedForDelete == false)
 				{
 					DataLine = _ConverUserObjectToLine(C);
-					MyFile << DataLine << endl;
+					MyFile << clsUtil::EncryptText(DataLine) << endl;
 				}
 
 
@@ -146,7 +148,7 @@ private:
 			clsUser User = clsUser::_ConvertLinetoUserObject(Line);
 			if (User._MarkedForDelete == false)
 			{
-				UserFile << Line << endl;
+				UserFile << clsUtil::EncryptText(Line) << endl;
 				return true;
 			}
 		}
