@@ -325,7 +325,7 @@ public:
 		DestinationClient.AccountBalance += Amount;
 		this->Save();
 		DestinationClient.Save();
-		SaveTransferLog(GetTransferLog(*this, DestinationClient, Amount));
+		SaveTransferLog(*this, DestinationClient, Amount);
 		return true;
 
 
@@ -353,14 +353,14 @@ public:
 		TransferLog.toAccountBalanceTransfer = ToClient.AccountBalance;
 		return TransferLog;
 	}
-	static string GetTransferLogAsString(stTransferLog TransferLog)
+	static string GetTransferLogAsString(stTransferLog TransferLog, string seperator = "#//#")
 	{
 		string TransferLogAsString = "";
-		TransferLogAsString += TransferLog.transferDateAndTime + "#//#";
-		TransferLogAsString += TransferLog.fromAccountNumber + "#//#";
-		TransferLogAsString += TransferLog.toAccountNumber + "#//#";
-		TransferLogAsString += to_string(TransferLog.amount) + "#//#";
-		TransferLogAsString += to_string(TransferLog.fromAccountBalanceAfterTheTransfer) + "#//#";
+		TransferLogAsString += TransferLog.transferDateAndTime + seperator;
+		TransferLogAsString += TransferLog.fromAccountNumber + seperator;
+		TransferLogAsString += TransferLog.toAccountNumber + seperator;
+		TransferLogAsString += to_string(TransferLog.amount) + seperator;
+		TransferLogAsString += to_string(TransferLog.fromAccountBalanceAfterTheTransfer) + seperator;
 		TransferLogAsString += to_string(TransferLog.toAccountBalanceTransfer);
 		return TransferLogAsString;
 	}
@@ -380,7 +380,11 @@ public:
 			clsErrors::SaveTheErrorInTheFile("Can not open TransferLog.txt");
 		}
 	}
-
+	static void SaveTransferLog(clsBankClient& FromClient, clsBankClient& ToClient, double Amount)
+	{
+		stTransferLog TransferLog = GetTransferLog(FromClient, ToClient, Amount);
+		SaveTransferLog(TransferLog);
+	}
 
 };
 
