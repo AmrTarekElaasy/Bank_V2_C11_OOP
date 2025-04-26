@@ -27,7 +27,7 @@ private:
 		return LoginRegister;
 	}
 public:
-	static vector <stLoginRegisterRecord> LoadFromFile()
+	static vector <stLoginRegisterRecord> LoadLoginRegisterRecordFromFile()
 	{
 		vector <stLoginRegisterRecord> vLogins;
 
@@ -38,7 +38,7 @@ public:
 		string line;
 		while (getline(LoginFile, line))
 		{
-			vLogins.push_back(_ConvertStringToLoginRegister(line));
+			vLogins.push_back(_ConvertStringToLoginRegister(clsUtil::DecryptText(line)));
 		}
 		return vLogins;
 	}
@@ -52,7 +52,7 @@ public:
 		LoginFile.open("LoginFile.log", ios::app | ios::out);
 		if (LoginFile.is_open())
 		{
-			LoginFile << line << endl;
+			LoginFile << clsUtil::EncryptText(line) << endl;
 
 			LoginFile.close();
 		}

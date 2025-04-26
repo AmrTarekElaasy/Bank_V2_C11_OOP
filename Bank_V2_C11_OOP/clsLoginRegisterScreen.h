@@ -29,7 +29,7 @@ public:
 	{
 		system("cls");
 	    _ScreenSettings();
-		vector <clsLoginLogger::stLoginRegisterRecord> vLogins = clsLoginLogger::LoadFromFile();
+		vector <clsLoginLogger::stLoginRegisterRecord> vLogins = clsLoginLogger::LoadLoginRegisterRecordFromFile();
 
 
 		string SubTitel = "                      (" + to_string(vLogins.size()) + ") Record(s).";
