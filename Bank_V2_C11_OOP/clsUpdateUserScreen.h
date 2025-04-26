@@ -22,7 +22,13 @@ public:
 		cout << "Enter User Name : ";
 		string UserName = clsInputValidate::ReadString();
 		clsUser User = clsUser::Find(UserName);
-		if (User.IsExist())
+		if ((User.UserName == UserNameOfAdmin) && (CurrentUser.UserName != UserNameOfAdmin))
+		{
+			CurrentScreen.Print("You can not update Admin Info.\n");
+			CurrentScreen.DrawScreenLine();
+			return false;
+		}
+		else if (User.IsExist())
 		{
 			clsUserInfoScreen::PrintUserInfo(User);
 			CurrentScreen.DrawScreenLine();

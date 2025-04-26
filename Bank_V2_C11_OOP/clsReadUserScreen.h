@@ -14,7 +14,10 @@ class clsReadUserScreen
 		short permissions = 0;
 		string yOrN = "";
 
-
+		if (userName == UserNameOfAdmin)
+		{
+			return clsUser::enPermission::enAll;
+		}
 		CurrentScreen.AlignWithOffset();
 		cout << "Enter Permission : \n";
 		CurrentScreen.AlignWithOffset();
