@@ -339,6 +339,7 @@ public:
 		double amount;
 		double fromAccountBalanceAfterTheTransfer;
 		double toAccountBalanceTransfer;
+		bool Fail = false;
 
 	}; 
 
@@ -384,8 +385,62 @@ public:
 	{
 		stTransferLog TransferLog = GetTransferLog(FromClient, ToClient, Amount);
 		SaveTransferLog(TransferLog);
+		
 	}
+	static stTransferLog GetTransferLogFromString(string TransferLogAsString, string seperator = "#//#")
+	{
+		vector<string> vTransferLogData;
+		vTransferLogData = clsString::Split(TransferLogAsString, seperator);
+		stTransferLog TransferLog;
+		if (vTransferLogData.size() > 5)
+		{
+			TransferLog.transferDateAndTime = vTransferLogData[0];
+			TransferLog.fromAccountNumber = vTransferLogData[1];
+			TransferLog.toAccountNumber = vTransferLogData[2];
+			TransferLog.amount = stod(vTransferLogData[3]);
+			TransferLog.fromAccountBalanceAfterTheTransfer = stod(vTransferLogData[4]);
+			TransferLog.toAccountBalanceTransfer = stod(vTransferLogData[5]);
+		}
+		else
+		{
+			TransferLog.Fail = true;
+			string error = "Not Load a Transfer Log : " + TransferLogAsString;
+			clsErrors::SaveTheErrorInTheFile(error);
+		}
+		return TransferLog;
+	}
+	static vector<stTransferLog> GetTransferLogList(string seperator = "#//#")
+	{
+		vector <stTransferLog> vTransferLog;
+		stTransferLog tempTransferLog;
 
+		fstream TransferLogFile;
+		string pathTheFile = "TransferLog.txt";
+		TransferLogFile.open(pathTheFile, ios::in);
+		if (TransferLogFile.is_open())
+		{
+			string line;
+			stTransferLog TransferLog;
+		
+			while (getline(TransferLogFile, line))
+			{
+				tempTransferLog = GetTransferLogFromString(line, seperator);
+				if (tempTransferLog.Fail == false)
+				{
+					vTransferLog.push_back(tempTransferLog);
+				}
+				
+			}
+			TransferLogFile.close();
+		}
+		else
+		{
+			clsErrors::SaveTheErrorInTheFile("Can not open "+pathTheFile);
+		}
+
+		return vTransferLog;
+
+	}
 };
 
 

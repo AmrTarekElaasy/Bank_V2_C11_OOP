@@ -1,14 +1,10 @@
 // Find Client.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 #include "clsLoginScreen.h"
-#include "clsLoginRegisterScreen.h"
-#include "clsScreen.h"
-
 
 int main()
 {
 	while (clsLoginScreen::ShowLoginScreen());
-	
 
 	return 0;
 }
