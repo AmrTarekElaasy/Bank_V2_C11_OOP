@@ -325,7 +325,7 @@ public:
 		DestinationClient.AccountBalance += Amount;
 		this->Save();
 		DestinationClient.Save();
-		SaveTransferLog(*this, DestinationClient, Amount);
+		SaveTransferLog(*this, DestinationClient, CurrentUser.UserName, Amount);
 		return true;
 
 
@@ -336,6 +336,7 @@ public:
 		string transferDateAndTime;
 		string fromAccountNumber;
 		string toAccountNumber;	
+		string UserName;
 		double amount;
 		double fromAccountBalanceAfterTheTransfer;
 		double toAccountBalanceTransfer;
@@ -343,7 +344,7 @@ public:
 
 	}; 
 
-	static stTransferLog GetTransferLog(clsBankClient& FromClient, clsBankClient& ToClient, double Amount)
+	static stTransferLog GetTransferLog(clsBankClient& FromClient, clsBankClient& ToClient,string UserName, double Amount)
 	{
 		stTransferLog TransferLog;
 		TransferLog.transferDateAndTime = clsDate::DateToString(clsDate::GetCompleteSystemDate());
@@ -352,6 +353,7 @@ public:
 		TransferLog.amount = Amount;
 		TransferLog.fromAccountBalanceAfterTheTransfer = FromClient.AccountBalance;
 		TransferLog.toAccountBalanceTransfer = ToClient.AccountBalance;
+		TransferLog.UserName = UserName;
 		return TransferLog;
 	}
 	static string GetTransferLogAsString(stTransferLog TransferLog, string seperator = "#//#")
@@ -362,7 +364,10 @@ public:
 		TransferLogAsString += TransferLog.toAccountNumber + seperator;
 		TransferLogAsString += to_string(TransferLog.amount) + seperator;
 		TransferLogAsString += to_string(TransferLog.fromAccountBalanceAfterTheTransfer) + seperator;
-		TransferLogAsString += to_string(TransferLog.toAccountBalanceTransfer);
+		TransferLogAsString += to_string(TransferLog.toAccountBalanceTransfer) + seperator;
+		TransferLogAsString += TransferLog.UserName;
+
+
 		return TransferLogAsString;
 	}
 	static void SaveTransferLog(stTransferLog TransferLog)
@@ -381,9 +386,9 @@ public:
 			clsErrors::SaveTheErrorInTheFile("Can not open TransferLog.txt");
 		}
 	}
-	static void SaveTransferLog(clsBankClient& FromClient, clsBankClient& ToClient, double Amount)
+	static void SaveTransferLog(clsBankClient& FromClient, clsBankClient& ToClient,string UserName, double Amount)
 	{
-		stTransferLog TransferLog = GetTransferLog(FromClient, ToClient, Amount);
+		stTransferLog TransferLog = GetTransferLog(FromClient, ToClient, UserName, Amount);
 		SaveTransferLog(TransferLog);
 		
 	}
@@ -392,7 +397,7 @@ public:
 		vector<string> vTransferLogData;
 		vTransferLogData = clsString::Split(TransferLogAsString, seperator);
 		stTransferLog TransferLog;
-		if (vTransferLogData.size() > 5)
+		if (vTransferLogData.size() > 6)
 		{
 			TransferLog.transferDateAndTime = vTransferLogData[0];
 			TransferLog.fromAccountNumber = vTransferLogData[1];
@@ -400,6 +405,7 @@ public:
 			TransferLog.amount = stod(vTransferLogData[3]);
 			TransferLog.fromAccountBalanceAfterTheTransfer = stod(vTransferLogData[4]);
 			TransferLog.toAccountBalanceTransfer = stod(vTransferLogData[5]);
+			TransferLog.UserName = vTransferLogData[6];
 		}
 		else
 		{
