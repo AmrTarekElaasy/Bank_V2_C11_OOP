@@ -7,6 +7,7 @@
 #include <fstream>
 #include "clsDate.h"
 #include "clsErrors.h"
+#include "clsUtil.h"
 
 
 using namespace std;
@@ -77,7 +78,10 @@ private:
 			short i = 0;
 			while (getline(ClientsFile, line))
 			{
+				line = clsUtil::DecryptText(line);
+				
 				Client = _ConvertLinetoClientObject(line);
+				
 				i++;
 				if (Client.IsExist())
 				{
@@ -89,6 +93,8 @@ private:
 
 					clsErrors::SaveTheErrorInTheFile(error);
 				}
+
+			
 			}
 		}
 		else
@@ -115,7 +121,8 @@ private:
 				if (C._MarkForDelete == false)
 				{
 					DataLine = _ConverClientObjectToLine(C);
-					MyFile << DataLine << endl;
+
+					MyFile << clsUtil::EncryptText(DataLine) << endl;
 				}
 
 
@@ -148,7 +155,7 @@ private:
 			clsBankClient Client = clsBankClient::_ConvertLinetoClientObject(Line);
 			if (Client._MarkForDelete == false)
 			{
-				ClientFile << Line << endl;
+				ClientFile << clsUtil::EncryptText(Line) << endl;
 				return true;
 			}
 		}
