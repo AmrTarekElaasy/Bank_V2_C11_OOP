@@ -12,7 +12,6 @@ private:
 
     enum enMode { EmptyMode = 0, UpdateMode = 1 };
     enMode _Mode;
-
     string _Country;
     string _CurrencyCode;
     string _CurrencyName;

@@ -82,6 +82,14 @@ class clsReadUserScreen
 		if (clsInputValidate::CheckYesOrNo(yOrN))
 			permissions += clsUser::enPermission::enLoginRegister;
 
+		CurrentScreen.AlignWithOffset();
+		cout << "Do you want to give him permission Show Currency Exchange Screen Y/N ? ";
+		cin >> yOrN;
+		if (clsInputValidate::CheckYesOrNo(yOrN))
+			permissions += clsUser::enPermission::enCurrencyExchange;
+
+
+
 		return permissions;
 	}
 public:

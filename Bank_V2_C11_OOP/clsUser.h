@@ -21,7 +21,7 @@ public:
 	};
 	enum enPermission {
 		enAll = -1, enClientsList = 1, enAddClient = 2, enDeleteClient = 4, enUpdateClient = 8
-		, enFindClient = 16, enTransactions = 32, enManageUsers = 64, enLoginRegister = 128
+		, enFindClient = 16, enTransactions = 32, enManageUsers = 64, enLoginRegister = 128, enCurrencyExchange = 256
 	};
 
 

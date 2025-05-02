@@ -11,7 +11,7 @@
 #include "clsTransactionsScreen.h"
 #include "clsManageUsers.h"
 #include "clsLoginRegisterScreen.h"
-
+#include "clsCurrencyExchangeScreen.h"
 
 using namespace std;
 
@@ -32,17 +32,17 @@ private:
     enum enMainMenueOptions {
         eListClients = 1, eAddNewClient = 2, eDeleteClient = 3,
         eUpdateClient = 4, eFindClient = 5, eShowTransactionsMenue = 6,
-        eManageUsers = 7, eLoginRegister = 8, eExit = 9
+        eManageUsers = 7, eLoginRegister = 8, eCurrencyExchange = 9, eExit = 10
     };
 
     static short _ReadMainMenueOption()
     {
         
         CurrentScreen.AlignWithOffset(1);
-        cout << "Choose what do you want to do? [1 to 9] :  ";
+        cout << "Choose what do you want to do? [1 to 10] :  ";
 
 
-        short Choice = clsInputValidate::ReadIntNumberBetween(1, 9, "Enter Number between 1 to 9 : ");
+        short Choice = clsInputValidate::ReadIntNumberBetween(1, 10, "Enter Number between 1 to 10 : ");
         return Choice;
     }
 
@@ -105,7 +105,12 @@ private:
         if (CurrentScreen.CheckPermission(clsUser::enPermission::enManageUsers))
         clsManageUsers::ManageUsersScreen();
     }
+	static void _ShowCurrencyExchangeScreen()
+	{
 
+		if (CurrentScreen.CheckPermission(clsUser::enPermission::enCurrencyExchange))
+			clsCurrencyExchangeScreen::ShowCurrencyExchangeScreen();
+	}
     static void _Logout()
     {
         CurrentUser = clsUser::Find("", "");
@@ -171,6 +176,9 @@ private:
             _ShowLoginRegisterScreen();
             _GoBackToMainMenue();
             break;
+		case enMainMenueOptions::eCurrencyExchange:
+            _ShowCurrencyExchangeScreen();
+            _GoBackToMainMenue();
         case enMainMenueOptions::eExit:
             system("cls");
             _Logout();
@@ -202,7 +210,8 @@ public:
         CurrentScreen.WriteTheSubLine("[6] Transactions");
         CurrentScreen.WriteTheSubLine("[7] Manage Users");
         CurrentScreen.WriteTheSubLine("[8] Login Register");
-        CurrentScreen.WriteTheSubLine("[9] Logout");
+        CurrentScreen.WriteTheSubLine("[9] Currency Exchange");
+        CurrentScreen.WriteTheSubLine("[10] Logout");
         clsScreen::DrawScreenLine();
         _PerfromMainMenueOption((enMainMenueOptions)_ReadMainMenueOption());
     }

@@ -1,0 +1,98 @@
+#pragma once
+#include "clsScreen.h"
+
+class clsCurrencyExchangeScreen
+{
+private:
+	static void _ScreenSettings()
+	{
+		system("cls");
+		CurrentScreen.Offset = 0;
+	}
+	enum enCurrencyExchangeOptions {
+		eListCurrencies = 1, eFindCurrency = 2, eUpdateRate = 3,
+		eCurrencyCalculator = 4, eMainMenue = 5
+	};
+	static enCurrencyExchangeOptions ReadOption()
+	{
+		CurrentScreen.AlignWithOffset(1);
+		cout << "Choose what do you want to do? [1 to 5] :  ";
+		return (enCurrencyExchangeOptions) clsInputValidate::ReadIntNumberBetween(1, 5, "Enter Number between 1 to 5 : ");
+	}
+	static void  _ShowListCurrencies()
+	{
+		system("cls");
+		cout << "List Currencies Screen Will be here\n";
+		system("pause");
+	}
+	static void  _ShowFindCurrency()
+	{
+		system("cls");
+		cout << "Find Currency Screen Will be here\n";
+		system("pause");
+	}
+	static void  _ShowUpdateRate()
+	{
+		system("cls");
+		cout << "Update Rate Screen Will be here\n";
+		system("pause");
+	}static void  _ShowCurrencyCalculator()
+	{
+		system("cls");
+		cout << "Currency Calculator Screen Will be here\n";
+		system("pause");
+	}
+	static void _GoBackToCurrencyExchangeScreen() 
+	{
+		ShowCurrencyExchangeScreen();
+	}
+	static void PerfromOption(enCurrencyExchangeOptions Option)
+	{
+		switch (Option)
+		{
+		case clsCurrencyExchangeScreen::eListCurrencies:
+			_ShowListCurrencies();
+			_GoBackToCurrencyExchangeScreen();
+			break;
+		case clsCurrencyExchangeScreen::eFindCurrency:
+			_ShowFindCurrency();
+			_GoBackToCurrencyExchangeScreen();
+			break;
+		case clsCurrencyExchangeScreen::eUpdateRate:
+			_ShowUpdateRate();
+			_GoBackToCurrencyExchangeScreen();
+			break;
+		case clsCurrencyExchangeScreen::eCurrencyCalculator:
+			_ShowCurrencyCalculator();
+			_GoBackToCurrencyExchangeScreen();
+			break;
+		case clsCurrencyExchangeScreen::eMainMenue:
+			break;
+		
+		}
+	}
+	static  void _PrintOptions()
+	{
+		CurrentScreen.DrawScreenHeader("                      Currency Exchange Screen");
+		CurrentScreen.WriteTheSubLine("[1] List Currencies", true);
+		CurrentScreen.WriteTheSubLine("[2] Find Currency", true);
+		CurrentScreen.WriteTheSubLine("[3] Update Rate", true);
+		CurrentScreen.WriteTheSubLine("[4] Currency Calculator", true);
+		CurrentScreen.WriteTheSubLine("[5] Main Menue", true);
+		CurrentScreen.DrawScreenLine();
+		
+
+	}
+public:
+	
+	static void ShowCurrencyExchangeScreen()
+	{
+		_ScreenSettings();
+		_PrintOptions();
+		enCurrencyExchangeOptions option = ReadOption();
+		CurrentScreen.DrawScreenLine(1);
+		PerfromOption(option);
+		
+	}
+};
+
