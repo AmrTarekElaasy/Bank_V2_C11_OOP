@@ -1,67 +1,82 @@
+# 💰 Bank_V2_C11_OOP - Bank Management System in C++
+
+A fully integrated banking system developed in C++ using Object-Oriented Programming (OOP), containing all core functionalities for managing customers, managers, financial operations, and currency exchange.
 
 ---
 
-# Bank Management System (Bank\_V2\_C11\_OOP)
+## 🔐 Login Credentials
 
-A fully integrated banking management system built with C++
+- **Main Administrator:**
+  - Username: `Admin`
+  - Password: `Admin`
 
-## 🔑 Login Information
+> ⚠️ If the password is entered incorrectly 3 consecutive times, the system will shut down automatically.
 
-* **Main Admin**:
-
-  * Username: `Admin`
-  * Password: `Admin`
-
-> ⚠️ **Note**: If an incorrect password is entered 3 consecutive times, the system will shut down automatically.
+---
 
 ## 🌟 System Features
 
 ### ✅ Customer Management
-
-* View customer list
-* Add new customer
-* Delete customer
-* Update customer information
-* Search for a customer
+- View customer list  
+- Add new customer  
+- Delete customer  
+- Update customer data  
+- Search for a customer  
 
 ### 💰 Financial Operations
-
-* Deposit money
-* Withdraw money
-* Transfer money between accounts
+- Deposit funds  
+- Withdraw funds  
+- Transfer funds between accounts  
 
 ### 👥 Manager Management
+- View manager list  
+- Add new manager  
+- Delete manager  
+- Update manager data (including editing permissions)  
+- Search for a manager  
 
-* View manager list
-* Add new manager
-* Delete manager
-* Update manager information
-* Search for a manager
-* Modify manager permissions
-* Manager login/logout
+### 💱 Currency Exchange
+- View available currencies  
+- Search for a specific currency  
+- Update exchange rates  
+- Currency calculator between any two currencies  
 
-## 🔒 Security
+### 🧾 Log Management
+- **Transfer Log:** Each transfer operation is saved in an encrypted file  
+- **Login Log:** All login attempts (successful or failed) are saved in an encrypted file  
+- **Error Log:** All system errors are saved in `ErrorFile.log`  
+- **Dedicated Screens** to view:
+  - Transfer history  
+  - Login history  
 
-* Customer data is encrypted
-* Manager data (Users file) is encrypted
-* Main admin password is protected
-* Full permission control system for managers
+---
+
+## 🔒 Security System
+
+- Customer data is encrypted  
+- Manager data is encrypted in the `Users` file  
+- All logs (transfers, login, errors) are stored in **encrypted** files  
+- No manager can view or edit the main administrator's data  
+- Permission-based system to control manager access  
+- Decryption is handled temporarily inside the system UI only  
+
+---
 
 ## 📋 System Constraints
 
-* The main admin (Admin) cannot be deleted by any other manager or by themselves
-* The main admin's data can only be modified by the main admin
-* No user can view the main admin's password
+- The main administrator cannot be deleted  
+- The main administrator’s data can only be edited by themselves  
+- Managers cannot log in without active permission  
+
+---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE)
 
 ---
 
 <div align="center">
-  <p>Created by <a href="https://github.com/AmrTarekElaasy">Amr Tarek Elaasy</a></p>
-  <p>💰 Bank System Version 2 - C++ Object-Oriented Project 💰</p>
+  <p>Developed by <a href="https://github.com/AmrTarekElaasy">Amr Tarek Elaasy</a></p>
+  <p>💻 Bank System Version 2 - C++ OOP Project 💻</p>
 </div>
-
----
