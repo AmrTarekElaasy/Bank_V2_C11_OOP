@@ -24,7 +24,7 @@ public:
 			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
 				CurrentScreen.Print("Enter New Rate : ");
-				double rate = abs(clsInputValidate::ReadDblNumber());
+				double rate =clsInputValidate::ReadPositiveDblNumber();
 				Currency.UpdateRate(rate);
 				CurrentScreen.Print("Updated successfully.\n");
 				_PrintCurrencyCard(Currency);
