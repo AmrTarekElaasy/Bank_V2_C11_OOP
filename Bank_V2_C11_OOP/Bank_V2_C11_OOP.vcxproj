@@ -199,6 +199,7 @@
     <ClInclude Include="clsFindUserScreen.h" />
     <ClInclude Include="clsGeneralFindClient.h" />
     <ClInclude Include="clsGeneralFindUser.h" />
+    <ClInclude Include="clsListCurrenciesScreen.h" />
     <ClInclude Include="clsListUsersScreen.h" />
     <ClInclude Include="clsLoginLogger.h" />
     <ClInclude Include="clsLoginRegisterScreen.h" />
@@ -217,7 +218,6 @@
     <ClInclude Include="clsUpdateUserScreen.h" />
     <ClInclude Include="clsUser.h" />
     <ClInclude Include="clsUserInfoScreen.h" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Bank_V2_C11_OOP.rc" />

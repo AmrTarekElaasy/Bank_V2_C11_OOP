@@ -44,7 +44,7 @@ China#//#CNY#//#Chinese Renminbi#//#6.940000
 Colombia#//#COP#//#Colombian Peso#//#4795.000000
 Comoros#//#KMF#//#Comoros Franc#//#461.552002
 Congo#//#XAF#//#CFA Franc#//#615.401978
-"Congo, Dem. Rep."#//#CDF#//#"Congo Franc, Dem. Rep.of"#//#1987.068970
+Congo, Dem. Rep.#//#CDF#//#Congo Franc, Dem. Rep.of#//#1987.068970
 Cook Islands#//#NZD#//#New Zealand Dollar#//#1.535000
 Costa Rica#//#CRC#//#Costa Rica Colon#//#580.880005
 Cote d'Ivoire#//#XOF#//#CFA Franc#//#615.401978
@@ -95,7 +95,6 @@ Indonesia#//#IDR#//#Indonesia Rupiah#//#15655.000000
 Iran#//#IRR#//#Iranian Rial#//#286676.000000
 Iraq#//#IQD#//#Iraqi Dinar#//#1450.000000
 Ireland#//#EUR#//#Euro#//#0.938000
-Israel#//#ILS#//#Israel Shekel#//#3.389000
 Italy#//#EUR#//#Euro#//#0.938000
 Jamaica#//#JMD#//#Jamaican Dollar#//#153.470001
 Japan#//#JPY#//#Japanese Yen#//#134.869995
@@ -103,11 +102,11 @@ Jordan#//#JOD#//#Jordanian Dinar#//#0.708000
 Kazakhstan#//#KZT#//#Kazakhstan Tenge#//#468.950012
 Kenya#//#KES#//#Kenyan Shilling#//#122.739998
 Kiribati#//#AUD#//#Australian Dollar#//#1.451000
-"Korea, D.P.R. of"#//#KPW#//#"Korean Won, North Korea"#//#110.000000
-"Korea, Republic of"#//#KRW#//#"Korean Won, South Korea"#//#1302.729980
+Korea, D.P.R. of#//#KPW#//#Korean Won, North Korea#//#110.000000
+Korea, Republic of#//#KRW#//#Korean Won, South Korea#//#1302.729980
 Kuwait#//#KWD#//#Kuwaiti Dinar#//#0.307000
 Kyrgyzstan#//#KGS#//#Kyrgyzstan Som#//#84.000000
-"Lao, People's Dem. Rep."#//#LAK#//#Laos Kip#//#17363.000000
+Lao, People's Dem. Rep.#//#LAK#//#Laos Kip#//#17363.000000
 Latvia#//#EUR#//#Euro#//#0.938000
 Lebanon#//#LBP#//#Lebanese Pound#//#30600.000000
 Lesotho#//#LSL#//#Lesotho Loti#//#17.351000
@@ -129,7 +128,7 @@ Mauritania#//#MRU#//#Mauritania Ouguiya#//#37.680000
 Mauritius#//#MUR#//#Mauritius Rupee#//#43.522999
 Mexico#//#MXN#//#Mexican Peso#//#19.670000
 Micronesia#//#USD#//#US Dollar#//#1.000000
-"Moldova, Republic of"#//#MDL#//#Moldovan Leu#//#19.260000
+Moldova, Republic of#//#MDL#//#Moldovan Leu#//#19.260000
 Monaco#//#EUR#//#Euro#//#0.938000
 Mongolia#//#MNT#//#Mongolia Tugrik#//#3420.000000
 Montenegro#//#EUR#//#Euro#//#0.938000
@@ -148,12 +147,12 @@ Nicaragua#//#NIO#//#Nicaragua Cordoba Oro#//#36.047001
 Niger#//#XOF#//#CFA Franc#//#615.401978
 Nigeria#//#NGN#//#Nigeria Naira#//#444.600006
 Niue#//#NZD#//#New Zealand Dollar#//#1.535000
-"North Macedonia, Rep. of"#//#MKD#//#Denar#//#57.654999
+North Macedonia, Rep. of#//#MKD#//#Denar#//#57.654999
 Northern Mariana Islands#//#USD#//#US Dollar#//#1.000000
 Norway#//#NOK#//#Norwegian Krone#//#9.760000
 Oman#//#OMR#//#Oman Rial#//#0.385000
 Pakistan#//#PKR#//#Pakistani Rupee#//#224.750000
-"Palau, Republic of"#//#USD#//#US Dollar#//#1.000000
+Palau, Republic of#//#USD#//#US Dollar#//#1.000000
 Panama#//#PAB#//#Panama Balboa#//#1.000000
 Papua New Guinea#//#PGK#//#Kina#//#3.521000
 Paraguay#//#PYG#//#Paraguay Guarani#//#7160.000000
@@ -194,7 +193,7 @@ Sweden#//#SEK#//#Swedish Krona#//#10.177000
 Switzerland#//#CHF#//#Swiss Franc#//#0.924000
 Syrian Arab Republic#//#SYP#//#Syrian Pound#//#3000.000000
 Tajikistan#//#TJS#//#Tajikistan Somoni#//#10.269000
-"Tanzania, United Rep. of"#//#TZS#//#Tanzania Shilling#//#2326.840088
+Tanzania, United Rep. of#//#TZS#//#Tanzania Shilling#//#2326.840088
 Thailand#//#THB#//#Thai Baht#//#34.560001
 Togo#//#XOF#//#CFA Franc#//#615.401978
 Tokelau Islands#//#NZD#//#New Zealand Dollar#//#1.535000
@@ -217,6 +216,6 @@ Viet Nam#//#VND#//#Viet Nam Dong#//#23624.000000
 Virgin Islands (UK)#//#USD#//#US Dollar#//#1.000000
 Virgin Islands (USA)#//#USD#//#US Dollar#//#1.000000
 Wallis and Futuna Islands#//#XPF#//#CFP Franc#//#111.954002
-"Yemen, Republic of"#//#YER#//#Yemeni Rial#//#541.750000
+Yemen, Republic of#//#YER#//#Yemeni Rial#//#541.750000
 Zambia#//#ZMW#//#Zambia Kwacha#//#17.440001
 Zimbabwe#//#ZWL#//#Zimbabwe RTGS dollar#//#645.414001

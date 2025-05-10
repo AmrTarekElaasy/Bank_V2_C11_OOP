@@ -1,5 +1,6 @@
 #pragma once
 #include "clsScreen.h"
+#include "clsListCurrenciesScreen.h"
 
 class clsCurrencyExchangeScreen
 {
@@ -21,9 +22,7 @@ private:
 	}
 	static void  _ShowListCurrencies()
 	{
-		system("cls");
-		cout << "List Currencies Screen Will be here\n";
-		system("pause");
+		clsListCurrenciesScreen::CurrenciesListScreen();
 	}
 	static void  _ShowFindCurrency()
 	{
@@ -44,6 +43,9 @@ private:
 	}
 	static void _GoBackToCurrencyExchangeScreen() 
 	{
+		
+		CurrentScreen.Print("Press any key to go back to Currency Exchange Screen...");
+		system("pause>0");
 		ShowCurrencyExchangeScreen();
 	}
 	static void PerfromOption(enCurrencyExchangeOptions Option)
