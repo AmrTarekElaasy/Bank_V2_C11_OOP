@@ -75,6 +75,11 @@ A fully integrated banking system developed in C++ using Object-Oriented Program
 This project is licensed under the [MIT License](LICENSE)
 
 ---
+## ⬇️ Download
+
+**You can download the full project zip file from the button below:**
+
+[![Download](https://img.shields.io/badge/Download%20BankSystem--V2.zip-blue?style=for-the-badge&logo=github)](https://github.com/AmrTarekElaasy/Bank_V2_C11_OOP/raw/master/BankSystem_V2.zip)
 
 <div align="center">
   <p>Developed by <a href="https://github.com/AmrTarekElaasy">Amr Tarek Elaasy</a></p>
