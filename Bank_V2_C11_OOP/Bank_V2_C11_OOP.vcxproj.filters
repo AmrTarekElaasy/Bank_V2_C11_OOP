@@ -138,7 +138,10 @@
       <Filter>Header Files\Currency</Filter>
     </ClInclude>
     <ClInclude Include="clsUpdateRateScreen.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Currency</Filter>
+    </ClInclude>
+    <ClInclude Include="clsCurrencyCalculatorScreen.h">
+      <Filter>Header Files\Currency</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

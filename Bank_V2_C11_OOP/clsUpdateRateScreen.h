@@ -15,22 +15,21 @@ public:
 		_ScreenSettings();
 		CurrentScreen.DrawScreenHeader("                       Update Rate Screen");
 		                          
-		clsCurrency Currency = _FindCurrencyByCode();
+		clsCurrency Currency = _FindCurrency();
 		if (Currency.IsCurrencyExist())
 		{
 			_PrintCurrencyCard(Currency);
+
+			CurrentScreen.Print("Are you sure you want to update this currency Y|N?");
+			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
+			{
+				CurrentScreen.Print("Enter New Rate : ");
+				double rate = abs(clsInputValidate::ReadDblNumber());
+				Currency.UpdateRate(rate);
+				CurrentScreen.Print("Updated successfully.\n");
+				_PrintCurrencyCard(Currency);
+			}
 		}
-		else
-		{
-			CurrentScreen.Print("Not Exist\n");
-			CurrentScreen.DrawScreenLine();
-			return;
-		}
-		CurrentScreen.Print("Enter New Rate : ");
-		double rate = abs(clsInputValidate::ReadDblNumber());
-		Currency.UpdateRate(rate);
-		CurrentScreen.Print("Updated successfully.\n");
-		_PrintCurrencyCard(Currency);
 		CurrentScreen.DrawScreenLine();
 
 	}

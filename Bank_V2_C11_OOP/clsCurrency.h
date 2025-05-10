@@ -15,15 +15,22 @@ private:
     string _Country;
     string _CurrencyCode;
     string _CurrencyName;
+    string _DateOfLastUpdated;
     float _Rate;
 
     static clsCurrency _ConvertLinetoCurrencyObject(string Line, string Seperator = "#//#")
     {
         vector<string> vCurrencyData;
         vCurrencyData = clsString::Split(Line, Seperator);
-
-        return clsCurrency(enMode::UpdateMode, vCurrencyData[0], vCurrencyData[1], vCurrencyData[2],
-            stod(vCurrencyData[3]));
+        if (vCurrencyData.size() > 4)
+        {
+            return clsCurrency(enMode::UpdateMode, vCurrencyData[0], vCurrencyData[1], vCurrencyData[2],
+                stod(vCurrencyData[3]),vCurrencyData[4]);
+        }
+        else
+        {
+            return clsCurrency(enMode::EmptyMode, "", "", "", 0,"");
+        }
 
     }
 
@@ -34,7 +41,8 @@ private:
         stCurrencyRecord += Currency.Country() + Seperator;
         stCurrencyRecord += Currency.CurrencyCode() + Seperator;
         stCurrencyRecord += Currency.CurrencyName() + Seperator;
-        stCurrencyRecord += to_string(Currency.Rate());
+        stCurrencyRecord += to_string(Currency.Rate())+Seperator;
+        stCurrencyRecord += Currency.DateOfLastUpdated();
 
         return stCurrencyRecord;
 
@@ -57,8 +65,8 @@ private:
             {
 
                 clsCurrency Currency = _ConvertLinetoCurrencyObject(Line);
-
-                vCurrencys.push_back(Currency);
+                if (Currency.IsCurrencyExist())
+                     vCurrencys.push_back(Currency);
             }
 
             MyFile.close();
@@ -116,18 +124,19 @@ private:
 
     static clsCurrency _GetEmptyCurrencyObject()
     {
-        return clsCurrency(enMode::EmptyMode, "", "", "", 0);
+        return clsCurrency(enMode::EmptyMode, "", "", "", 0,"");
     }
 
 public:
 
-    clsCurrency(enMode Mode, string Country, string CurrencyCode, string CurrencyName, float Rate)
+    clsCurrency(enMode Mode, string Country, string CurrencyCode, string CurrencyName, float Rate,string DateOfLastUpdated)
     {
         _Mode = Mode;
         _Country = Country;
         _CurrencyCode = CurrencyCode;
         _CurrencyName = CurrencyName;
         _Rate = Rate;
+        _DateOfLastUpdated = DateOfLastUpdated;
     }
 
     static vector <clsCurrency> GetAllUSDRates()
@@ -160,9 +169,19 @@ public:
     void UpdateRate(float NewRate)
     {
         _Rate = NewRate;
+        _DateOfLastUpdated = clsDate::DateToString( clsDate::GetSystemDate());
         _Update();
     }
 
+    void SetDateOfLastUpdated(string Date)
+    {
+        _DateOfLastUpdated = Date;
+        _Update();
+    }
+    string DateOfLastUpdated()
+    {
+        return _DateOfLastUpdated;
+    }
     float Rate()
     {
         return _Rate;
@@ -240,6 +259,15 @@ public:
     static vector <clsCurrency> GetCurrenciesList()
     {
         return _LoadCurrencysDataFromFile();
+    }
+    double ConvertToUSD(double Amount)
+    {
+        return (double)(Amount / Rate());
+    }
+    double ConvertToOtherCurrency(double Amount ,clsCurrency Currency2)
+    {
+        double USD = this->ConvertToUSD(Amount);
+        return (double)(USD * Rate());
     }
 };
 

@@ -6,11 +6,11 @@ class clsListCurrenciesScreen
 	static void _ScreenSettings()
 	{
 		system("cls");
-		CurrentScreen.Offset = -13;
+		CurrentScreen.Offset = -20;
 	}
 	static void _PrintTheLine()
 	{
-		CurrentScreen.Print("___________________________________________________________________________________________\n");
+		CurrentScreen.Print("_________________________________________________________________________________________________________\n");
 
 	}
 public:
@@ -27,7 +27,8 @@ public:
 		cout << left << setw(30) << "Country" << " |";
 		cout << left << setw(4) << "Code" << " |";
 		cout << left << setw(40) << "Name" << " |";
-		cout << "Rate / (1$)\n";
+		cout << left << setw(10) << "Rate / (1$)"<<" |";
+		cout << "Last Updated\n";
 		_PrintTheLine();
 		for (clsCurrency& Currency : vCurrencies)
 		{
@@ -35,7 +36,8 @@ public:
 			cout << left << setw(30) << Currency.Country() << " |";
 			cout << left << setw(4) << Currency.CurrencyCode() << " |";
 			cout << left << setw(40) << Currency.CurrencyName() << " |";
-			cout << Currency.Rate() << "\n";
+			cout << left << setw(11) << Currency.Rate() << " |";
+			cout << Currency.DateOfLastUpdated()<<"\n";
 		}
 		_PrintTheLine();
 		CurrentScreen.DrawScreenLine();
