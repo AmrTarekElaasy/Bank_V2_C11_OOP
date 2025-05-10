@@ -137,6 +137,9 @@
     <ClInclude Include="clsFindCurrency.h">
       <Filter>Header Files\Currency</Filter>
     </ClInclude>
+    <ClInclude Include="clsUpdateRateScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Bank_V2_C11_OOP.rc">

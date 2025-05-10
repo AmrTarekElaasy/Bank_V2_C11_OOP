@@ -12,14 +12,14 @@ class clsFindCurrency
 
 
 protected:
-	static clsCurrency FindCurrencyByCode()
+	static clsCurrency _FindCurrencyByCode()
 	{
 		CurrentScreen.Print("Please Enter Currency Code : ");
 		string CurrencyCode = clsInputValidate::ReadString();
 
 		return clsCurrency::FindByCode(CurrencyCode);
 	}
-	static clsCurrency FindCurrencyByCountry()
+	static clsCurrency _FindCurrencyByCountry()
 	{
 		CurrentScreen.Print("Please Enter Currency Country : ");
 		string CurrencyCountry = clsInputValidate::ReadString();
@@ -53,9 +53,9 @@ public:
 
 		clsCurrency Currency = clsCurrency::FindByCode("");
 		if (Choice == "1")
-			Currency = FindCurrencyByCode();
+			Currency = _FindCurrencyByCode();
 		else if (Choice == "2")
-			Currency = FindCurrencyByCountry();
+			Currency = _FindCurrencyByCountry();
 
 		if (Currency.IsCurrencyExist())
 		{
