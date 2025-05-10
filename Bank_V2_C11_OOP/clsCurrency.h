@@ -267,7 +267,8 @@ public:
     double ConvertToOtherCurrency(double Amount ,clsCurrency Currency2)
     {
         double USD = this->ConvertToUSD(Amount);
-        return (double)(USD * Rate());
+      
+        return (double)(USD * Currency2.Rate());
     }
 };
 

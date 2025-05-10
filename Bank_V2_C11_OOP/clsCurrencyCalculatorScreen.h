@@ -43,8 +43,10 @@ public:
 		_PrintCurrencyCard(Currency2);
 		
 		CurrentScreen.Print("Enter Amount : ");
-		double Amount = Currency1.ConvertToOtherCurrency(clsInputValidate::ReadDblNumber(), Currency2);
-		CurrentScreen.Print("");
+		double AmountCurrency1 = clsInputValidate::ReadPositiveDblNumber();
+		double AmountCurrency2 = Currency1.ConvertToOtherCurrency(AmountCurrency1, Currency2);
+		CurrentScreen.Print(""); cout << AmountCurrency1 <<Currency1.CurrencyCode()<<" = " ;
+		cout << AmountCurrency2 << Currency2.CurrencyCode() << endl;
 		CurrentScreen.DrawScreenLine();
 	}
 };

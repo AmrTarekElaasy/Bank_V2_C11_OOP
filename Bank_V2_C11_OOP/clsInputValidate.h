@@ -158,6 +158,16 @@ public:
 
 		return number;
 	}
+	static double ReadPositiveDblNumber(string ErrorMessage = "Enter Positive Number : ")
+	{
+		double num = ReadDblNumber();
+		while (num<=0)
+		{
+			CurrentScreen.Print(ErrorMessage);
+			num = ReadDblNumber();
+		}
+		return num;
+	}
 
 	static double ReadDblNumberBetween(double From, double To, string ErrorMessage = "Enter Number between %.2f to %.2f : ")
 	{
