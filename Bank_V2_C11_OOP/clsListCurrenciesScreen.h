@@ -38,6 +38,7 @@ public:
 			cout << Currency.Rate() << "\n";
 		}
 		_PrintTheLine();
+		CurrentScreen.DrawScreenLine();
 	}
 };
 

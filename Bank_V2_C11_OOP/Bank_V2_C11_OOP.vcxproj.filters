@@ -134,6 +134,9 @@
     <ClInclude Include="clsListCurrenciesScreen.h">
       <Filter>Header Files\Currency</Filter>
     </ClInclude>
+    <ClInclude Include="clsFindCurrency.h">
+      <Filter>Header Files\Currency</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Bank_V2_C11_OOP.rc">

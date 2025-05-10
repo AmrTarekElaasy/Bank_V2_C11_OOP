@@ -196,6 +196,7 @@
     <ClInclude Include="clsDepositScreen.h" />
     <ClInclude Include="clsErrors.h" />
     <ClInclude Include="clsFindClientScreen.h" />
+    <ClInclude Include="clsFindCurrency.h" />
     <ClInclude Include="clsFindUserScreen.h" />
     <ClInclude Include="clsGeneralFindClient.h" />
     <ClInclude Include="clsGeneralFindUser.h" />

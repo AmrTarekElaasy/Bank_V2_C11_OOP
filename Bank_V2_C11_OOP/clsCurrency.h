@@ -233,7 +233,10 @@ public:
         return (!C1.IsEmpty());
 
     }
-
+    bool IsCurrencyExist()
+    {
+        return (!this->IsEmpty());
+    }
     static vector <clsCurrency> GetCurrenciesList()
     {
         return _LoadCurrencysDataFromFile();
