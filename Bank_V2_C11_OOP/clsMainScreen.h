@@ -52,7 +52,9 @@ private:
 		_ScreenSettings();
         CurrentScreen.AlignWithOffset(1);
         cout << "Press any key to go back to Main Menue...";
-        system("pause>0");
+
+        cin.sync();
+        cin.get();
         ShowMainMenue();
     }
 

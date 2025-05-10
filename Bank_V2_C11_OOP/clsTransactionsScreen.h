@@ -79,7 +79,8 @@ class clsTransactionsScreen :protected clsScreen
 
 		CurrentScreen.AlignWithOffset(1);
 		cout << "Press any key to go back to transactions menue...";
-		system("pause>0");
+		cin.sync();
+		cin.get();
 		ShowTransactionsMenue();
 	}
 	static void _PerformTransactionsMenue(enTransactionsMenue enOption)

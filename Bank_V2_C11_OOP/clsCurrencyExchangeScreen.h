@@ -41,7 +41,8 @@ private:
 	{
 		
 		CurrentScreen.Print("Press any key to go back to Currency Exchange Screen...");
-		system("pause>0");
+		cin.sync();
+		cin.get();
 		ShowCurrencyExchangeScreen();
 	}
 	static void PerfromOption(enCurrencyExchangeOptions Option)

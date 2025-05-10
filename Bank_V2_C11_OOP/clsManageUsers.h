@@ -63,7 +63,8 @@ class clsManageUsers
 		_ScreenSettings();
 		CurrentScreen.AlignWithOffset();
 		cout << "Press any key to go back to Manage Users menue...";
-		system("pause>0");
+		cin.sync();
+		cin.get();
 
 
 		ManageUsersScreen();
