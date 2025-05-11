@@ -79,7 +79,8 @@ This project is licensed under the [MIT License](LICENSE)
 
 ---
 
-
+[![Arabic Version](https://img.shields.io/badge/Readme-Arabic-blue?style=for-the-badge)](./README_AR.md)
+---
 <div align="center">
   <p>Developed by <a href="https://github.com/AmrTarekElaasy">Amr Tarek Elaasy</a></p>
   <p>💻 Bank System Version 2 - C++ OOP Project 💻</p>
