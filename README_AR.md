@@ -75,7 +75,9 @@
 هذا المشروع مرخص تحت [رخصة MIT](LICENSE)
 
 ---
+[![تحميل](https://img.shields.io/badge/تحميل%20ملف%20BankSystem--V2.zip-أزرق?style=for-the-badge&logo=github)](https://github.com/AmrTarekElaasy/Bank_V2_C11_OOP/raw/master/BankSystem_V2.zip)
 
+---
 <div align="center">
   <p>تم تطويره بواسطة <a href="https://github.com/AmrTarekElaasy">Amr Tarek Elaasy</a></p>
   <p>💻 الإصدار الثاني من نظام البنك - مشروع C++ باستخدام OOP 💻</p>
