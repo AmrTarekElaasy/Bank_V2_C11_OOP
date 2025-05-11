@@ -79,7 +79,7 @@
 
 ---
 
-[![English Version](https://img.shields.io/badge/Readme-English-blue?style=for-the-badge)](./README_EN.md)
+📄 [Read the English version](./README.md)
 
 ---
 <div align="center">
