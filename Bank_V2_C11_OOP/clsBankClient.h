@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <string>
 #include "clsPerson.h"
@@ -8,7 +8,7 @@
 #include "clsDate.h"
 #include "clsErrors.h"
 #include "clsUtil.h"
-
+#include <filesystem>
 
 using namespace std;
 
@@ -18,8 +18,18 @@ private:
 	string _AccountNumber;
 	double _AccountBalance;
 	string _PinCode;
+
 	bool _MarkForDelete = false;
 public:
+	static string ClientPath()
+	{
+		 
+		 return "Clients.txt";
+		
+	}
+
+	
+
 	static enum enMode
 	{
 		enEmptyMode = 0, enUpdateMode = 1, enAddNew = 2
@@ -69,7 +79,7 @@ private:
 	{
 		vector<clsBankClient> vClients;
 		fstream ClientsFile;
-		string pathTheFile = "Clients.txt";
+		string pathTheFile = ClientPath();
 		ClientsFile.open(pathTheFile, ios::in);
 		if (ClientsFile.is_open())
 		{
@@ -99,7 +109,7 @@ private:
 		}
 		else
 		{
-			clsErrors::SaveTheErrorInTheFile("Can not open Clients.txt");
+			clsErrors::SaveTheErrorInTheFile("Can not open "+ ClientPath());
 		}
 		ClientsFile.close();
 
@@ -109,13 +119,17 @@ private:
 	{
 
 		fstream MyFile;
-		MyFile.open("Clients.txt", ios::out);//overwrite
+
+		remove(ClientPath().c_str());//////////
+
+		MyFile.open(ClientPath(), ios::out);
 
 		string DataLine;
 
+
+
 		if (MyFile.is_open())
 		{
-
 			for (clsBankClient C : vClients)
 			{
 				if (C._MarkForDelete == false)
@@ -124,12 +138,18 @@ private:
 
 					MyFile << clsUtil::EncryptText(DataLine) << endl;
 				}
-
+			
+					
 
 			}
 
 			MyFile.close();
 
+		}
+		else
+		{
+			clsErrors errore;
+			errore.SaveTheErrorInTheFile("Can not open file " + ClientPath());
 		}
 
 	}
@@ -140,6 +160,7 @@ private:
 		{
 			if (C.AccountNumber == AccountNumber)
 			{
+			
 				C = *this;
 				break;
 			}
@@ -149,7 +170,7 @@ private:
 	bool _SaveLineClientInFile(string Line)
 	{
 		fstream ClientFile;
-		ClientFile.open("Clients.txt", ios::out | ios::app);
+		ClientFile.open(ClientPath(), ios::out | ios::app);
 		if (ClientFile.is_open())
 		{
 			clsBankClient Client = clsBankClient::_ConvertLinetoClientObject(Line);
@@ -308,6 +329,8 @@ public:
 			}
 		}
 		_SaveCleintsDataToFile(vClients);
+		clsBankClient client = Find(this->AccountNumber);
+		 if (!client.IsExist())
 		*this = _GetEmptyClient();
 		return true;
 	}

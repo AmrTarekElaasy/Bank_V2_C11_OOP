@@ -46,7 +46,11 @@ public:
 				if (Client.Delete())
 				{
 					CurrentScreen.AlignWithOffset(1);
-					cout << "Deleted successfully\n";
+					if(!Client.IsExist())
+						cout << "Deleted successfully\n";
+					else
+						cout<<"Deletion failed\n";
+
 					clsClientInfoScreen::PrintUserInfo(Client);
 					CurrentScreen.DrawScreenLine();
 					return true;
