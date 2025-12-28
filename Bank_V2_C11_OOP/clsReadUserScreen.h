@@ -7,6 +7,8 @@ class clsReadUserScreen
 {
 	static void _ScreenSettings()
 	{
+		clsScreen::ColorAllProgram();
+
 		CurrentScreen.Offset = 0;
 	}
 	static short _ReadPermission(string userName)

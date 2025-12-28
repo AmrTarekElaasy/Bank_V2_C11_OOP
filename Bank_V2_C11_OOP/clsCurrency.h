@@ -76,11 +76,17 @@ private:
         return vCurrencys;
 
     }
+    static string CurrencyFilePath()
+    {
+        return "Currencies.txt";
+    }
 
     static void _SaveCurrencyDataToFile(vector <clsCurrency> vCurrencys)
     {
 
         fstream MyFile;
+        remove(CurrencyFilePath().c_str());//////////
+
         MyFile.open("Currencies.txt", ios::out);//overwrite
 
         string DataLine;

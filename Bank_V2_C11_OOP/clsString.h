@@ -37,7 +37,11 @@ public:
 
 	__declspec(property(get = GetValue, put = SetValue)) string Value;
 
+	static bool stringToBool(string str)
+	{
 
+		return (str == "true" || str == "TRUE" || str == "True" || str == "t" || str == "T" || str == "1");
+	}
 	static short Length(string S1)
 	{
 		return S1.length();

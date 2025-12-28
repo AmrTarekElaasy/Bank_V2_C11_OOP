@@ -6,7 +6,9 @@ class clsTransferScreen
 {
 	static void _ScreenSettings()
 	{
+		//clsScreen::ColorAllProgram();
 		system("cls");
+
 		CurrentScreen.Offset = 0;
 	}
 	static void _DrawScreenLine()
@@ -37,11 +39,11 @@ class clsTransferScreen
 	static clsBankClient _ReadClient(string Mesege, string ScondAcountNumber = "")
 	{
 		string AccountNumbr = "";
-		bool Fail = false;
+		bool FailSaveTransferInLog = false;
 		clsBankClient Client = clsBankClient::Find("");
 		do {
 
-			if (Fail)
+			if (FailSaveTransferInLog)
 			{
 				if (!Client.IsExist())
 					CurrentScreen.Print("Not Exist\n");
@@ -51,7 +53,7 @@ class clsTransferScreen
 					CurrentScreen.Print("Not Exist or Account Number is the same\n");
 
 
-				Fail = false;
+				FailSaveTransferInLog = false;
 				CurrentScreen.Print("Do you want to find another account? [Y/N] : ");
 				if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()) == false)
 					return clsBankClient::Find("");
@@ -63,10 +65,10 @@ class clsTransferScreen
 
 
 			if (!(Client.IsExist()) || Client.AccountNumber == ScondAcountNumber)
-				Fail = true;
+				FailSaveTransferInLog = true;
 
 
-		} while (Fail);
+		} while (FailSaveTransferInLog);
 		return Client;
 	}
 	static void _Header()
@@ -125,9 +127,14 @@ public:
 			
 			_Header();
 			if (Client1.Transfer(Amount, Client2))
+			{
+				clsScreen::ColorSuccessfulOperation();
 				CurrentScreen.Print("Transfer Done Successfully\n");
+			}
+
 			else
 			{
+				clsScreen::ColorFailedOperation();
 				CurrentScreen.Print("Transfer Failed\n");
 				Client1.AccountBalance = BalanceOfClient1;
 				Client2.AccountBalance = BalanceOfClient2;

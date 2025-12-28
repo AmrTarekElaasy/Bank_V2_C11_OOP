@@ -10,6 +10,7 @@ class clsUpdateClientScreen :clsScreen
 {
 	static void _ScreenSettings()
 	{
+		clsScreen::ColorAllProgram();
 
 		CurrentScreen.Offset = 0;
 
@@ -32,23 +33,31 @@ public:
 
 			CurrentScreen.AlignWithOffset();
 			cout << "Are you sure you want to Update this client Y|N?";
-			switch (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
+			if (clsInputValidate::CheckYesOrNo(clsInputValidate::ReadString()))
 			{
-			case true:
+
 				Client = clsReadClientScreen::ReadUser(accountNumber, clsBankClient::enMode::enUpdateMode);
-				Client.Save();
 
-				CurrentScreen.AlignWithOffset(1);
-				cout << "Updated Successfully\n";
-				clsClientInfoScreen::PrintUserInfo(Client);
-				CurrentScreen.DrawScreenLine();
-				return true;
-
-			default:
+				if (Client.Save())
+				{
+					CurrentScreen.AlignWithOffset(1);
+					cout << "Updated Successfully\n";
+					clsClientInfoScreen::PrintUserInfo(Client);
+					CurrentScreen.DrawScreenLine();
+					return true;
+				}
+				else
+				{
+					CurrentScreen.AlignWithOffset();
+					cout << "Not Updated \n";
+					CurrentScreen.DrawScreenLine();
+				}
+			}
+			else
+			{
 				CurrentScreen.AlignWithOffset();
 				cout << "Not Updated \n";
 				CurrentScreen.DrawScreenLine();
-				break;
 			}
 		}
 		else

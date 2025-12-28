@@ -10,6 +10,7 @@ class clsAddNewUserScreen
 	static void _ScreenSettings()
 	{
 		CurrentScreen.Offset = 0;
+		clsScreen::ColorAllProgram();
 
 	}
 	static void _ClearScreenAndPrintHeader()

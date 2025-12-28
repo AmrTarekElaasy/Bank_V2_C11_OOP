@@ -5,7 +5,9 @@ class clsListCurrenciesScreen
 {
 	static void _ScreenSettings()
 	{
+		clsScreen::ColorAllProgram();
 		system("cls");
+
 		CurrentScreen.Offset = -20;
 	}
 	static void _PrintTheLine()

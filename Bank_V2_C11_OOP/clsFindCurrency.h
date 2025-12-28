@@ -6,7 +6,9 @@ class clsFindCurrency
 {
 	static void _ScreenSettings()
 	{
+		clsScreen::ColorAllProgram();		
 		system("cls");
+
 		CurrentScreen.Offset = 0;
 	}
 

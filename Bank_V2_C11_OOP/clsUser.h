@@ -103,11 +103,17 @@ private:
 
 		return vUsers;
 	}
+	static string UsersFilePath()
+	{
+		return "Users.txt";
+	}
 
 	static void _SaveUsersDataToFile(vector <clsUser> vUsers)
 	{
 
 		fstream MyFile;
+		remove(UsersFilePath().c_str());//////////
+
 		MyFile.open("Users.txt", ios::out);//overwrite
 
 		string DataLine;

@@ -4,7 +4,9 @@ class clsTransferLogScreen
 private:
 	static void _ScreenSettings()
 	{
+		clsScreen::ColorAllProgram();
 		system("cls");
+
 		CurrentScreen.Offset = -32;
 	}
 	static void _DrawScreenLine()

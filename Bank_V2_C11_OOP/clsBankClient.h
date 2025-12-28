@@ -10,6 +10,7 @@
 #include "clsUtil.h"
 #include <filesystem>
 
+
 using namespace std;
 
 class clsBankClient :public clsPerson
@@ -121,13 +122,13 @@ private:
 		fstream MyFile;
 
 		remove(ClientPath().c_str());//////////
-
+		
 		MyFile.open(ClientPath(), ios::out);
-
+		
 		string DataLine;
-
-
-
+		
+		
+		
 		if (MyFile.is_open())
 		{
 			for (clsBankClient C : vClients)
@@ -135,16 +136,16 @@ private:
 				if (C._MarkForDelete == false)
 				{
 					DataLine = _ConverClientObjectToLine(C);
-
+		
 					MyFile << clsUtil::EncryptText(DataLine) << endl;
 				}
 			
 					
-
+		
 			}
-
+		
 			MyFile.close();
-
+		
 		}
 		else
 		{
@@ -153,9 +154,21 @@ private:
 		}
 
 	}
-	void _Update()
+	bool IsEqual(clsBankClient C1, clsBankClient C2)
+	{
+		return (C1.AccountNumber == C2.AccountNumber &&
+			C1.AccountBalance == C2.AccountBalance &&
+			C1.FirstName == C2.FirstName &&
+			C1.LastName == C2.LastName &&
+			C1.PinCode == C2.PinCode &&
+			C1.Phone == C2.Phone &&
+			C1.Email == C2.Email);
+	}
+	bool _Update()
 	{
 		vector <clsBankClient>vClient = _LoadClientsDataFromFile();
+		clsBankClient BackUp = Find(AccountNumber);
+		clsBankClient newData =*this;
 		for (clsBankClient& C : vClient)
 		{
 			if (C.AccountNumber == AccountNumber)
@@ -166,6 +179,26 @@ private:
 			}
 		}
 		_SaveCleintsDataToFile(vClient);
+
+		if (IsEqual(Find(AccountNumber),newData))
+			return true;
+		else
+		{
+			for (clsBankClient& C : vClient)
+			{
+				if (C.AccountNumber == AccountNumber)
+				{
+
+					C = BackUp;
+					break;
+					
+				}
+			}
+			_SaveCleintsDataToFile(vClient);
+		}
+			return false;
+
+
 	}
 	bool _SaveLineClientInFile(string Line)
 	{
@@ -275,6 +308,7 @@ public:
 		return clsBankClient::_GetEmptyClient();
 	}
 	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasUserName };
+	
 	enSave Save()
 	{
 		switch (_Mode)
@@ -286,8 +320,10 @@ public:
 
 
 		case clsBankClient::enMode::enUpdateMode:
-			_Update();
-			return enSave::enSavedSuccessfully;
+			if(_Update())
+				return enSave::enSavedSuccessfully;
+			else
+				return enSave::enNotSavedIsEmpty;
 			break;
 
 		case clsBankClient::enMode::enAddNew:
@@ -306,7 +342,11 @@ public:
 			else
 			{
 				_AddNew();
-				return enSave::enSavedSuccessfully;
+				clsBankClient Client = Find(this->AccountNumber);
+				if(Client.IsExist())
+					return enSave::enSavedSuccessfully;
+				else 
+					return enSave::enNotSavedIsEmpty;
 
 			}
 		}
@@ -341,7 +381,9 @@ public:
 
 	bool Transfer(double Amount, clsBankClient& DestinationClient)
 	{
-
+		clsBankClient BackUPClient1 = * this;
+		clsBankClient BackUPClient2 = DestinationClient;
+		
 		bool CanTransfer = (this->AccountNumber != DestinationClient.AccountNumber)
 			&& Amount > 0 && (this->AccountBalance > 0)
 			&& (this->AccountBalance >= Amount);
@@ -353,14 +395,34 @@ public:
 
 		this->AccountBalance -= Amount;
 		DestinationClient.AccountBalance += Amount;
-		this->Save();
-		DestinationClient.Save();
-		SaveTransferLog(*this, DestinationClient, CurrentUser.UserName, Amount);
-		return true;
 
+		bool condition1=false, condition2=false;
+		if (this->Save() == enSave::enSavedSuccessfully &&
+			DestinationClient.Save() == enSave::enSavedSuccessfully)
+			condition1 =true;
+		if(
+			BackUPClient1.AccountBalance-Amount == Find(this->AccountNumber).AccountBalance &&
+			BackUPClient2.AccountBalance + Amount == Find(DestinationClient.AccountNumber).AccountBalance
 
+			)
+			condition2=true;
+		if(condition1&& condition2)
+		{
+			SaveTransferLog(*this, DestinationClient, CurrentUser.UserName, Amount,true);
+			return true;
+
+		}
+		
+		else
+		{
+			BackUPClient1.Save();
+			BackUPClient2.Save();
+			SaveTransferLog(*this, DestinationClient, CurrentUser.UserName, Amount, false);
+			return false;
+		}
 
 	}
+
 	struct stTransferLog
 	{
 		string transferDateAndTime;
@@ -370,11 +432,12 @@ public:
 		double amount;
 		double fromAccountBalanceAfterTheTransfer;
 		double toAccountBalanceTransfer;
-		bool Fail = false;
+		bool SuccessfulOperation;
+		bool FailSaveTransferInLog = false;
 
 	}; 
 
-	static stTransferLog GetTransferLog(clsBankClient& FromClient, clsBankClient& ToClient,string UserName, double Amount)
+	static stTransferLog GetTransferLog(clsBankClient& FromClient, clsBankClient& ToClient,string UserName, double Amount,bool SuccessfulOperation)
 	{
 		stTransferLog TransferLog;
 		TransferLog.transferDateAndTime = clsDate::DateToString(clsDate::GetCompleteSystemDate());
@@ -384,12 +447,14 @@ public:
 		TransferLog.fromAccountBalanceAfterTheTransfer = FromClient.AccountBalance;
 		TransferLog.toAccountBalanceTransfer = ToClient.AccountBalance;
 		TransferLog.UserName = UserName;
+		TransferLog.SuccessfulOperation =true;
 		return TransferLog;
 	}
-	static string GetTransferLogAsString(stTransferLog TransferLog, string seperator = "#//#")
+	static string GetTransferLogAsString(stTransferLog TransferLog ,string seperator = "#//#")
 	{
 		string TransferLogAsString = "";
 		TransferLogAsString += TransferLog.transferDateAndTime + seperator;
+		TransferLogAsString += to_string(TransferLog.SuccessfulOperation) + seperator;
 		TransferLogAsString += TransferLog.fromAccountNumber + seperator;
 		TransferLogAsString += TransferLog.toAccountNumber + seperator;
 		TransferLogAsString += to_string(TransferLog.amount) + seperator;
@@ -400,7 +465,7 @@ public:
 
 		return TransferLogAsString;
 	}
-	static void SaveTransferLog(stTransferLog TransferLog)
+	static void SaveTransferLog(stTransferLog TransferLog,bool SuccessfulOperation)
 	{
 		fstream TransferLogFile;
 		TransferLogFile.open("TransferLog.txt", ios::out | ios::app);
@@ -416,30 +481,32 @@ public:
 			clsErrors::SaveTheErrorInTheFile("Can not open TransferLog.txt");
 		}
 	}
-	static void SaveTransferLog(clsBankClient& FromClient, clsBankClient& ToClient,string UserName, double Amount)
+	static void SaveTransferLog(clsBankClient& FromClient, clsBankClient& ToClient,string UserName, double Amount,bool SuccessfulOperation)
 	{
-		stTransferLog TransferLog = GetTransferLog(FromClient, ToClient, UserName, Amount);
-		SaveTransferLog(TransferLog);
+		stTransferLog TransferLog = GetTransferLog(FromClient, ToClient, UserName, Amount, SuccessfulOperation);
+		SaveTransferLog(TransferLog , SuccessfulOperation);
 		
 	}
+	
 	static stTransferLog GetTransferLogFromString(string TransferLogAsString, string seperator = "#//#")
 	{
 		vector<string> vTransferLogData;
 		vTransferLogData = clsString::Split(TransferLogAsString, seperator);
 		stTransferLog TransferLog;
-		if (vTransferLogData.size() > 6)
+		if (vTransferLogData.size() > 7)
 		{
 			TransferLog.transferDateAndTime = vTransferLogData[0];
-			TransferLog.fromAccountNumber = vTransferLogData[1];
-			TransferLog.toAccountNumber = vTransferLogData[2];
-			TransferLog.amount = stod(vTransferLogData[3]);
-			TransferLog.fromAccountBalanceAfterTheTransfer = stod(vTransferLogData[4]);
-			TransferLog.toAccountBalanceTransfer = stod(vTransferLogData[5]);
-			TransferLog.UserName = vTransferLogData[6];
+			TransferLog.SuccessfulOperation = clsString::stringToBool(vTransferLogData[1]);
+			TransferLog.fromAccountNumber = vTransferLogData[2];
+			TransferLog.toAccountNumber = vTransferLogData[3];
+			TransferLog.amount = stod(vTransferLogData[4]);
+			TransferLog.fromAccountBalanceAfterTheTransfer = stod(vTransferLogData[5]);
+			TransferLog.toAccountBalanceTransfer = stod(vTransferLogData[6]);
+			TransferLog.UserName = vTransferLogData[7];
 		}
 		else
 		{
-			TransferLog.Fail = true;
+			TransferLog.FailSaveTransferInLog = true;
 			string error = "Not Load a Transfer Log : " + TransferLogAsString;
 			clsErrors::SaveTheErrorInTheFile(error);
 		}
@@ -462,7 +529,7 @@ public:
 			{
 				line = clsUtil::DecryptText(line);
 				tempTransferLog = GetTransferLogFromString(line, seperator);
-				if (tempTransferLog.Fail == false)
+				if (tempTransferLog.FailSaveTransferInLog == false)
 				{
 					vTransferLog.push_back(tempTransferLog);
 				}

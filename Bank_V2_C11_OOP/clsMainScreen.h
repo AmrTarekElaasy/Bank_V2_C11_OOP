@@ -24,7 +24,8 @@ private:
 
     static void _ScreenSettings()
     {
-        
+        clsScreen::ColorAllProgram();
+
         CurrentScreen.Offset = 5;
 
     }
@@ -137,13 +138,13 @@ private:
             _GoBackToMainMenue();
             break;
         }
-        case enMainMenueOptions::eAddNewClient:
+        case enMainMenueOptions::eAddNewClient://U2512
             system("cls");
             _ShowAddNewClientsScreen();
             _GoBackToMainMenue();
             break;
 
-        case enMainMenueOptions::eDeleteClient:
+        case enMainMenueOptions::eDeleteClient://U2512
             system("cls");
             _ShowDeleteClientScreen();
             _GoBackToMainMenue();

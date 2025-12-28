@@ -16,6 +16,8 @@ class clsClientsScreen
     {
         
         CurrentScreen.Offset = -30;
+        clsScreen::ColorAllProgram();
+
     }
 public:
     

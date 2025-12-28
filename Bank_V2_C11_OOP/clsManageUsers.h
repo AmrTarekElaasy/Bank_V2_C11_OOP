@@ -13,6 +13,7 @@ class clsManageUsers
 
 	static void _ScreenSettings()
 	{
+		clsScreen::ColorAllProgram();
 
 		CurrentScreen.Offset = 5;
 

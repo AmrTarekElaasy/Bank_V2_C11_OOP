@@ -12,6 +12,8 @@ class clsListUsersScreen :clsUser
 
     static clsScreen _ScreenSettings()
     {
+        clsScreen::ColorAllProgram();
+
         clsScreen CurrentScreen;
         CurrentScreen.Offset = -30;
         return CurrentScreen;

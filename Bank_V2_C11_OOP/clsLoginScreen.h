@@ -8,6 +8,7 @@ class clsLoginScreen
 {
 	static void _ScreenSettings()
 	{
+		system("color 0F");
 		CurrentScreen.Offset = 0;
 	}
 	static void _Header(string Header)

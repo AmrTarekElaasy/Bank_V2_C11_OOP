@@ -5,6 +5,8 @@ class clsUserInfoScreen
 {
 	static void _ScreenSettings()
 	{
+        clsScreen::ColorAllProgram();
+
 		CurrentScreen.Offset = 0;
 	}
 	static void _DrawTheLine()

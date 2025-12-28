@@ -19,6 +19,19 @@ public:
         clsScreen CurrentScreen;
         return CurrentScreen._MainOffset;
     }
+    static void ColorSuccessfulOperation()
+    {
+        system("color F2");
+    }
+    static void ColorFailedOperation()
+    {
+        system("color F4");
+    }
+    static void ColorAllProgram()
+    {
+        system("color F0");
+    }
+
     _declspec (property (get = GetMainOffset)) short MainOffset;
 
     void SetSecondOffset(short offset) {

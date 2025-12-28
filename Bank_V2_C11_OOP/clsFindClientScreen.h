@@ -10,6 +10,8 @@ class clsFindClientScreen:protected clsGeneralFindClient
 	
 	static void _ScreenSettings()
 	{
+		clsScreen::ColorAllProgram();
+
 		CurrentScreen.Offset = 0;
 	}
 	static void _Header(string Header)

@@ -4,7 +4,9 @@ class clsCurrencyCalculatorScreen:clsFindCurrency
 {
 	static void _ScreenSettings()
 	{
+		clsScreen::ColorAllProgram();
 		system("cls");
+
 		CurrentScreen.Offset = 0;
 	}
 	static void _CleanAndPrintHeader()
