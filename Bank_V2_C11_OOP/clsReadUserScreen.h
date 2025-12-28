@@ -99,7 +99,7 @@ public:
 	{
 
 		string FristName, LastName, Email, Phone, Password;
-		short Permisstion;
+		short Permission;
 		_ScreenSettings();
 
 		
@@ -127,11 +127,11 @@ public:
 		cout << "Enter Password : ";
 		Password = clsInputValidate::ReadString();
 
-		Permisstion = _ReadPermission(UserName);
+		Permission = _ReadPermission(UserName);
 
 
 
-		clsUser Client(Mode, FristName, LastName, Email, Phone, UserName, Password, Permisstion);
+		clsUser Client(Mode, FristName, LastName, Email, Phone, UserName, Password, Permission);
 
 		return Client;
 	}

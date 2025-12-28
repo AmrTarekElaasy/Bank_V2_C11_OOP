@@ -120,7 +120,7 @@ private:
 	{
 
 		fstream MyFile;
-
+		
 		remove(ClientPath().c_str());//////////
 		
 		MyFile.open(ClientPath(), ios::out);
@@ -447,7 +447,7 @@ public:
 		TransferLog.fromAccountBalanceAfterTheTransfer = FromClient.AccountBalance;
 		TransferLog.toAccountBalanceTransfer = ToClient.AccountBalance;
 		TransferLog.UserName = UserName;
-		TransferLog.SuccessfulOperation =true;
+		TransferLog.SuccessfulOperation = SuccessfulOperation;
 		return TransferLog;
 	}
 	static string GetTransferLogAsString(stTransferLog TransferLog ,string seperator = "#//#")

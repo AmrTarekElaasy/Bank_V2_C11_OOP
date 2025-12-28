@@ -43,6 +43,7 @@ class clsManageUsers
 		system("cls");
 		clsAddNewUserScreen::AddNewUserScreen();
 		
+		
 	}
 	static void _ShowDeleteUser()
 	{
@@ -59,14 +60,13 @@ class clsManageUsers
 		system("cls");
 		clsFindUserScreen::FindUserScreen();
 	}
-	static void _GoBackToManageUsersScreen()
+	static void _GoBackToManageUsersScreen(bool AddPause=false)
 	{
-		_ScreenSettings();
 		CurrentScreen.AlignWithOffset();
-		cout << "Press any key to go back to Manage Users menue...";
-		cin.sync();
-		cin.get();
+		clsScreen::Pause("Press any key to go back to Manage Users menue...", AddPause);
 
+
+		_ScreenSettings();
 
 		ManageUsersScreen();
 
@@ -82,7 +82,9 @@ class clsManageUsers
 			break;
 		case clsManageUsers::eAddNewUser:
 			_ShowAddNewUser();
-			_GoBackToManageUsersScreen();
+			
+			_GoBackToManageUsersScreen(true);
+
 			break;
 		case clsManageUsers::eDeleteUser:
 			_ShowDeleteUser();
@@ -90,7 +92,7 @@ class clsManageUsers
 			break;
 		case clsManageUsers::eUpdateUser:
 			_ShowUpdateUser();
-			_GoBackToManageUsersScreen();
+			_GoBackToManageUsersScreen(true);
 			break;
 		case clsManageUsers::eFindUser:
 			_ShowFindUser();

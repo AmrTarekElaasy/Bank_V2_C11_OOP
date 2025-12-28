@@ -55,7 +55,7 @@ public:
                 cout << "| " << left << setw(13) << user.Phone;
                 cout << "| " << left << setw(30) << user.Email;
                 cout << "| " << left << setw(14) << user.Password;
-                cout << "| " << user.Permisstion << "\n";
+                cout << "| " << user.Permission << "\n";
 
             }
         }

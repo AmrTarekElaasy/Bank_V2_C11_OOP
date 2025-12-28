@@ -87,11 +87,13 @@ public:
 		clsBankClient Client1 = _ReadClient("Enter Account Number To Transfer From : ");
 		if (Client1.IsExist() == false)
 		{
+			clsScreen::ColorFailedOperation();
 			CurrentScreen.DrawScreenLine();
 			return;
 		}
 		else if (Client1.AccountBalance == 0)
 		{
+			clsScreen::ColorFailedOperation();
 			CurrentScreen.Print("You have no balance to transfer\n");
 			CurrentScreen.DrawScreenLine();
 			return;
@@ -105,6 +107,7 @@ public:
 		clsBankClient Client2 = _ReadClient("Enter Account Number To Transfer To : ", Client1.AccountNumber);
 		if (Client2.IsExist() == false)
 		{
+			clsScreen::ColorFailedOperation();
 			CurrentScreen.DrawScreenLine();
 			return;
 		}
@@ -129,11 +132,14 @@ public:
 			if (Client1.Transfer(Amount, Client2))
 			{
 				clsScreen::ColorSuccessfulOperation();
+				clsScreen::ColorSuccessfulOperation();
+
 				CurrentScreen.Print("Transfer Done Successfully\n");
 			}
 
 			else
-			{
+			{	
+				
 				clsScreen::ColorFailedOperation();
 				CurrentScreen.Print("Transfer Failed\n");
 				Client1.AccountBalance = BalanceOfClient1;
@@ -147,6 +153,7 @@ public:
 		else
 		{
 			_Header();
+			clsScreen::ColorFailedOperation();
 			CurrentScreen.Print("Transfer Cancelled\n");
 
 		}

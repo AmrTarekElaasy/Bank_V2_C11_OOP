@@ -3,6 +3,7 @@
 #include <iomanip>
 #include "clsDate.h"
 #include "clsUser.h"
+#include <windows.h>
 
 using namespace std;
 class clsScreen
@@ -12,8 +13,27 @@ class clsScreen
 
  
 public:
-   
-    
+ 
+    static void SetColor(int color) {
+        
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, color);
+    }
+    static void Pause(string messege, bool AddPause=false)
+    {
+        cout << messege;
+        if(AddPause)
+            system("pause>0");
+        cin.clear();
+        while (cin.peek() != '\n' && cin.peek() != EOF)
+        {
+            cin.ignore();
+        }
+
+      
+
+        cin.get();
+    }
     static short GetMainOffset()
     {
         clsScreen CurrentScreen;
@@ -21,15 +41,15 @@ public:
     }
     static void ColorSuccessfulOperation()
     {
-        system("color F2");
+        system("color 02");
     }
     static void ColorFailedOperation()
     {
-        system("color F4");
+        system("color 04");
     }
     static void ColorAllProgram()
     {
-        system("color F0");
+        system("color 0F");
     }
 
     _declspec (property (get = GetMainOffset)) short MainOffset;

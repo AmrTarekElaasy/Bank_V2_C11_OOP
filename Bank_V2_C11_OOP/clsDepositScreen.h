@@ -54,6 +54,8 @@ public:
 
 				if (Client.Save()==clsBankClient::enSave::enSavedSuccessfully)
 				{
+					clsScreen::ColorSuccessfulOperation();
+
 					cout << "New Account Balance Is ";clsScreen::PrintDoubleNumber(Client.AccountBalance,true);
 					cout << "\n";
 					CurrentScreen.DrawScreenLine();
@@ -61,8 +63,10 @@ public:
 
 				} 
 				else
-				{
-					cout << "Not Saved\n";
+				{	
+					clsScreen::ColorFailedOperation();
+
+					cout << "Failed Operation\n";
 
 				}
 			}

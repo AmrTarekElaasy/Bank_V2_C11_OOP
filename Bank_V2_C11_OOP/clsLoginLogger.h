@@ -46,7 +46,7 @@ public:
 	{
 		fstream LoginFile;
 		string line = clsDate::DateToString(clsDate::GetCompleteSystemDate());
-		line += Seperator + CurrentUser.UserName + Seperator + CurrentUser.Password + Seperator + to_string(CurrentUser.Permisstion);
+		line += Seperator + CurrentUser.UserName + Seperator + CurrentUser.Password + Seperator + to_string(CurrentUser.Permission);
 
 
 		LoginFile.open("LoginFile.log", ios::app | ios::out);

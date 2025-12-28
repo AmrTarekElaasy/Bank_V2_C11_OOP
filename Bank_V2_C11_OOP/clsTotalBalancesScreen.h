@@ -50,6 +50,8 @@ public:
 
 		if (vClients.size() > 0)
 		{
+			clsScreen::ColorSuccessfulOperation();
+
 			for (clsBankClient& client : vClients)
 			{
 				CurrentScreen.AlignWithOffset();
@@ -62,7 +64,10 @@ public:
 		else
 		{
 			CurrentScreen.AlignWithOffset();
+			clsScreen::ColorFailedOperation();
+
 			cout << "No Clients Her\n";
+
 		}
 		CurrentScreen.AlignWithOffset();
 		_PrintTheLine();

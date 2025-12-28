@@ -31,6 +31,8 @@ public:
 	static bool DeleteUserScreen()
 	{
 		_ScreenSettings();
+		clsScreen::ColorFailedOperation();
+
 		string Header = "                      Delete User Screen";
 		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, CurrentScreen, true);
 		if (User.IsExist())
@@ -44,6 +46,7 @@ public:
 			case true:
 				if (User.Delete())
 				{
+					clsScreen::ColorSuccessfulOperation();
 					CurrentScreen.AlignWithOffset(1);
 					cout << "Deleted successfully\n";
 					clsUserInfoScreen::PrintUserInfo(User);
@@ -51,8 +54,10 @@ public:
 					return true;
 				}
 			default:
+				
 
 				_ClearScreenAndPrintHeader(Header);
+				clsScreen::ColorFailedOperation();
 				CurrentScreen.AlignWithOffset();
 				cout << "Not deleted\n";
 				break;

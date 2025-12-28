@@ -18,7 +18,7 @@ public:
     static void PrintUserInfo(clsUser User)
     {
         
-        _ScreenSettings();
+       // _ScreenSettings();
         CurrentScreen.AlignWithOffset(0);
         _DrawTheLine();
         CurrentScreen.AlignWithOffset(2);
@@ -40,7 +40,7 @@ public:
         CurrentScreen.AlignWithOffset(1);
         cout << "Password       : " << User.Password;
         CurrentScreen.AlignWithOffset(1);
-        cout << "Permisstion    : "<<(User.Permisstion);
+        cout << "Permisstion    : "<<(User.Permission);
         CurrentScreen.AlignWithOffset(1);
     
 

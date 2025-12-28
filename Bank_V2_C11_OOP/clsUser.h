@@ -113,14 +113,14 @@ private:
 
 		fstream MyFile;
 		remove(UsersFilePath().c_str());//////////
-
+		
 		MyFile.open("Users.txt", ios::out);//overwrite
-
+		
 		string DataLine;
-
+		
 		if (MyFile.is_open())
 		{
-
+		
 			for (clsUser C : vUsers)
 			{
 				if (C._MarkedForDelete == false)
@@ -128,17 +128,31 @@ private:
 					DataLine = _ConverUserObjectToLine(C);
 					MyFile << clsUtil::EncryptText(DataLine) << endl;
 				}
-
-
+		
+		
 			}
-
+		
 			MyFile.close();
-
+		
 		}
 
 	}
+	bool IsEqual(clsUser u1, clsUser u2)
+	{
+		if (u1.UserName == u2.UserName &&
+			u1.Password == u2.Password &&
+			u1.FirstName == u2.FirstName &&
+			u1.LastName == u2.LastName && 
+			u1.Phone == u2.Phone &&
+			u1.Email == u2.Email &&
+			u1.Permission == u2.Permission)
+			return true;
+		else 
+			return false;
+	}
 	bool _Update()
 	{
+		clsUser NewData = *this;
 		if ((this->UserName == UserNameOfAdmin) && (CurrentUser.UserName != UserNameOfAdmin))
 		{
 			clsErrors::SaveTheErrorInTheFile("You can not update the admin account");
@@ -156,6 +170,8 @@ private:
 			}
 		}
 		_SaveUsersDataToFile(vUsers);
+		*this = clsUser::Find(this->UserName);
+		return (IsEqual(*this, NewData));
 	}
 	bool _SaveLineUserInFile(string Line)
 	{
@@ -178,7 +194,7 @@ private:
 		string UserLine = _ConverUserObjectToLine(*this);
 		_SaveLineUserInFile(UserLine);
 	}
-	
+
 public:
 
 	enMode GetMode()
@@ -196,7 +212,7 @@ public:
 	static bool HasPermission(clsUser User, enPermission Permission)
 	{
 
-		if ((User.Permisstion & Permission) || (User.Permisstion == -1))
+		if ((User.Permission & Permission) || (User.Permission == -1))
 			return true;
 		return false;
 
@@ -237,7 +253,7 @@ public:
 		_Permisstion = permisstion;
 	}
 
-	__declspec(property(get = GetPermisstion, put = SetPermisstion))short Permisstion;
+	__declspec(property(get = GetPermisstion, put = SetPermisstion))short Permission;
 
 
 	static bool IsEmpty(clsUser User)
@@ -266,9 +282,9 @@ public:
 		clsUser User = clsUser::_GetEmptyUser();
 		if (userName == "")
 			return User;
-		
 
-		
+
+
 
 		vector <clsUser> vUsers = _LoadUsersDataFromFile();
 		for (clsUser& C : vUsers)
@@ -279,7 +295,7 @@ public:
 				break;
 			}
 		}
-		
+
 
 		if ((userName == UserNameOfAdmin) && (CurrentUser.UserName != UserNameOfAdmin))
 		{
@@ -305,14 +321,15 @@ public:
 				User = C;
 				break;
 			}
-				
+
 		}
 
 		return  User;
 	}
-	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasUserName, enNotSavedAreYouNotAdmin};
+	enum enSave { enNotSavedIsEmpty, enSavedSuccessfully, enNotSavedAccountIsExist, enNotHasUserName, enNotSavedAreYouNotAdmin };
 	enSave Save()
 	{
+		bool US=false;
 		switch (_Mode)
 		{
 		case clsUser::enMode::eEmptyMode:
@@ -322,10 +339,11 @@ public:
 
 
 		case clsUser::enMode::eUpdateMode:
+		
+			
 			if (_Update())
-			{
 				return enSave::enSavedSuccessfully;
-			}
+			
 			else
 			{
 				return enSave::enNotSavedAreYouNotAdmin;
@@ -349,7 +367,11 @@ public:
 			else
 			{
 				_AddNew();
-				return enSave::enSavedSuccessfully;
+				clsUser U = clsUser::Find(this->UserName);
+				if (U.IsExist())
+					return enSave::enSavedSuccessfully;
+				else
+					return enSave::enNotSavedIsEmpty;
 
 			}
 		}
@@ -380,8 +402,8 @@ public:
 			}
 		}
 		_SaveUsersDataToFile(vUsers);
-		*this = _GetEmptyUser();
-		return true;
+		*this = Find(this->UserName);
+		return this->IsExist() == false;
 	}
 	static vector <clsUser> GetUsersList()
 	{

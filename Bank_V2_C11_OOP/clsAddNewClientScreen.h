@@ -69,7 +69,7 @@ public:
 			{
 			case clsBankClient::enSave::enSavedSuccessfully:
 
-
+				clsScreen::ColorSuccessfulOperation();
 				cout << "Saved Successfully\n";
 				clsClientInfoScreen::PrintUserInfo(Client);
 				CurrentScreen.DrawScreenLine();
@@ -87,7 +87,7 @@ public:
 			}
 
 		}
-
+		clsScreen::ColorFailedOperation();
 		CurrentScreen.DrawScreenLine();
 		return false;
 	}

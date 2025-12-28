@@ -32,14 +32,17 @@ public:
 		_ScreenSettings();
 		string Header = "                        Find Client Screen";
 		//_ClearScreenAndPrintHeader(Header);
+	
 		clsBankClient Client = clsGeneralFindClient::GeneralFindUser(Header, true);
 
 		
 		if (Client.IsExist())
 		{
-
+			clsScreen::ColorSuccessfulOperation();
 			return true;
 		}
+		clsScreen::ColorFailedOperation();
+
 		CurrentScreen.DrawScreenLine();
 		return false;
 	}

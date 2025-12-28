@@ -42,9 +42,10 @@ private:
 	static void _GoBackToCurrencyExchangeScreen() 
 	{
 		
-		CurrentScreen.Print("Press any key to go back to Currency Exchange Screen...");
-		cin.sync();
-		cin.get();
+		CurrentScreen.Print("");
+		clsScreen::Pause("Press any key to go back to Currency Exchange Screen...");
+
+		_ScreenSettings();
 		ShowCurrencyExchangeScreen();
 	}
 	static void PerfromOption(enCurrencyExchangeOptions Option)

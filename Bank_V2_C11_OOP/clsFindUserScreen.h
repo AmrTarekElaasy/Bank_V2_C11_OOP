@@ -31,9 +31,10 @@ public:
 		clsUser User = clsGeneralFindUser::GeneralFindUser(Header, CurrentScreen, true);
 		if (User.IsExist())
 		{
-
+			clsScreen::ColorSuccessfulOperation();
 			return true;
 		}
+		clsScreen::ColorFailedOperation();
 		CurrentScreen.DrawScreenLine();
 		return false;
 	}

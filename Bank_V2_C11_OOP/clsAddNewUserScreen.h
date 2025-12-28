@@ -67,7 +67,7 @@ public:
 		}
 
 
-
+		
 		if (!User.IsExist())
 		{
 			User = clsReadUserScreen::ReadUser(userName, clsUser::enMode::eAddNewMode);
@@ -79,8 +79,9 @@ public:
 			{
 			case clsUser::enSave::enSavedSuccessfully:
 
-
+				clsScreen::ColorSuccessfulOperation();
 				cout << "Saved Successfully\n";
+
 				clsUserInfoScreen::PrintUserInfo(User);
 				CurrentScreen.DrawScreenLine();
 				return true;
@@ -89,7 +90,8 @@ public:
 				cout << "Not Has Account Number\n";
 				break;
 			case clsUser::enNotSavedIsEmpty:
-				cout << "Not Saved Is Empty\n";
+				
+				cout << "Not Saved\n";
 				break;
 			default:
 				cout << "Not Saved\n";
@@ -97,7 +99,7 @@ public:
 			}
 
 		}
-
+		clsScreen::ColorFailedOperation();
 		CurrentScreen.DrawScreenLine();
 		return false;
 	}

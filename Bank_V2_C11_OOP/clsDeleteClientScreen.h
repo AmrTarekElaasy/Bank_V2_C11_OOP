@@ -12,7 +12,7 @@ class clsDeleteClientScreen :protected clsGeneralFindClient
 	static void _ScreenSettings()
 	{
 
-		clsScreen::ColorAllProgram();
+		clsScreen::ColorFailedOperation();
 		
 		CurrentScreen.Offset = 0;
 	
@@ -48,8 +48,13 @@ public:
 				if (Client.Delete())
 				{
 					CurrentScreen.AlignWithOffset(1);
+					Client =clsBankClient::Find(Client.AccountNumber);
 					if(!Client.IsExist())
+					{
+						clsScreen::ColorSuccessfulOperation();
 						cout << "Deleted successfully\n";
+			
+					}
 					else
 						cout<<"Deletion failed\n";
 

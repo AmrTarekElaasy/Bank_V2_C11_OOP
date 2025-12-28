@@ -41,6 +41,7 @@ public:
 				if (Client.Save())
 				{
 					CurrentScreen.AlignWithOffset(1);
+					clsScreen::ColorSuccessfulOperation();
 					cout << "Updated Successfully\n";
 					clsClientInfoScreen::PrintUserInfo(Client);
 					CurrentScreen.DrawScreenLine();
@@ -66,6 +67,8 @@ public:
 			cout << "Not Exist \n";
 			CurrentScreen.DrawScreenLine();
 		}
+		clsScreen::ColorFailedOperation();
+
 		return false;
 	}
 

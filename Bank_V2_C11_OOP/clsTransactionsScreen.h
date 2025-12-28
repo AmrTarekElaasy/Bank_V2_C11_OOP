@@ -74,14 +74,15 @@ class clsTransactionsScreen :protected clsScreen
 	{
 		clsTransferLogScreen::ShowTransferLogScreen();
 	}
+	
 	static void _GoBackToTransactionsMenue()
 	{
-		_ScreenSettings();
+		
 
 		CurrentScreen.AlignWithOffset(1);
-		cout << "Press any key to go back to transactions menue...";
-		cin.sync();
-		cin.get();
+		
+		clsScreen::Pause("Press any key to go back to transactions menue...");
+		_ScreenSettings();
 		ShowTransactionsMenue();
 	}
 	static void _PerformTransactionsMenue(enTransactionsMenue enOption)
